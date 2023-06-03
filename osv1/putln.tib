@@ -10,13 +10,12 @@
 prgmPUSHA
 prgmPUSHB
 
+# set cur to last character on line
+16->[list]curps(2)
+
+# by calling `putchr` now we have forced the clear of the next line and the cursor is now on the 1st char of the next line
 " "->STR0
 prgmPUTCHAR # trash a b
-
-While [list]curps(2)!=1 # check if x is 0
-    # STR0 is already set to 1 empty char
-    prgmPUTCHAR # trash a b
-End
 
 prgmPOPB
 prgmPOPA
