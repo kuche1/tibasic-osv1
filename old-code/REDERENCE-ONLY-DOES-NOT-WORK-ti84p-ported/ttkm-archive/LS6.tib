@@ -1,0 +1,4 @@
+"q:kakvi sa predimstvata i nedostatucite na ofdm"→Str4
+"a:+: po-prosta prakti4eska realizaciq; vuzmojno zna4itelno uveli4enie na propuskatelnata sposobnost;ustoi4iva shema sre6tu tesnolentovi smu6teniq; ||| -: 4uvstvitelna sprqmo 4estotni i fazovi fluktuacii; otnositelno visok koeficient na pikovata kumsrednata mo6tnost, koeto vodi do namalqvane na efektivnostta pri izpolzvane na V4 usilvateli"→Str5
+"q:daite primer za multipleksirane s kvadraturni nose6ti 4estoti"→Str6
+"a:s(t) = Ac * m1(t) * cos(2*pi*fc*t)+ Ac * m2(t) * cos(2*pi*fc*t)"→Str7

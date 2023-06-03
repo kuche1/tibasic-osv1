@@ -1,0 +1,14 @@
+
+"info: pauses execution until user presses a button
+"input: 1 char from stdin
+"output: none
+"trash: none
+
+Disp "press any key"
+
+While 1
+getKey
+If Ans≠0
+Goto 1
+End
+Lbl 1

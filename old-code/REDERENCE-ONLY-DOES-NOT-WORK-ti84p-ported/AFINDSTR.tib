@@ -1,0 +1,210 @@
+
+"info:todo
+"input:stdin
+"output:stdin
+"trash:Str1,Str4,Str5,Str6,Str7
+"labels:1,2,3,4,5
+
+"emergency exit
+If X=1
+Goto 4
+
+prgmPUSH
+
+prgmINPSTR
+"output:Str0
+"trash:Str1
+
+"emergency exit
+If X=1
+Goto 5
+
+0→F
+
+Lbl 1
+
+
+If F=0
+Then
+Asm(prgmZTGLARCH)
+UnArchive prgmLS0
+Asm(prgmZTGLARCH)
+prgmLS0
+Asm(prgmZTGLARCH)
+Archive prgmLS0
+Asm(prgmZTGLARCH)
+End
+
+If F=1
+Then
+Asm(prgmZTGLARCH)
+UnArchive prgmLS1
+Asm(prgmZTGLARCH)
+prgmLS1
+Asm(prgmZTGLARCH)
+Archive prgmLS1
+Asm(prgmZTGLARCH)
+End
+
+If F=2
+Then
+Asm(prgmZTGLARCH)
+UnArchive prgmLS2
+Asm(prgmZTGLARCH)
+prgmLS2
+Asm(prgmZTGLARCH)
+Archive prgmLS2
+Asm(prgmZTGLARCH)
+End
+
+If F=3
+Then
+Asm(prgmZTGLARCH)
+UnArchive prgmLS3
+Asm(prgmZTGLARCH)
+prgmLS3
+Asm(prgmZTGLARCH)
+Archive prgmLS3
+Asm(prgmZTGLARCH)
+End
+
+If F=4
+Then
+Asm(prgmZTGLARCH)
+UnArchive prgmLS4
+Asm(prgmZTGLARCH)
+prgmLS4
+Asm(prgmZTGLARCH)
+Archive prgmLS4
+Asm(prgmZTGLARCH)
+End
+
+If F=5
+Then
+Asm(prgmZTGLARCH)
+UnArchive prgmLS5
+Asm(prgmZTGLARCH)
+prgmLS5
+Asm(prgmZTGLARCH)
+Archive prgmLS5
+Asm(prgmZTGLARCH)
+End
+
+If F=6
+Then
+Asm(prgmZTGLARCH)
+UnArchive prgmLS6
+Asm(prgmZTGLARCH)
+prgmLS6
+Asm(prgmZTGLARCH)
+Archive prgmLS6
+Asm(prgmZTGLARCH)
+End
+
+If F=7
+Then
+Asm(prgmZTGLARCH)
+UnArchive prgmLS7
+Asm(prgmZTGLARCH)
+prgmLS7
+Asm(prgmZTGLARCH)
+Archive prgmLS7
+Asm(prgmZTGLARCH)
+End
+
+If F=8
+Then
+Asm(prgmZTGLARCH)
+UnArchive prgmLS8
+Asm(prgmZTGLARCH)
+prgmLS8
+Asm(prgmZTGLARCH)
+Archive prgmLS8
+Asm(prgmZTGLARCH)
+End
+
+If F=9
+Then
+Asm(prgmZTGLARCH)
+UnArchive prgmLS9
+Asm(prgmZTGLARCH)
+prgmLS9
+Asm(prgmZTGLARCH)
+Archive prgmLS9
+Asm(prgmZTGLARCH)
+End
+
+If F=10
+Then
+Asm(prgmZTGLARCH)
+UnArchive prgmLS10
+Asm(prgmZTGLARCH)
+prgmLS10
+Asm(prgmZTGLARCH)
+Archive prgmLS10
+Asm(prgmZTGLARCH)
+End
+
+If F=11
+Then
+Asm(prgmZTGLARCH)
+UnArchive prgmLS11
+Asm(prgmZTGLARCH)
+prgmLS11
+Asm(prgmZTGLARCH)
+Archive prgmLS11
+Asm(prgmZTGLARCH)
+End
+
+If F=12
+Goto 3
+
+Goto 2
+
+Lbl 2
+
+If inString(Str4,Str0)
+Then
+Str4→Str1
+prgmSHWSTRV2
+Str5→Str1
+prgmSHWSTRV2
+End
+
+"emergency exit
+If X=1
+Goto 5
+
+If inString(Str6,Str0)
+Then
+Str6→Str1
+prgmSHWSTRV2
+Str7→Str1
+prgmSHWSTRV2
+End
+
+"emergency exit
+If X=1
+Goto 5
+
+F+1→F
+
+Goto 1
+
+Lbl 3
+
+DelVar Str1
+DelVar Str4
+DelVar Str5
+DelVar Str6
+DelVar Str7
+
+ClrHome
+
+Lbl 5
+
+prgmPOP
+
+Lbl 4
+
+prgmBSLFCHCK

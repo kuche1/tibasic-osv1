@@ -1,0 +1,21 @@
+
+#TODO untested
+
+#input
+#   `STR0` - string to put on screen
+
+#trashed
+#   STR1
+
+prgmPUSHA
+
+STR0->STR1
+
+For(a,1,length(STR1))
+
+    sub(STR1,a,1)->STR0
+    prgmPUTCHAR
+
+End
+
+prgmPOPA

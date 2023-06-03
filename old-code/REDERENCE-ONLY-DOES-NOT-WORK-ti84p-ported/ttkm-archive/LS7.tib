@@ -1,0 +1,4 @@
+"q:kak se obrazuva edni ofdm signal"→Str4
+"a:V edna klasi4eska shema za paralelno predavane na danni ob6tata rabotna 4estotna lenta se razdelq na N nabroi 4estotno otdeleni podkanali. Vseki podkanal se modulira s otdelen simvol i sled tova M-te podkanalase multipleksirat 4estotno. Sumata ot spektrite na vsi4ki podkanali obrazuva spektura na OFDM signala"→Str5
+"q:za6to e neobhodimo vuvejdaneto na za6titen interval pri ofdm"→Str6
+"a:Za po4ti napulno eliminirane na mejdusimvolnite vliqniq se vuvejda za6titen interval za vseki edin OFDM simvol"→Str7

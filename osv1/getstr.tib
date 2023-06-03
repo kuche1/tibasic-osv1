@@ -1,0 +1,51 @@
+
+#info
+#   returns string in STR0
+
+#trashed
+#   STR0 STR1
+
+""->STR1
+
+# main loop
+Lbl 1
+
+    # returns char in STR0
+    prgmGETCHAR
+
+    # emergency exit
+    If STR0="!"
+    Then
+        STR0->STR1 # set as return value
+        Goto 2 # exit loop
+    End
+
+    # enter
+    If STR0="~"
+    Then
+        prgmPUTLN # trashes STR0
+        Goto 2
+    End
+
+    # backspace
+    If STR0="^"
+    Then
+        prgmUNPUTCHR # delete last char from screen
+        sub(STR1,1,length(STR1)-1)->STR1 # delete last char from variable
+        Goto 1
+    End
+
+    If length(STR1)=0
+    Then
+        STR0->STR1
+    Else
+        STR1+STR0->STR1
+    End
+
+    # value already stored in STR0
+    prgmPUTCHAR
+
+Goto 1
+Lbl 2
+
+STR1->STR0

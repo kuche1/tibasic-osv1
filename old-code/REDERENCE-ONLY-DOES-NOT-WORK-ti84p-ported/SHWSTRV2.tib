@@ -1,0 +1,103 @@
+
+"info:todo
+"input:Str1
+"output:stdout
+"trash:none
+"labels:1,2,3
+
+"if emergency exit flag is activated, exit immediately
+If X=1
+Goto 3
+
+prgmPUSH
+
+Output(1,1,"inspctStrPrsEntr")
+
+1→A
+"at which character do we start printing the string
+
+0→E
+"change the value of A request
+
+While 1
+
+2→C
+"which line we are starting the output on
+"when this is 1, we're starting at the first line on screen
+
+(8-C)*16→D
+"D - how many characters we have on screen in total
+"8 - when this is 8, we're ending at the very last line on screen
+
+If E<0
+Then
+If A+E≥1
+A+E→A
+End
+
+If E>0
+Then
+If A+E≤length(Str1)
+A+E→A
+End
+
+0→E
+
+length(Str1)→B
+B-A+1→B
+min(B,D)→B
+Output(C,1,sub(Str1,A,B))
+If B≠D
+Then
+While B+1>16
+B-16→B
+C+1→C
+D-16→D
+End
+
+Output(C,B+1,sub("                                                                                                                                                                ",1,D-B))
+End
+
+Lbl 2
+
+getKey→B
+
+"no key press
+If B=0
+Goto 2
+
+"left arrow
+If B=24
+0-8→E
+
+"right arrow
+If B=26
+8→E
+
+"up arrow
+If B=25
+0-80→E
+
+"down arrow
+If B=34
+80→E
+
+"enter
+If B=105
+Goto 1
+
+"F5 - emergency exit
+If B=15
+Then
+1→X
+Goto 1
+End
+
+End
+Lbl 1
+
+prgmDECOY
+
+prgmPOP
+
+Lbl 3

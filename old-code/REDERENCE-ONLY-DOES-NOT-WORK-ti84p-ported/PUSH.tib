@@ -1,0 +1,43 @@
+
+"info:todo
+"     Z needs initial value of 0
+"     L₆ initially needs to be empty
+"input:A-X,Z,⌊STACK
+"output:Z,⌊STACK
+"trash:Y
+"variables:
+"    Z - how many times we have pushed (each pop decreases by 1)
+"    Y - tmp
+"    X - emergency exit
+
+"create if it does not exist
+SetUpEditor ⌊STACK
+
+"get length
+dim(⌊STACK)→Y
+
+A→⌊STACK(Y+1)
+B→⌊STACK(Y+2)
+C→⌊STACK(Y+3)
+D→⌊STACK(Y+4)
+E→⌊STACK(Y+5)
+F→⌊STACK(Y+6)
+G→⌊STACK(Y+7)
+H→⌊STACK(Y+8)
+I→⌊STACK(Y+9)
+J→⌊STACK(Y+10)
+K→⌊STACK(Y+11)
+L→⌊STACK(Y+12)
+M→⌊STACK(Y+13)
+N→⌊STACK(Y+14)
+O→⌊STACK(Y+15)
+P→⌊STACK(Y+16)
+Q→⌊STACK(Y+17)
+R→⌊STACK(Y+18)
+S→⌊STACK(Y+19)
+T→⌊STACK(Y+20)
+U→⌊STACK(Y+21)
+V→⌊STACK(Y+22)
+W→⌊STACK(Y+23)
+
+Z+1→Z

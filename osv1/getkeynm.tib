@@ -1,0 +1,24 @@
+
+prmpgPUSHA
+
+Disp "Press any key"
+
+# main loop
+Lbl 1
+
+    # numeric code of user input
+    getKey->a
+
+    # if no key was pressed: go to the beginning of the loop
+    If a=0
+    Goto 1
+
+    # otherwise: exit the loop
+    Goto 2
+
+Goto 1
+Lbl 2
+
+Disp "key code is",a
+
+prgmPOPA

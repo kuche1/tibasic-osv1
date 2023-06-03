@@ -1,0 +1,39 @@
+
+#input
+#   `STR0` - character to put on screen
+
+prgmPUSHA
+prgmPUSHB
+
+# create list if it doesn't exist already
+SetUpEditor [list]curps
+
+# get length
+dim([list]curps)->a
+
+If a=0
+Then
+    # this is the first time we're calling this fnc
+    1->a
+    1->b
+    Output(a,b,STR0)
+Else
+    [list]curps(1)->a
+    [list]curps(2)->b
+End
+
+Output(a,b,STR0)
+
+b+1->b
+
+If b=17
+Then
+    a+1->a # TODO what is we've reached end of screen
+    1->b
+End
+
+a->[list]curps(1) # y
+b->[list]curps(2) # x
+
+prgmPOPB
+prgmPOPA

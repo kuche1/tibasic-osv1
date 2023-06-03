@@ -1,0 +1,52 @@
+#! /usr/bin/env python3
+
+# ./compile osv1
+
+import subprocess
+import os
+import sys
+
+COMMENT = '#'
+
+def main(program_name):
+    # assert program_name.upper() == program_name
+    assert len(program_name) <= 8
+
+    with open(f'./osv1/{program_name}.tib', 'r') as f:
+        data = f.read()
+
+    data_new = []
+    for line in data.splitlines():
+        if COMMENT in line:
+            line = line.split(COMMENT)
+            line = line[0]
+
+        while line.startswith(' ') or line.startswith('\t'):
+            line = line[1:]
+
+        while line.endswith(' ') or line.endswith('\t'):
+            line = line[:-1]
+
+        if line.count(' ') + line.count('\t') == len(line):
+            continue
+
+        for badword in ['Str0', 'Str1', 'Str2', 'Str3', 'Str4', 'Str5', 'Str6', 'Str7', 'Str8', 'Str9']:
+            assert badword not in line
+
+        data_new += [line]
+
+    data = data_new
+
+    preprocessed_file = f'./{program_name}.tib'
+
+    with open(preprocessed_file, 'w')as f:
+        for line in data:
+            f.write(line)
+            f.write('\n') # TODO we can omit this for the last line
+
+    subprocess.run(['./compiler/tibasic', '-o', f'./{program_name}.8xp', preprocessed_file], check=True)
+
+    os.remove(preprocessed_file)
+
+if __name__ == '__main__':
+    main(sys.argv[1])

@@ -1,0 +1,4 @@
+"q:da se namerqt stoinostite na mo6tnostta r i na naprejenieto u na harmoni4en signalvurhu suprotivlenie r = 150(ohm), ako e izvestno, 4e absolutnoto nivo po mo6tnost nasignala pm vurhu tova suprotivlenie e ravno na -7dbm"→Str4
+"a:pm = 10*lg(P/10**-3) = 7 => P=(10**-3)*10**(-7/10) = 0.2mW ||| U = sqrt(P*R) = sqrt(0.2 * 10**-3 * 150) = 173mW ||| pm = pu - 10*lg(R/600) = -7 ||| pu = pm - 10*lg(R/600) = -7 + 10lg(150/600) = -13dBu ||| pu = 20*lg(U/0.775) = -13 ||| U = 0.775 * 10**(pu/20) = 173mW"→Str5
+"q:naprejenieto na harmoni4en signal, izmereno v suob6titelen kanal za tonalna4estota vurhu suprotivlenie r = 75(ohm) e ravno na u = 1mv. da se namerqt suotvetnite natova naprejenie absolutni niva po mo6tnost pm i po naprejenie pu v db"→Str6
+"a:R=75; U=1mV; pm = ?; pu = ?; ||| 20*lg(U/0.775) = 20*lg(10**-3/0.775) = -57.8 dBu ||| pm = pu - 10*lg(R/600) = -57.8 - 10*lg(75/600) = -48.76 dBm"→Str7

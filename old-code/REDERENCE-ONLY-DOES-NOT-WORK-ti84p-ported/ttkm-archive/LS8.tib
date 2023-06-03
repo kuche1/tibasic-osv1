@@ -1,0 +1,4 @@
+"q:vidove, funkcii i operacii na ustroistvata v mpls"→Str4
+"a:Vidove: mar6rutizatori s komutaciq na etiketi: v mrejata za dostup (LER) i v transportnata mreja (LSR). V zavisimost ot mestopolojenieto imame: Vhodq6ti, izhodq6ti i mejdinni LSRs ||| MPLS predostavq slednite funkcii ||| Specificira mehanizmite za upravlenie na trafika ; Nezavisimost ot protokolite na Layer 2 i Layer 3 ; Interfeis kum su6testvuva6tite mar6rutizira6ti protokoli kato RSVP i OSPF ; Poddurjane na Ethernet, PPP, ATM i Frame Relay protokoli na Layer 2 ||| Vseki MPLS mar6rutizator moje da izvur6va tri operacii: premahvane (pop), postavqne (push), zamenqne (swap)"→Str5
+"q:koi sa osnovnite harakteristiki na wdm sistemite"→Str6
+"a:Mejdukanalno otstoqnie; Iziskvaniq kum opti4nata mo6tnost; Mejdukanalno i vutre6nokanalno preslu6vane; Ograni4eniq v rabotata; Rabotni parametri"→Str7

@@ -1,0 +1,4 @@
+"q:on off atm"→Str4
+"a:povikvaniq(t,s)->sesii(t,ms)->kletki(t,(micro)s)|||predavane na kletki;pon,poff;nqma povikvane ili sme v pauza"→Str5
+"q:blok shema ofdm"→Str6
+"a:->[<-]dvoi4ni danni>koder>premutator(inversen)>QAM>pilotni sistemi[korekciq izkrivqvaniq]>(premahvane)cikli4en prefiks>formirane spektur[sinhronizaciq]>CAP>predavatel V4[priemnik V4]"→Str7

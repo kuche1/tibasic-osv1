@@ -1,0 +1,14 @@
+
+If Z>0
+Then
+Disp "ERR: Z=",Z
+Disp "Fixing..."
+End
+
+"fix the stack
+While Z>0
+prgmPOP
+End
+
+"reset emergency exit flag
+0→X

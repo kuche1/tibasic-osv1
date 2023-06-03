@@ -1,0 +1,60 @@
+
+"info:gets string input from user
+"input:none
+"output:Str0
+"trash:Str1
+"variables:A,Str0,Str1
+"labels:1,2,3,4
+
+"emergency exit
+If X=1
+Goto 4
+
+prgmPUSH
+
+Disp "Entr equasion-s:"
+
+""→Str0
+0→A
+
+While 1
+Lbl 2
+
+getKey→A
+
+If A=0
+Goto 2
+
+If A=105
+Goto 1
+
+"emergency exit
+If A=15
+Then
+1→X
+prgmDECOY
+Goto 3
+End
+
+A-10→A
+
+sub("[]=45?????123456????7890??????abc()?????defgh?????ijklm?????nopqr?????stuvw?????xyz,'?????? .-",A,1)→Str1
+Disp Str1
+
+If length(Str0)=0
+Then
+Str1→Str0
+Else
+Str0+Str1→Str0
+End
+
+End
+Lbl 1
+
+Disp "Final string:",Str0
+
+Lbl 3
+
+prgmPOP
+
+Lbl 4

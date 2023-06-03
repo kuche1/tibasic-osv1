@@ -1,0 +1,28 @@
+
+# deletes last character from screen
+
+prgmPUSHA
+prgmPUSHB
+
+[list]curps(1)->a # y
+[list]curps(2)->b # x
+
+b-1->b
+
+If b=0
+Then
+    a-1->a
+    # if a becomes 0 here, that means that
+    # the programmer is an idiot since he is
+    # calling this fnc when the screen is already clear
+
+    16->b
+End
+
+Output(a,b," ")
+
+a->[list]curps(1) # y
+b->[list]curps(2) # x
+
+prgmPOPB
+prgmPOPA

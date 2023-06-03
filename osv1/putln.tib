@@ -1,0 +1,16 @@
+
+#TODO untested
+
+#info
+#   puts a new line on screen
+
+#trash
+#   STR0
+
+
+" "->STR0
+prgmPUTCHAR
+
+While [list]curps(2)!=1 # check if x is 0
+    prgmPUTCHAR # STR0 is already set to 1 empty char
+End

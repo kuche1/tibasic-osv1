@@ -1,0 +1,7 @@
+
+ClrHome
+Asm(prgmZFREEMEM)
+Output(1,1,"Free mem: ")
+Output(2,10,Ans)
+Output(3,1,"Calculating...  ")
+Output(4,1," ")

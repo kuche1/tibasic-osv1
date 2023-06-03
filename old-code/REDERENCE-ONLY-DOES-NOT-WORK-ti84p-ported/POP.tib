@@ -1,0 +1,47 @@
+
+"info:todo
+"input:Z,⌊STACK
+"output:A-X,Z,⌊STACK
+"trash:Y
+
+"get length
+dim(⌊STACK)→Y
+
+⌊STACK(Y-22)→A
+⌊STACK(Y-21)→B
+⌊STACK(Y-20)→C
+⌊STACK(Y-19)→D
+⌊STACK(Y-18)→E
+⌊STACK(Y-17)→F
+⌊STACK(Y-16)→G
+⌊STACK(Y-15)→H
+⌊STACK(Y-14)→I
+⌊STACK(Y-13)→J
+⌊STACK(Y-12)→K
+⌊STACK(Y-11)→L
+⌊STACK(Y-10)→M
+⌊STACK(Y-9)→N
+⌊STACK(Y-8)→O
+⌊STACK(Y-7)→P
+⌊STACK(Y-6)→Q
+⌊STACK(Y-5)→R
+⌊STACK(Y-4)→S
+⌊STACK(Y-3)→T
+⌊STACK(Y-2)→U
+⌊STACK(Y-1)→V
+⌊STACK(Y)→W
+
+"shrink
+Y-23→dim(⌊STACK)
+
+Z-1→Z
+If Z<0
+Then
+0→Z
+DelVar L₆
+ClrHome
+Output(1,1,"CRITICAL: pop wi")
+Output(2,1,"thout a precedin")
+Output(3,1,"g push          ")
+Stop
+End
