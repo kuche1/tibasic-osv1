@@ -2,8 +2,8 @@
 #input
 #   `STR0` - character to put on screen
 
-prgmPUSHA
-prgmPUSHB
+#trash
+#   a b
 
 # create list if it doesn't exist already
 SetUpEditor [list]curps
@@ -16,6 +16,7 @@ Then
     # this is the first time we're calling this fnc
     1->a
     1->b
+    Output(a,1,"                ") # clear line so that there is no overlap petween old text and new text
     Output(a,b,STR0)
 Else
     [list]curps(1)->a
@@ -28,12 +29,15 @@ b+1->b
 
 If b=17
 Then
-    a+1->a # TODO what is we've reached end of screen
+    a+1->a
+
+    If a=9
+        1->a
+
+    Output(a,1,"                ") # clear line so that there is no overlap petween old text and new text
+
     1->b
 End
 
 a->[list]curps(1) # y
 b->[list]curps(2) # x
-
-prgmPOPB
-prgmPOPA

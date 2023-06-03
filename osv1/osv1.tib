@@ -3,16 +3,18 @@
 #   a
 #   STR0 STR1 STR2
 
+prgmPUSHB
+
 prgmCLEARSCR
 
 # main loop
 Lbl 1
 
     ">"->STR0
-    prgmPUTCHAR
+    prgmPUTCHAR # trash a b
 
     prgmGETSTR
-    # returned string in STR0
+    # returned string: STR0
 
     If length(STR0)=0 # avoid errors related to `=` down the line
     Goto 1
@@ -32,10 +34,10 @@ Lbl 1
     STR0->STR2 # save requested command
 
     "unknwn cmd: "->STR0
-    prgmPUTSTR # trashes STR1
+    prgmPUTSTR # trash: STR0 STR1
 
     STR2->STR0
-    prgmPUTSTR # trashes STR1
+    prgmPUTSTR # trash: STR0 STR1
 
     prgmPUTLN # trash STR0
 
@@ -46,5 +48,7 @@ Lbl 2
 # prgmGETCHAR
 
 prgmCLEARSCR
+
+prgmPOPB
 
 a # return code

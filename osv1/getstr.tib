@@ -2,8 +2,11 @@
 #info
 #   returns string in STR0
 
-#trashed
+#trash
 #   STR0 STR1
+
+prgmPUSHA
+prgmPUSHB
 
 ""->STR1
 
@@ -23,7 +26,7 @@ Lbl 1
     # enter
     If STR0="~"
     Then
-        prgmPUTLN # trashes STR0
+        prgmPUTLN # trash: STR0
         Goto 2
     End
 
@@ -43,9 +46,12 @@ Lbl 1
     End
 
     # value already stored in STR0
-    prgmPUTCHAR
+    prgmPUTCHAR # trash: a b
 
 Goto 1
 Lbl 2
 
 STR1->STR0
+
+prgmPOPB
+prgmPOPA

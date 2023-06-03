@@ -1,5 +1,5 @@
 
-#TODO untested
+# TODO this can be optimised now that `putchar` clears the screen line by line
 
 #info
 #   puts a new line on screen
@@ -7,10 +7,16 @@
 #trash
 #   STR0
 
+prgmPUSHA
+prgmPUSHB
 
 " "->STR0
-prgmPUTCHAR
+prgmPUTCHAR # trash a b
 
 While [list]curps(2)!=1 # check if x is 0
-    prgmPUTCHAR # STR0 is already set to 1 empty char
+    # STR0 is already set to 1 empty char
+    prgmPUTCHAR # trash a b
 End
+
+prgmPOPB
+prgmPOPA

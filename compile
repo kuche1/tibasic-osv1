@@ -44,6 +44,15 @@ def main(program_name):
             f.write(line)
             f.write('\n') # TODO we can omit this for the last line
 
+    # delete all previous compiled files
+    for path, _, files in os.walk('.'):
+        break
+    for file in files:
+        if not file.endswith('.8xp'):
+            continue
+        p = os.path.join(path, file)
+        os.remove(p)
+
     subprocess.run(['./compiler/tibasic', '-o', f'./{program_name}.8xp', preprocessed_file], check=True)
 
     os.remove(preprocessed_file)
