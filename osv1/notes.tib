@@ -2,7 +2,7 @@
 #info
 #   app used for writing down notes
 
-#trash: STR0 STR2 L1 L2 Y1
+#trash: STR0 STR1 STR2 STR3 STR4 STR5 STR6 STR7 L1
 
 prgmPUSHA
 prgmPUSHB
@@ -12,90 +12,322 @@ prgmPUSHE
 
 prgmCLRSCR
 
-Menu("notes","edit existing",ee,"create new",cn,"exit",ex)
+# create lists if they don't exist
 
-Lbl ee
+#TODO unused
+# note titles
+SetUpEditor [list]nttl2
+SetUpEditor [list]nttl3
+SetUpEditor [list]nttl4
+SetUpEditor [list]nttl5
+SetUpEditor [list]nttl6
+SetUpEditor [list]nttl7
 
-    # # create list if it does not exist already
-    # SetUpEditor [list]nmnts # number of notes
+# note datas
+SetUpEditor [list]ntdt2
+SetUpEditor [list]ntdt3
+SetUpEditor [list]ntdt4
+SetUpEditor [list]ntdt5
+SetUpEditor [list]ntdt6
+SetUpEditor [list]ntdt7
 
-    # # get length
-    # dim([list]nmnts)->c
+[list]nttl2
+prgmLST2ST
+#input : Ans - list (eg L1)
+#output: STR0
+#trash : L1
+STR0->STR2
 
-    # If c=0
-    # Then
-    #     # this is being run for the first time
-    #     0->[list]nmnts(1)
+[list]nttl3
+prgmLST2ST
+#input : Ans - list (eg L1)
+#output: STR0
+#trash : L1
+STR0->STR3
 
-    #     SetUpEditor [list]ntttl # note titles
-    #     SetUpEditor [list]ntdat # note datas
-    # Else
-    #     # not the first time this is being run
-    #     [list]nmnts(1)->c
-    # End
+[list]nttl4
+prgmLST2ST
+#input : Ans - list (eg L1)
+#output: STR0
+#trash : L1
+STR0->STR4
 
-    # c->a # number of notes
+[list]nttl5
+prgmLST2ST
+#input : Ans - list (eg L1)
+#output: STR0
+#trash : L1
+STR0->STR5
 
-    # prgmNUMTOSTR
-    # #input : a
-    # #return: STR0
-    # #trash : L1 L2 Y1
+[list]nttl6
+prgmLST2ST
+#input : Ans - list (eg L1)
+#output: STR0
+#trash : L1
+STR0->STR6
 
-    # STR0+" notes found"->STR0
+[list]nttl7
+prgmLST2ST
+#input : Ans - list (eg L1)
+#output: STR0
+#trash : L1
+STR0->STR7
 
-    # prgmPUTSTR
-    # #input: STR0 - string to put on screen
-    # #trash: STR0 STR1
+Lbl mm # main menu
 
-    # prgmPUTLN
-    # #trash: STR0
+# TODO having exit twice is stupid
+Menu("notes","exit",ex,STR2,n2,STR3,n3,STR4,n4,STR5,n5,STR6,n6,STR7,n7)
 
-    # For(b,1,c)
-    #     # b - current note
-    #     # c - number of notes
+# save selected note
 
-    #     [list]ntttl->e # len of title
+Lbl n2
+    2->c
+    STR2->STR0
+    Goto nn
 
-    #     ""->STR2 # buffer containing title
+Lbl n3
+    3->c
+    STR3->STR0
+    Goto nn
 
-    #     For(d,1,e)
-    #         # d - idx of title char
-    #         # e - len of title
+Lbl n4
+    4->c
+    STR4->STR0
+    Goto nn
 
-    #         [list]nttl[d] # get char as ascii and put in `Ans`
+Lbl n5
+    5->c
+    STR5->STR0
+    Goto nn
 
-    #         prgmASC2CHR
-    #         #input : Ans - numeric value
-    #         #output: Ans - eg "f" - resulting char
+Lbl n6
+    6->c
+    STR6->STR0
+    Goto nn
 
-    #         STR2+Ans->STR2
-    #     End
+Lbl n7
+    7->c
+    STR7->STR0
+    Goto nn
 
-    #     "title: "+STR2->STR0
+Lbl nn
 
-    #     prgmPUTSTR
-    #     #input: STR0 - string to put on screen
-    #     #trash: STR0 STR1
+# number is saved in `c`
+# name is saved in `STR0`
 
-    #     prgmPUTLN
-    #     #trash: STR0
-    # End
+Menu(STR0,"edit",ed,"rename",rn,"go back",mm)
 
+Lbl ed # edit note
+
+    # TODO implement
     Goto ex
 
-Lbl cn
+Lbl rn # rename note
 
-    # "new note"->STR0
-    # prgmPUTSTRLN
-    # #input: STR0 - string to print
-    # #trash: STR0 STR1
+    If length(STR0)=0
+    Then
+        "enter new name for <>: "->STR0
+    Else
+        "enter new name for <"+STR0+">: "->STR0
+    End
 
-    # "exit"->STR0
-    # prgmPUTSTRLN
+    prgmPUTSTR
+    #input: STR0 - string to put on screen
+    #trash: STR0 STR1
 
-    Goto ex
+    prgmGETSTR
+    #return: STR0
+    #trash : STR0 STR1
+
+    If c=2
+    Then
+        STR0->STR2
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0 STR1
+
+        L1->[list]nttl2
+    End
+
+    If c=3
+    Then
+        STR0->STR3
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0 STR1
+
+        L1->[list]nttl3
+    End
+
+    If c=4
+    Then
+        STR0->STR4
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0 STR1
+
+        L1->[list]nttl4
+    End
+
+    If c=5
+    Then
+        STR0->STR5
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0 STR1
+
+        L1->[list]nttl5
+    End
+
+    If c=6
+    Then
+        STR0->STR6
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0 STR1
+
+        L1->[list]nttl6
+    End
+
+    If c=7
+    Then
+        STR0->STR7
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0 STR1
+
+        L1->[list]nttl7
+    End
+
+    Goto mm # go back to main menu, now that the appropriate STR variable has been updated
 
 Lbl ex
+
+ClrList L1
+
+""->STR0
+""->STR1
+""->STR2
+""->STR3
+""->STR4
+""->STR5
+""->STR6
+""->STR7
+
+# TODO clear STR variables
+
+
+# Lbl ee
+
+#     # c->a # number of notes
+
+#     # prgmNUMTOSTR
+#     # #input : a
+#     # #return: STR0
+#     # #trash : L1 L2 Y1
+
+#     # STR0+" notes found"->STR0
+
+#     # prgmPUTSTR
+#     # #input: STR0 - string to put on screen
+#     # #trash: STR0 STR1
+
+#     # prgmPUTLN
+#     # #trash: STR0
+
+#     # For(b,1,c)
+#     #     # b - current note
+#     #     # c - number of notes
+
+#     #     [list]ntttl->e # len of title
+
+#     #     ""->STR2 # buffer containing title
+
+#     #     For(d,1,e)
+#     #         # d - idx of title char
+#     #         # e - len of title
+
+#     #         [list]nttl[d] # get char as ascii and put in `Ans`
+
+#     #         prgmASC2CH
+#     #         #input : Ans - numeric value
+#     #         #output: Ans - eg "f" - resulting char
+
+#     #         STR2+Ans->STR2
+#     #     End
+
+#     #     "title: "+STR2->STR0
+
+#     #     prgmPUTSTR
+#     #     #input: STR0 - string to put on screen
+#     #     #trash: STR0 STR1
+
+#     #     prgmPUTLN
+#     #     #trash: STR0
+#     # End
+
+#     Goto ex
+
+# Lbl cn
+
+#     # "new note"->STR0
+#     # prgmPUTSTRLN
+#     # #input: STR0 - string to print
+#     # #trash: STR0 STR1
+
+#     # "exit"->STR0
+#     # prgmPUTSTRLN
+
+#     "enter note name: "->STR0
+#     prgmPUTSTR
+#     #input: STR0 - string to put on screen
+#     #trash: STR0 STR1
+
+#     prgmGETSTR
+#     #return: STR0
+#     #trash : STR0 STR1
+
+#     STR0 # set Ans
+#     prgmST2LST
+#     #input : Ans - string
+#     #output: L1
+#     #trash : STR0 STR1
+
+#     # name of program is now saved in `L1`
+
+#     # update number of notes
+#     [list]nmnts(1)+1->[list]nmnts(1)
+
+#     # append length
+#     dim(L1)->[list]nttll(dim([list]nttll)+1)
+
+#     # append title
+#     #TODO
+
+#     #append data
+#     #TODO
+
+#     Goto ex
+
+# Lbl ex
 
 prgmPOPE
 prgmPOPD

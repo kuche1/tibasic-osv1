@@ -6,4 +6,4 @@
 #output: Ans - eg "f" - resulting char
 
 sub("0123456789abcdefghijklmnopqrstuvwxyz",Ans,1)
-# this needs to be the same as the one in `chr2asc`
+# this needs to be the same as the one in `ch2asc`

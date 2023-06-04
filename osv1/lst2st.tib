@@ -1,0 +1,40 @@
+
+#info
+#   converts list to string
+
+#input : Ans - list (eg L1)
+#output: STR0
+#trash : L1
+
+Ans->L1
+
+prgmPUSHA
+prgmPUSHB
+prgmPUSHC
+
+dim(L1)->b
+
+""->STR0
+
+For(a,1,b)
+    # a - idx of cur char
+    # b - idx of last char
+
+    L1(a)->c # save cur char
+    # this also sets Ans
+
+    prgmASC2CH
+    #input : Ans - numeric value
+    #output: Ans - eg "f" - resulting char
+
+    If length(STR0)=0
+    Then
+        Ans->STR0
+    Else
+        STR0+Ans->STR0
+    End
+End
+
+prgmPOPC
+prgmPOPB
+prgmPOPA

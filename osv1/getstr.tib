@@ -1,9 +1,9 @@
 
 #info
-#   returns string in STR0
+#   returns string
 
-#trash
-#   STR0 STR1
+#return: STR0
+#trash : STR0 STR1
 
 prgmPUSHA
 prgmPUSHB

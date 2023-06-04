@@ -2,6 +2,8 @@
 # TODO
 # use Ans for PUTSTR
 # use PUTSTRLN everywhere where possible
+# create PUSH<start><end> as to improve performance
+# make sure all trash if set to 0 (if possible for the values to take a lot of mem)
 
 #trashed
 #   a

@@ -1,0 +1,33 @@
+
+#info
+#   converts string to list
+
+#input : Ans - string
+#output: L1
+#trash : STR0 STR1
+
+Ans->STR1
+
+prgmPUSHA
+prgmPUSHB
+
+length(STR1)->b
+
+ClrList L1
+
+For(a,1,b)
+    # a - idx of cur char
+    # b - idx of last char
+
+    sub(STR1,a,1)->STR0 # save cur char
+    # this also sets Ans
+
+    prgmCH2ASC
+    #input : Ans - eg "f" - char for conversion
+    #output: Ans - resulting numeric value
+
+    Ans->L1(a)
+End
+
+prgmPOPB
+prgmPOPA
