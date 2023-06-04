@@ -51,4 +51,6 @@ prgmCLEARSCR
 
 prgmPOPB
 
+prgmCLRSTACK
+
 a # return code

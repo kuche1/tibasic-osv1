@@ -5,23 +5,8 @@
 #trash
 #   a b
 
-# create list if it doesn't exist already
-SetUpEditor [list]curps
-
-# get length
-dim([list]curps)->a
-
-If a=0
-Then
-    # this is the first time we're calling this fnc
-    1->a
-    1->b
-    Output(a,1,"                ") # clear line so that there is no overlap petween old text and new text
-    Output(a,b,STR0)
-Else
-    [list]curps(1)->a
-    [list]curps(2)->b
-End
+[list]curps(1)->a
+[list]curps(2)->b
 
 Output(a,b,STR0)
 
