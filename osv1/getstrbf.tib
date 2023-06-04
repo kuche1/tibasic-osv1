@@ -1,7 +1,6 @@
 
 # TODO
-# make it so that the cursor blinks (can use [box] and [dot] or smt else)
-#   we can prbbly do that with a non-blocking GETCHAR
+# try and use the blocking `getch` and only update cursor on keypress or make `getchnb` return 2 values so that we don't have to check the len
 
 #info
 #   returns string from user; initial buffer value can be set
