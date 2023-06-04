@@ -5,9 +5,8 @@
 # create PUSH<start><end> as to improve performance
 # make sure all trash if set to 0 (if possible for the values to take a lot of mem)
 
-#trashed
-#   a
-#   STR0 STR1 STR2
+#trash : a STR0-STR7 L0 (some more might be missing)
+#return: Ans - return code
 
 prgmCLRSTACK
 
@@ -83,6 +82,8 @@ Lbl 1
     If STR0="nts"
     Then
         prgmNOTES
+        #trash: STR0-STR7 L1
+
         Goto 1
     End
 
