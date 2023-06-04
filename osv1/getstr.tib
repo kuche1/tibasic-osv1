@@ -33,6 +33,19 @@ Lbl 1
     # backspace
     If STR0="^"
     Then
+
+        length(STR1)->a
+
+        If a=0 # string is empty
+            Goto 1
+
+        If a=1 # this case is needed cuz we get an error otherwise
+        Then
+            prgmUNPUTCHR # delete last char from screen
+            ""->STR1 # delete last char from variable
+            Goto 1
+        End
+
         prgmUNPUTCHR # delete last char from screen
         sub(STR1,1,length(STR1)-1)->STR1 # delete last char from variable
         Goto 1
