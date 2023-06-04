@@ -124,7 +124,7 @@ Lbl 1
 
     # requested command stored in STR0
 
-    "unknwn cmd: <"+STR0+"> call hlp to lst cmds"->STR0
+    "unknwn cmd: <"+STR0+"> call <hlp> to lst cmds"->STR0
     prgmPUTSTRLN
     #input: STR0 - string to print
     #trash: STR0 STR1

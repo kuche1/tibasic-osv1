@@ -2,24 +2,25 @@
 #input: STR0 - character to put on screen
 #trash: a b
 
-[list]curps(1)->a
-[list]curps(2)->b
+[list]curps(2)->b # x
 
-Output(a,b,STR0)
+Output([list]curps(1),b,STR0)
 
 b+1->b
 
 If b=17
 Then
-    a+1->a
+    # a+1->a
 
-    If a=9
-        1->a
+    # If a=9
+    #     1->a
 
-    Output(a,1,"                ") # clear line so that there is no overlap petween old text and new text
+    # Output(a,1,"                ") # clear line so that there is no overlap petween old text and new text
 
-    1->b
+    # 1->b
+
+    prgmINCCURY
+    #trash: a
+Else
+    b->[list]curps(2) # x
 End
-
-a->[list]curps(1) # y
-b->[list]curps(2) # x
