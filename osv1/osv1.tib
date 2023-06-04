@@ -90,7 +90,7 @@ Lbl 1
         #return: STR0
         #trash : L1 L2 Y1
 
-        "free ram: "+STR0->STR0
+        "free ram: "+STR0+" bytes"->STR0
         prgmPUTSTR
         #input: STR0 - string to put on screen
         #trash: STR0 STR1
