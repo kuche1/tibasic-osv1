@@ -1,6 +1,4 @@
 
-# TODO this can be optimised now that `putchar` clears the screen line by line
-
 #info
 #   puts a new line on screen
 
