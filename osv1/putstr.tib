@@ -14,7 +14,7 @@ prgmPUSHC
 # [list]curps(2)->a # where is the cursor X
 # 17-a->a # how many chars do we get until next line
 
-# sub(STR0)
+# sub(STR0,1,a)->
 
 
 

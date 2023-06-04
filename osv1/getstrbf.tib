@@ -1,4 +1,8 @@
 
+# TODO
+# make it so that the cursor blinks (can use [box] and [dot] or smt else)
+#   we can prbbly do that with a non-blocking GETCHAR
+
 #info
 #   returns string from user; initial buffer value can be set
 
@@ -32,10 +36,9 @@ STR2->STR1 # load from earlier
 # main loop
 Lbl 1
 
-    # TODO? show cursor
-    # # this char shows where the cursor is
-    # ""->STR0
-    # prgmPUTCHAR # trash: a b
+    "[box]"->STR0 # this char indicates the cursor
+    prgmPUTCHSLN
+    #input: STR0 - character to put on screen
 
     # returns char in STR0
     prgmGETCHAR
