@@ -1,5 +1,6 @@
 
 #info
 #   turns the calc off
+#   when the calc is turned back on it will continue from where it left off
 
 Asm(prgmZTURNOFF)

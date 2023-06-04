@@ -21,9 +21,8 @@ Lbl 1
     prgmPUTCHAR # trash a b
 
     prgmGETSTR
-    #input : STR1 - fill input buffer with this before user input
-    #return: Ans - resulting string
-    #trash : STR0 STR1 STR2
+    #return: STR0
+    #trash : STR0 STR1
 
     If length(STR0)=0 # avoid errors related to `=` down the line
     Goto 1
@@ -89,9 +88,8 @@ Lbl 1
 
     If STR0="off" # turn calc off
     Then
-        prgmCLRSTACK
-        prgmTURNOFF
-        # Goto 2 # will never be reached
+        prgmTURNOFF # when calc is turned back on it will continue down from here
+        Goto 1
     End
 
     If STR0="hlp"

@@ -195,9 +195,11 @@ Lbl rn # rename note
     #trash: STR0 STR1
 
     prgmGETSTR
-    #input : STR1 - fill input buffer with this before user input
-    #return: Ans - resulting string
-    #trash : STR0 STR1 STR2
+    #return: STR0
+    #trash : STR0 STR1
+
+    If STR0="!" # emergency exit
+        Goto ex # TODO this needs to be updated if archiving is implemented
 
     If c=2
     Then
