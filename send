@@ -40,9 +40,7 @@ def main(program_name):
     preprocessed_file = f'./{program_name}.tib'
 
     with open(preprocessed_file, 'w')as f:
-        for line in data:
-            f.write(line)
-            f.write('\n') # TODO we can omit this for the last line
+        f.write('\n'.join(data))
 
     # delete all previous compiled files
     for path, _, files in os.walk('.'):
@@ -53,9 +51,13 @@ def main(program_name):
         p = os.path.join(path, file)
         os.remove(p)
 
-    subprocess.run(['./compiler/tibasic', '-o', f'./{program_name}.8xp', preprocessed_file], check=True)
+    compiled_file = f'./{program_name}.8xp'
+
+    subprocess.run(['./compiler/tibasic', '-o', compiled_file, preprocessed_file], check=True)
 
     os.remove(preprocessed_file)
+
+    subprocess.run(['tilp', '--no-gui', compiled_file], check=True)
 
 if __name__ == '__main__':
     main(sys.argv[1])

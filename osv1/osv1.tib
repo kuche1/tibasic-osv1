@@ -25,7 +25,7 @@ Lbl 1
         Goto 2
     End
 
-    If STR0="EXIT"
+    If STR0="EXT"
     Then
         0->a
         Goto 2

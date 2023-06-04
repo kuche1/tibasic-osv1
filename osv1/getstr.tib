@@ -13,6 +13,11 @@ prgmPUSHB
 # main loop
 Lbl 1
 
+    # TODO? show cursor
+    # # this char shows where the cursor is
+    # ""->STR0
+    # prgmPUTCHAR # trash: a b
+
     # returns char in STR0
     prgmGETCHAR
 
