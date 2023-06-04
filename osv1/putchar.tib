@@ -1,9 +1,6 @@
 
-#input
-#   `STR0` - character to put on screen
-
-#trash
-#   a b
+#input: STR0 - character to put on screen
+#trash: a b
 
 [list]curps(1)->a
 [list]curps(2)->b

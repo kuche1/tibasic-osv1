@@ -1,75 +1,14 @@
 
 #info
-#   returns string
+#   returns string from user
 
 #return: STR0
 #trash : STR0 STR1
 
-prgmPUSHA
-prgmPUSHB
-
 ""->STR1
+prgmGETSTRBF
+#input : STR1 - fill input buffer with this before user input
+#return: Ans - resulting string
+#trash : STR0 STR1 STR2
 
-# main loop
-Lbl 1
-
-    # TODO? show cursor
-    # # this char shows where the cursor is
-    # ""->STR0
-    # prgmPUTCHAR # trash: a b
-
-    # returns char in STR0
-    prgmGETCHAR
-
-    # emergency exit
-    If STR0="!"
-    Then
-        STR0->STR1 # set as return value
-        Goto 2 # exit loop
-    End
-
-    # enter
-    If STR0="~"
-    Then
-        prgmPUTLN # trash: STR0
-        Goto 2
-    End
-
-    # backspace
-    If STR0="^"
-    Then
-
-        length(STR1)->a
-
-        If a=0 # string is empty
-            Goto 1
-
-        If a=1 # this case is needed cuz we get an error otherwise
-        Then
-            prgmUNPUTCHR # delete last char from screen
-            ""->STR1 # delete last char from variable
-            Goto 1
-        End
-
-        prgmUNPUTCHR # delete last char from screen
-        sub(STR1,1,length(STR1)-1)->STR1 # delete last char from variable
-        Goto 1
-    End
-
-    If length(STR1)=0
-    Then
-        STR0->STR1
-    Else
-        STR1+STR0->STR1
-    End
-
-    # value already stored in STR0
-    prgmPUTCHAR # trash: a b
-
-Goto 1
-Lbl 2
-
-STR1->STR0
-
-prgmPOPB
-prgmPOPA
+Ans->STR0

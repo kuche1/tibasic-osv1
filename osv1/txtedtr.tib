@@ -1,0 +1,15 @@
+
+# TODO this is fucking stupid and needs to be replaced with a better non-hacky implementation
+
+#input : Ans - string
+#output: Ans
+#trash : STR0 STR1 STR2
+
+Ans->STR1
+
+prgmCLRSCR
+
+prgmGETSTRBF
+#input : STR1 - fill input buffer with this before user input
+#return: Ans - resulting string
+#trash : STR0 STR1 STR2

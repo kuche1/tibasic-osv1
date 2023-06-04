@@ -22,7 +22,9 @@ Lbl 1
     prgmPUTCHAR # trash a b
 
     prgmGETSTR
-    # returned string: STR0
+    #input : STR1 - fill input buffer with this before user input
+    #return: Ans - resulting string
+    #trash : STR0 STR1 STR2
 
     If length(STR0)=0 # avoid errors related to `=` down the line
     Goto 1

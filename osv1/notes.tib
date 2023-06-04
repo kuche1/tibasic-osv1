@@ -1,4 +1,9 @@
 
+#TODO
+# archive the titles and the data
+# add option to delete note?
+# ask for confirmation when deleting note
+
 #info
 #   app used for writing down notes
 
@@ -9,8 +14,6 @@ prgmPUSHB
 prgmPUSHC
 prgmPUSHD
 prgmPUSHE
-
-prgmCLRSCR
 
 # create lists if they don't exist
 
@@ -113,11 +116,66 @@ Lbl nn
 # number is saved in `c`
 # name is saved in `STR0`
 
-Menu(STR0,"edit",ed,"rename",rn,"go back",mm)
+Menu(STR0,"go back",mm,"edit",ed,"rename",rn,"delete content",dl)
 
 Lbl ed # edit note
 
-    # TODO implement
+    # set `Ans` based on current note
+
+    If c=2
+        [list]ntdt2
+
+    If c=3
+        [list]ntdt3
+
+    If c=4
+        [list]ntdt4
+
+    If c=5
+        [list]ntdt5
+
+    If c=6
+        [list]ntdt6
+
+    If c=7
+        [list]ntdt7
+
+    # `Ans` set by ifs
+
+    prgmLST2ST
+    #input : Ans - list (eg L1)
+    #output: STR0
+    #trash : L1
+
+    STR0 # set Ans
+
+    prgmTXTEDTR
+    #input : Ans - string
+    #output: Ans
+    #trash : STR0 STR1 STR2
+
+    prgmST2LST
+    #input : Ans - string
+    #output: L1
+    #trash : STR0 STR1
+
+    If c=2
+        L1->[list]ntdt2
+
+    If c=3
+        L1->[list]ntdt3
+
+    If c=4
+        L1->[list]ntdt4
+
+    If c=5
+        L1->[list]ntdt5
+
+    If c=6
+        L1->[list]ntdt6
+
+    If c=7
+        L1->[list]ntdt7
 
     Goto mm # go back to main menu
 
@@ -130,13 +188,16 @@ Lbl rn # rename note
         "enter new name for <"+STR0+">: "->STR0
     End
 
+    prgmCLRSCR
+
     prgmPUTSTR
     #input: STR0 - string to put on screen
     #trash: STR0 STR1
 
     prgmGETSTR
-    #return: STR0
-    #trash : STR0 STR1
+    #input : STR1 - fill input buffer with this before user input
+    #return: Ans - resulting string
+    #trash : STR0 STR1 STR2
 
     If c=2
     Then
@@ -218,6 +279,28 @@ Lbl rn # rename note
 
     Goto mm # go back to main menu, now that the appropriate STR variable has been updated
 
+Lbl dl # delete note
+
+    If c=2
+        0->dim([list]ntdt2)
+
+    If c=3
+        0->dim([list]ntdt3)
+
+    If c=4
+        0->dim([list]ntdt4)
+
+    If c=5
+        0->dim([list]ntdt5)
+
+    If c=6
+        0->dim([list]ntdt6)
+
+    If c=7
+        0->dim([list]ntdt7)
+
+    Goto mm
+
 Lbl ex
 
 ClrList L1
@@ -230,103 +313,6 @@ ClrList L1
 ""->STR5
 ""->STR6
 ""->STR7
-
-# TODO clear STR variables
-
-
-# Lbl ee
-
-#     # c->a # number of notes
-
-#     # prgmNUMTOSTR
-#     # #input : a
-#     # #return: STR0
-#     # #trash : L1 L2 Y1
-
-#     # STR0+" notes found"->STR0
-
-#     # prgmPUTSTR
-#     # #input: STR0 - string to put on screen
-#     # #trash: STR0 STR1
-
-#     # prgmPUTLN
-#     # #trash: STR0
-
-#     # For(b,1,c)
-#     #     # b - current note
-#     #     # c - number of notes
-
-#     #     [list]ntttl->e # len of title
-
-#     #     ""->STR2 # buffer containing title
-
-#     #     For(d,1,e)
-#     #         # d - idx of title char
-#     #         # e - len of title
-
-#     #         [list]nttl[d] # get char as ascii and put in `Ans`
-
-#     #         prgmASC2CH
-#     #         #input : Ans - numeric value
-#     #         #output: Ans - eg "f" - resulting char
-
-#     #         STR2+Ans->STR2
-#     #     End
-
-#     #     "title: "+STR2->STR0
-
-#     #     prgmPUTSTR
-#     #     #input: STR0 - string to put on screen
-#     #     #trash: STR0 STR1
-
-#     #     prgmPUTLN
-#     #     #trash: STR0
-#     # End
-
-#     Goto ex
-
-# Lbl cn
-
-#     # "new note"->STR0
-#     # prgmPUTSTRLN
-#     # #input: STR0 - string to print
-#     # #trash: STR0 STR1
-
-#     # "exit"->STR0
-#     # prgmPUTSTRLN
-
-#     "enter note name: "->STR0
-#     prgmPUTSTR
-#     #input: STR0 - string to put on screen
-#     #trash: STR0 STR1
-
-#     prgmGETSTR
-#     #return: STR0
-#     #trash : STR0 STR1
-
-#     STR0 # set Ans
-#     prgmST2LST
-#     #input : Ans - string
-#     #output: L1
-#     #trash : STR0 STR1
-
-#     # name of program is now saved in `L1`
-
-#     # update number of notes
-#     [list]nmnts(1)+1->[list]nmnts(1)
-
-#     # append length
-#     dim(L1)->[list]nttll(dim([list]nttll)+1)
-
-#     # append title
-#     #TODO
-
-#     #append data
-#     #TODO
-
-#     Goto ex
-
-# Lbl ex
 
 prgmPOPE
 prgmPOPD

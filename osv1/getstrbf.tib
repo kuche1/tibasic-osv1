@@ -1,0 +1,94 @@
+
+#info
+#   returns string from user; initial buffer value can be set
+
+#input : STR1 - fill input buffer with this before user input
+#return: Ans - resulting string
+#trash : STR0 STR1 STR2
+
+prgmPUSHA
+prgmPUSHB
+
+# length(STR1)->d
+
+# For(c,1,d)
+#     sub(STR1,c,1)->STR0
+
+#     prgmPUTCHAR
+#     #input: STR0 - character to put on screen
+#     #trash: a b
+# End
+
+STR1->STR2 # save for later
+
+STR1->STR0
+
+prgmPUTSTR
+#input: STR0 - string to put on screen
+#trash: STR0 STR1
+
+STR2->STR1 # load from earlier
+
+# main loop
+Lbl 1
+
+    # TODO? show cursor
+    # # this char shows where the cursor is
+    # ""->STR0
+    # prgmPUTCHAR # trash: a b
+
+    # returns char in STR0
+    prgmGETCHAR
+
+    # emergency exit
+    If STR0="!"
+    Then
+        STR0->STR1 # set as return value
+        Goto 2 # exit loop
+    End
+
+    # enter
+    If STR0="~"
+    Then
+        prgmPUTLN # trash: STR0
+        Goto 2
+    End
+
+    # backspace
+    If STR0="^"
+    Then
+
+        length(STR1)->a
+
+        If a=0 # string is empty
+            Goto 1
+
+        If a=1 # this case is needed cuz we get an error otherwise
+        Then
+            prgmUNPUTCHR # delete last char from screen
+            ""->STR1 # delete last char from variable
+            Goto 1
+        End
+
+        prgmUNPUTCHR # delete last char from screen
+        sub(STR1,1,length(STR1)-1)->STR1 # delete last char from variable
+        Goto 1
+    End
+
+    If length(STR1)=0
+    Then
+        STR0->STR1
+    Else
+        STR1+STR0->STR1
+    End
+
+    # value already stored in STR0
+    prgmPUTCHAR # trash: a b
+
+Goto 1
+Lbl 2
+
+prgmPOPB
+prgmPOPA
+
+STR1
