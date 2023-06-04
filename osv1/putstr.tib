@@ -8,6 +8,16 @@ prgmPUSHA
 prgmPUSHB
 prgmPUSHC
 
+
+
+
+# [list]curps(2)->a # where is the cursor X
+# 17-a->a # how many chars do we get until next line
+
+# sub(STR0)
+
+
+
 STR0->STR1
 
 For(c,1,length(STR1))

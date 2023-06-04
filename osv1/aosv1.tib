@@ -94,7 +94,7 @@ Lbl 1
 
     If STR0="hlp"
     Then
-        "btr>battery-level ext>exit nts>notes off>shut-down hlp>help-msg ram>free-ram"->STR0
+        "btr=battery-level ext=exit nts=notes off=shut-down hlp=help-msg ram=free-ram"->STR0
         prgmPUTSTR # trash: STR0 STR1
         prgmPUTLN # trash: STR0
         Goto 1
@@ -122,20 +122,12 @@ Lbl 1
         Goto 1
     End
 
-    STR0->STR2 # save requested command
+    # requested command stored in STR0
 
-    "unknwn cmd: "->STR0
-    prgmPUTSTR # trash: STR0 STR1
-
-    STR2->STR0
-    prgmPUTSTR # trash: STR0 STR1
-
-    prgmPUTLN # trash STR0
-
-    "call hlp for list of cmds"->STR0
-    prgmPUTSTR # trash: STR0 STR1
-
-    prgmPUTLN # trash STR0
+    "unknwn cmd: <"+STR0+"> call hlp to lst cmds"->STR0
+    prgmPUTSTRLN
+    #input: STR0 - string to print
+    #trash: STR0 STR1
 
 Goto 1
 Lbl 2
