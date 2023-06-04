@@ -1,11 +1,8 @@
 
 # TODO this can be made faster
 
-#input
-#   `STR0` - string to put on screen
-
-#trashed
-#   STR0 STR1
+#input: STR0 - string to put on screen
+#trash: STR0 STR1
 
 prgmPUSHA
 prgmPUSHB

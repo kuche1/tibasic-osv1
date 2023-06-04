@@ -25,6 +25,45 @@ Lbl 1
         Goto 2
     End
 
+    If STR0="BTR"
+    Then
+        prgmGETBTRY
+        # return: Ans
+        # 0:4 <-> low:high
+
+        Ans->a
+        # calc battery level
+        a*20->a # low bound
+        a+20->b # high bound
+
+        "battery level: "->STR2
+
+        # `a` already set
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        STR2+STR0+" to "->STR2
+
+        b->a
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        STR2+STR0+" percent"->STR0
+
+        prgmPUTSTR
+        #input: STR0 - string to put on screen
+        #trash: STR0 STR1
+
+        prgmPUTLN
+        #trash: STR0
+
+        Goto 1
+    End
+
     If STR0="EXT"
     Then
         0->a

@@ -8,6 +8,13 @@ import sys
 
 COMMENT = '#'
 
+BAD_WORDS = [
+    'Str0', 'Str1', 'Str2', 'Str3', 'Str4', 'Str5', 'Str6', 'Str7', 'Str8', 'Str9',
+    '→',
+    # the rest are assumptions
+    '₁', '₂', '►'
+]
+
 def main(program_name):
     # assert program_name.upper() == program_name
     assert len(program_name) <= 8
@@ -30,8 +37,8 @@ def main(program_name):
         if line.count(' ') + line.count('\t') == len(line):
             continue
 
-        for badword in ['Str0', 'Str1', 'Str2', 'Str3', 'Str4', 'Str5', 'Str6', 'Str7', 'Str8', 'Str9']:
-            assert badword not in line
+        for badword in BAD_WORDS:
+            assert badword not in line, f'bad word found `{badword}`'
 
         data_new += [line]
 

@@ -2,8 +2,7 @@
 #info
 #   puts a new line on screen
 
-#trash
-#   STR0
+#trash: STR0
 
 prgmPUSHA
 prgmPUSHB
