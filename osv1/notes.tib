@@ -14,7 +14,6 @@ prgmCLRSCR
 
 # create lists if they don't exist
 
-#TODO unused
 # note titles
 SetUpEditor [list]nttl2
 SetUpEditor [list]nttl3
