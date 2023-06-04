@@ -1,4 +1,8 @@
 
+# TODO
+# use Ans for PUTSTR
+# use PUTSTRLN everywhere where possible
+
 #trashed
 #   a
 #   STR0 STR1 STR2
@@ -7,7 +11,7 @@ prgmCLRSTACK
 
 prgmPUSHB
 
-prgmCLEARSCR
+prgmCLRSCR
 
 # main loop
 Lbl 1
@@ -72,11 +76,25 @@ Lbl 1
         Goto 2
     End
 
+    If STR0="nts"
+    Then
+        prgmNOTES
+        Goto 1
+    End
+
     If STR0="off" # turn calc off
     Then
+        prgmCLRSTACK
         prgmTURNOFF
-        # TODO this leaves the stack uncleaned and needs to be replaced with a goto (or smt else)
-        # Goto 2
+        # Goto 2 # will never be reached
+    End
+
+    If STR0="hlp"
+    Then
+        "btr>battery-level ext>exit nts>notes off>shut-down hlp>help-msg ram>free-ram"->STR0
+        prgmPUTSTR # trash: STR0 STR1
+        prgmPUTLN # trash: STR0
+        Goto 1
     End
 
     If STR0="ram"
@@ -111,10 +129,15 @@ Lbl 1
 
     prgmPUTLN # trash STR0
 
+    "call hlp for list of cmds"->STR0
+    prgmPUTSTR # trash: STR0 STR1
+
+    prgmPUTLN # trash STR0
+
 Goto 1
 Lbl 2
 
-prgmCLEARSCR
+prgmCLRSCR
 
 prgmPOPB
 

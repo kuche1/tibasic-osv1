@@ -1,0 +1,8 @@
+
+# SetUpEditor [list]test
+
+# "asdf"->[list]test
+
+# [list]test->STR0
+
+ClrList [list]test

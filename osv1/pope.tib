@@ -1,0 +1,15 @@
+
+#info
+#   pops a variable from the stack
+
+#trashed
+#   z
+
+# get length of stack
+dim([list]stack)->z
+
+# get last item
+[list]stack(z)->e
+
+# delete last item
+z-1->dim([list]stack)

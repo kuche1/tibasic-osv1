@@ -1,0 +1,104 @@
+
+#info
+#   app used for writing down notes
+
+#trash: STR0 STR2 L1 L2 Y1
+
+prgmPUSHA
+prgmPUSHB
+prgmPUSHC
+prgmPUSHD
+prgmPUSHE
+
+prgmCLRSCR
+
+Menu("notes","edit existing",ee,"create new",cn,"exit",ex)
+
+Lbl ee
+
+    # # create list if it does not exist already
+    # SetUpEditor [list]nmnts # number of notes
+
+    # # get length
+    # dim([list]nmnts)->c
+
+    # If c=0
+    # Then
+    #     # this is being run for the first time
+    #     0->[list]nmnts(1)
+
+    #     SetUpEditor [list]ntttl # note titles
+    #     SetUpEditor [list]ntdat # note datas
+    # Else
+    #     # not the first time this is being run
+    #     [list]nmnts(1)->c
+    # End
+
+    # c->a # number of notes
+
+    # prgmNUMTOSTR
+    # #input : a
+    # #return: STR0
+    # #trash : L1 L2 Y1
+
+    # STR0+" notes found"->STR0
+
+    # prgmPUTSTR
+    # #input: STR0 - string to put on screen
+    # #trash: STR0 STR1
+
+    # prgmPUTLN
+    # #trash: STR0
+
+    # For(b,1,c)
+    #     # b - current note
+    #     # c - number of notes
+
+    #     [list]ntttl->e # len of title
+
+    #     ""->STR2 # buffer containing title
+
+    #     For(d,1,e)
+    #         # d - idx of title char
+    #         # e - len of title
+
+    #         [list]nttl[d] # get char as ascii and put in `Ans`
+
+    #         prgmASC2CHR
+    #         #input : Ans - numeric value
+    #         #output: Ans - eg "f" - resulting char
+
+    #         STR2+Ans->STR2
+    #     End
+
+    #     "title: "+STR2->STR0
+
+    #     prgmPUTSTR
+    #     #input: STR0 - string to put on screen
+    #     #trash: STR0 STR1
+
+    #     prgmPUTLN
+    #     #trash: STR0
+    # End
+
+    Goto ex
+
+Lbl cn
+
+    # "new note"->STR0
+    # prgmPUTSTRLN
+    # #input: STR0 - string to print
+    # #trash: STR0 STR1
+
+    # "exit"->STR0
+    # prgmPUTSTRLN
+
+    Goto ex
+
+Lbl ex
+
+prgmPOPE
+prgmPOPD
+prgmPOPC
+prgmPOPB
+prgmPOPA

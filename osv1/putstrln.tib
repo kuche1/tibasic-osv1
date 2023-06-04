@@ -1,0 +1,10 @@
+
+#input: STR0 - string to print
+#trash: STR0 STR1
+
+prgmPUTSTR
+#input: STR0 - string to put on screen
+#trash: STR0 STR1
+
+prgmPUTLN
+#trash: STR0
