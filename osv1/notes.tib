@@ -74,7 +74,6 @@ STR0->STR7
 
 Lbl mm # main menu
 
-# TODO having exit twice is stupid
 Menu("notes","exit",ex,STR2,n2,STR3,n3,STR4,n4,STR5,n5,STR6,n6,STR7,n7)
 
 # save selected note
