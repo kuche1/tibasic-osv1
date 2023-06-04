@@ -3,6 +3,8 @@
 #   a
 #   STR0 STR1 STR2
 
+prgmCLRSTACK
+
 prgmPUSHB
 
 prgmCLEARSCR
@@ -25,7 +27,7 @@ Lbl 1
         Goto 2
     End
 
-    If STR0="BTR"
+    If STR0="btr" # show battery level
     Then
         prgmGETBTRY
         # return: Ans
@@ -64,10 +66,17 @@ Lbl 1
         Goto 1
     End
 
-    If STR0="EXT"
+    If STR0="ext" # exit
     Then
         0->a
         Goto 2
+    End
+
+    If STR0="off" # turn calc off
+    Then
+        prgmTURNOFF
+        # TODO this leaves the stack uncleaned and needs to be replaced with a goto (or smt else)
+        # Goto 2
     End
 
     STR0->STR2 # save requested command
@@ -82,9 +91,6 @@ Lbl 1
 
 Goto 1
 Lbl 2
-
-# Disp STR0
-# prgmGETCHAR
 
 prgmCLEARSCR
 

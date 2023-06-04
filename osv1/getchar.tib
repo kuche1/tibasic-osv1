@@ -16,6 +16,13 @@ Lbl 1
     If a=0
     Goto 1
 
+    # F4
+    If a=14
+    Then
+        prgmTGLDISP
+        Goto 1
+    End
+
     # first 10 chars are unreachable and including them is a waste of PM
     a-10->a
 
