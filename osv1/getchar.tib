@@ -4,39 +4,24 @@
 #   the string value is returned as `STR0`
 #   emergyncy exit is triggered by pressing F5 and the return is "!"
 
+#return: STR0
+
 prgmPUSHA
 
-# main loop
-Lbl 1
+Lbl ml # main loop
 
-    # numeric code of user input
-    getKey->a
+    prgmGETCHNB
+    #return: Ans - string - len will be 0 if no key event
+    #trash : a
 
-    # if no key was pressed: go to the beginning of the loop
-    If a=0
-    Goto 1
-
-    # F4
-    If a=14
+    # if no input, poll
+    If length(Ans)=0
     Then
-        prgmTGLDISP
-        Goto 1
+        Goto ml
     End
 
-    # first 10 chars are unreachable and including them is a waste of PM
-    a-10->a
+    # if a key was pressed, exit the loop
 
-    # index the char from this table
-    # F1 is 1 - backspace
-    # F5 is 5 - emergency exit
-    # enter is 95
-    sub("^???!?????123456????7890??????abc()?????defgh?????ijklm?????nopqr?????stuvw?????xyz,'?????? .-~",a,1)->STR0
-    #    1   5   10   15   20   25   30   35   40   45   50   55   60   65   70   75   80   85   90   95
-
-    # exit the loop
-    Goto 2
-
-Goto 1
-Lbl 2
+Ans->STR0
 
 prgmPOPA

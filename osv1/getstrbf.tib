@@ -13,15 +13,9 @@
 prgmPUSHA
 prgmPUSHB
 
-# length(STR1)->d
 
-# For(c,1,d)
-#     sub(STR1,c,1)->STR0
+0->[list]curic(1) # cursor icon
 
-#     prgmPUTCHAR
-#     #input: STR0 - character to put on screen
-#     #trash: a b
-# End
 
 STR1->STR2 # save for later
 
@@ -36,12 +30,28 @@ STR2->STR1 # load from earlier
 # main loop
 Lbl 1
 
-    "[box]"->STR0 # this char indicates the cursor
+    # set the cursor icon
+    If [list]curic(1)
+    Then
+        "[box]"->STR0
+    Else
+        "[dot]"->STR0
+    End
+    not([list]curic(1))->[list]curic(1)
+
     prgmPUTCHSLN
     #input: STR0 - character to put on screen
 
-    # returns char in STR0
-    prgmGETCHAR
+    prgmGETCHNB
+    #return: Ans - string - len will be 0 if no key event
+    #trash : a
+
+    If length(Ans)=0
+    Then
+        Goto 1
+    End
+
+    Ans->STR0 # save input
 
     # emergency exit
     If STR0="!"
