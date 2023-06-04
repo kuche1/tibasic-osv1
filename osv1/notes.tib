@@ -2,7 +2,7 @@
 #info
 #   app used for writing down notes
 
-#trash: STR0 STR1 STR2 STR3 STR4 STR5 STR6 STR7 L1
+#trash: STR0-STR7 L1
 
 prgmPUSHA
 prgmPUSHB
@@ -118,7 +118,8 @@ Menu(STR0,"edit",ed,"rename",rn,"go back",mm)
 Lbl ed # edit note
 
     # TODO implement
-    Goto ex
+
+    Goto mm # go back to main menu
 
 Lbl rn # rename note
 
