@@ -79,6 +79,28 @@ Lbl 1
         # Goto 2
     End
 
+    If STR0="ram"
+    Then
+        prgmGETRAM
+        #return: Ans
+
+        Ans->a
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        "free ram: "+STR0->STR0
+        prgmPUTSTR
+        #input: STR0 - string to put on screen
+        #trash: STR0 STR1
+
+        prgmPUTLN
+        #trash: STR0
+
+        Goto 1
+    End
+
     STR0->STR2 # save requested command
 
     "unknwn cmd: "->STR0
