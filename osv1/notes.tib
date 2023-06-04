@@ -122,7 +122,7 @@ Lbl ed # edit note
 
     prgmCLRSCR
 
-    "ldng nt cntnt..."->STR0
+    "ldng cntnt..."->STR0
     prgmPUTSTR
     #input: STR0 - string to put on screen
     #trash: STR0 STR1
