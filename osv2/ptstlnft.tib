@@ -1,24 +1,28 @@
 
 #info
 #   puts a string and a new line on screen (fast)
-#   HW cursor needs to be at X position 0
+#   HW cursor needs to be at X position 0 (oe does it?)
 
 #input: STR0 - string - string to put on screen
 
 prgmPUSHA
+prgmPUSHB
 
-length(STR0)->a # length of input string
+length(STR0)->a # legnth remaining
+1->b # cut start
 
 Lbl pl # print loop
 
-    If a>16 # TODO this might be optimisable by using start and end vars instead of modifying string every time
+    If a>16
     Then
-        Disp sub(STR0,1,16) # print first part
+        Disp sub(STR0,b,16) # print part
         a-16->a # update len
-        sub(STR0,17,a)->STR0 # cut first part
+        b+16->b # update start
         Goto pl
     End
 
-Disp STR0
+# Disp STR0
+Disp sub(STR0,b,a)
 
+prgmPOPB
 prgmPOPA

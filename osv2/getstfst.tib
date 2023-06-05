@@ -16,7 +16,7 @@ length(STR0)->a # legnth remaining
 
 Lbl sl # shorten loop
 
-    If a>16 # TODO this might be optimisable by using start and end vars instead of modifying string every time
+    If a>16
     Then
         Disp sub(STR0,b,16) # print part
         a-16->a # update len

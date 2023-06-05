@@ -6,6 +6,8 @@
 # make sure all trash is set to 0 (if possible for the values to take a lot of mem)
 #
 # fix the emergency exit prompts (!)
+#
+# implement screen shutdown and screen brightness fncs
 
 #trash : a STR0-STR7 L0 (some more might be missing)
 #return: Ans - return code
