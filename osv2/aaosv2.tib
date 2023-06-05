@@ -1,9 +1,12 @@
 
 # TODO
-# use Ans for PUTSTR
-# use PUTSTRLN everywhere where possible
+# use Ans to pass arguments where it makes sense
 # create PUSH<start><end> as to improve performance
 # make sure all trash if set to 0 (if possible for the values to take a lot of mem)
+#
+# depricate PUTSTR and PUTLN
+#
+# fix the emergency exit prompts (!)
 
 #trash : a STR0-STR7 L0 (some more might be missing)
 #return: Ans - return code
@@ -17,7 +20,7 @@ prgmCLRSCR
 # main loop
 Lbl 1
 
-    ">"
+    ">>"
     prgmGETSTFST
     #input : Ans - string - prompt
     #return: STR0 - user input
@@ -60,12 +63,8 @@ Lbl 1
 
         STR2+STR0+" percent"->STR0
 
-        prgmPUTSTR
-        #input: STR0 - string to put on screen
-        #trash: STR0 STR1
-
-        prgmPUTLN
-        #trash: STR0
+        prgmPTSTLNFT
+        #input: STR0 - string - string to put on screen
 
         Goto 1
     End
@@ -93,8 +92,9 @@ Lbl 1
     If STR0="hlp"
     Then
         "btr=battery-level ext=exit nts=notes off=shut-down hlp=help-msg ram=free-ram"->STR0
-        prgmPUTSTR # trash: STR0 STR1
-        prgmPUTLN # trash: STR0
+        prgmPTSTLNFT
+        #input: STR0 - string - string to put on screen
+
         Goto 1
     End
 
@@ -110,12 +110,8 @@ Lbl 1
         #trash : L1 L2 Y1
 
         "free ram: "+STR0+" bytes"->STR0
-        prgmPUTSTR
-        #input: STR0 - string to put on screen
-        #trash: STR0 STR1
-
-        prgmPUTLN
-        #trash: STR0
+        prgmPTSTLNFT
+        #input: STR0 - string - string to put on screen
 
         Goto 1
     End
@@ -123,9 +119,8 @@ Lbl 1
     # requested command stored in STR0
 
     "unknwn cmd: <"+STR0+"> call <hlp> to lst cmds"->STR0
-    prgmPUTSTRLN
-    #input: STR0 - string to print
-    #trash: STR0 STR1
+    prgmPTSTLNFT
+    #input: STR0 - string - string to put on screen
 
 Goto 1
 Lbl 2

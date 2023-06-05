@@ -123,12 +123,9 @@ Menu(STR0,"go back",mm,"edit",ed,"rename",rn,"delete content",dl)
 
 Lbl ed # edit note
 
-    prgmCLRSCR
-
     "ldng cntnt..."->STR0
-    prgmPUTSTR
-    #input: STR0 - string to put on screen
-    #trash: STR0 STR1
+    prgmPTSTLNFT
+    #input: STR0 - string - string to put on screen
 
     # set `Ans` based on current note
 

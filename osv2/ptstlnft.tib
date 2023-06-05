@@ -1,0 +1,20 @@
+
+#info
+#   puts a string and a new line on screen (fast)
+#   HW cursor needs to be at X position 0
+
+#input: STR0 - string - string to put on screen
+
+length(STR0)->a # length of input string
+
+Lbl pl # print loop
+
+    If a>16
+    Then
+        Disp sub(STR0,1,16) # print first part
+        a-16->a # update len
+        sub(STR0,17,a)->STR0 # cur first part
+        Goto pl
+    End
+
+Disp STR0
