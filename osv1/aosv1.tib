@@ -24,6 +24,11 @@ Lbl 1
     #return: STR0
     #trash : STR0 STR1
 
+    # ">"
+    # prgmGETSTFST
+    # #input : Ans - string - prompt
+    # #return: STR0 - user input
+
     If length(STR0)=0 # avoid errors related to `=` down the line
     Goto 1
 
