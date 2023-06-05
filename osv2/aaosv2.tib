@@ -84,14 +84,14 @@ Lbl 1
 
     If STR0="h"|STR0="hlp"|STR0="help"
     Then
-        "b=btr=btry=battery e=ext=exit n=nts=notes o=off=poweroff h=hlp=help m=ram=mem"->STR0
+        "b=btr=btry=battery e=ext=exit n=nts=notes o=off=poweroff h=hlp=help m=r=ram=mem"->STR0
         prgmPTSTLNFT
         #input: STR0 - string - string to put on screen
 
         Goto 1
     End
 
-    If STR0="m"|STR0="ram"|STR0="mem"
+    If STR0="m"|STR0="r"|STR0="ram"|STR0="mem"
     Then
         prgmGETRAM
         #return: Ans

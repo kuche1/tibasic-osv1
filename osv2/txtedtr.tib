@@ -1,13 +1,228 @@
 
 # TODO this is fucking stupid and needs to be replaced with a better non-hacky implementation
+#
+# add quit without saving btn? (can be easily done by copying to STR8 or STR9)
+#
+# TODO additional return var that indicates if the content was changed
 
 #input : Ans - string
 #output: Ans
-#trash : STR0 STR1 STR2
+#trash : STR0 STR1 STR2 STR3 STR4 STR7
 
-Ans->STR1
 
-prgmGETSTRBF
-#input : STR1 - fill input buffer with this before user input
-#return: Ans - resulting string
-#trash : STR0 STR1 STR2
+
+
+
+# #### old code
+# Ans->STR1
+# prgmGETSTRBF
+# #input : STR1 - fill input buffer with this before user input
+# #return: Ans - resulting string
+# #trash : STR0 STR1 STR2
+
+
+
+
+
+
+
+
+
+
+
+Ans->STR0
+
+prgmPUSHA
+prgmPUSHB
+prgmPUSHC
+
+# length(STR0)->a # length of data
+
+# If a<70 # TODO this needs to be %64 or smt # 5*14
+# Then
+#     If a=0
+#     Then
+#         1->a
+#         " "->STR0
+#     End
+
+#     70-a->a # how much more do we need to reach the target
+#     While a>0
+#         STR0+" "->STR0
+#         a-1->a
+#     End
+# End
+
+If length(STR0)=0
+    " "->STR0
+
+1->a # start index
+
+Lbl rl # refresh lines
+
+    # handle go back
+    If a<1
+    Then
+        1->a
+    End
+
+    # handle go forward
+    While length(STR0)<a+14*5
+        STR0+" "->STR0
+    End
+
+    # this seems like shit but is actually not too slow
+    sub(STR0,a+14*0,14)->STR1
+    sub(STR0,a+14*1,14)->STR2
+    sub(STR0,a+14*2,14)->STR3
+    sub(STR0,a+14*3,14)->STR4
+    sub(STR0,a+14*4,14)->STR4
+
+    STR0->STR7
+
+    prgmNUMTOSTR
+    #input : a
+    #return: STR0
+    #trash : L1 L2 Y1
+    "offset "+STR0->STR8
+
+    STR7->STR0
+
+Lbl ml # main loop
+
+    # TODO we can make it so that there is only 1 additional btn for all the 3 actions (and we can add some more)
+    # TODO show offset in title
+    Menu(STR8,STR1,l1,STR2,l2,STR3,l3,STR4,l4,"<prev>",pp,"<next>",np,"<done>",dn)
+
+    Lbl l1:
+        1->b
+        STR1
+        Goto pe
+
+    Lbl l2:
+        2->b
+        STR2
+        Goto pe
+
+    Lbl l3:
+        3->b
+        STR3
+        Goto pe
+
+    Lbl l4:
+        4->b
+        STR4
+        Goto pe
+
+Lbl pe # prepare eidt
+
+    # b - indicates which STR we're modifying
+
+    Ans->STR7
+
+    Disp "----------------"
+    Disp "len is limited"
+    Disp "----------------"
+    Disp ">>"+STR7
+    Disp "----------------"
+    Disp "entr new cntnt:"
+    Disp "----------------"
+    Input ">>",STR7
+
+    # TODO what do we do if the len is greater than the limit
+    #   do we (cut) or (give waraning and get input again) or (insert the fat msg)
+
+    length(STR7)->c
+
+    If c=0
+    Then
+        " "->STR7
+        1->c
+    End
+
+    If c>14
+    Then
+        # cut to 14th character
+        sub(STR7,1,14)->STR7
+    Else
+        # append whitespace until it reaches the number of chars needed
+        While c<14
+            c+1->c
+            STR7+" "->STR7
+        End
+    End
+
+    If b=1
+        STR7->STR1
+    
+    If b=2
+        STR7->STR2
+
+    If b=3
+        STR7->STR3
+
+    If b=4
+        STR7->STR4
+
+    # this is inefficient but I am lazy
+    STR1+STR2+STR3+STR4->STR7
+    
+    # this is a fucking hack and is probably not optimal, but fuck tibasic
+    " "+STR0+" "->STR0
+
+    sub(STR0,1,a)+STR7+sub(STR0,a+length(STR7),length(STR0)-a-length(STR7)+1)->STR0
+
+    ""->STR7 # clear var
+
+    # unhack
+    sub(STR0,2,length(STR0)-1)->STR0
+
+    Goto ml
+    # Goto rl
+
+Lbl pp: # prev
+    a-14*2->a
+    Goto rl
+
+Lbl np: # next
+    a+14*2->a
+    Goto rl
+
+Lbl dn: # done
+
+""->STR1
+""->STR2
+""->STR3
+""->STR4
+""->STR7
+""->STR8
+
+prgmPOPC
+prgmPOPB
+prgmPOPA
+
+STR0 # set Ans
+
+
+
+
+
+
+
+
+# Ans->STR1 # original data
+
+# "----------------"->STR0
+# prgmPTSTLNFT
+# #input: STR0 - string - string to put on screen
+
+# STR1->STR0
+# prgmPTSTLNFT
+# #input: STR0 - string - string to put on screen
+
+# "----------------"
+# prgmGETSTFST
+# #input : Ans - string - prompt
+# #return: STR0 - user input
+
+# STR0

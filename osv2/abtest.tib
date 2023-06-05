@@ -1,5 +1,43 @@
 
-"enter new name for note <imprvmnts>"->STR0
+# ""qwertyuiasdfghjkzxcvbvnnmhg"->STR0
 
-prgmGETSTFST
+# sub(STR0,1,5)+"0000"+sub(STR0,5+4,length(STR0)-5-4+1)->STR0
 
+# prgmPTSTLNFT"
+
+
+
+
+
+
+
+
+
+# ""
+# prgmTXTEDTR
+# #input : Ans - string
+# #output: Ans
+# #trash : STR0 STR1 STR2 STR3 STR4 STR7
+
+# Ans->STR0
+# prgmPTSTLNFT
+# #input: STR0 - string - string to put on screen
+
+
+
+
+
+
+
+2->c
+Disp c
+
+prgmPUSHC
+
+Disp c
+3->c
+Disp c
+
+prgmPOPC
+
+Disp c

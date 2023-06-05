@@ -32,46 +32,14 @@ SetUpEditor [list]ntdt5
 SetUpEditor [list]ntdt6
 SetUpEditor [list]ntdt7
 
-# 2 will be reloaded later
-
-[list]nttl3
-prgmLST2ST
-#input : Ans - list (eg L1)
-#output: STR0
-#trash : L1
-STR0->STR3
-
-[list]nttl4
-prgmLST2ST
-#input : Ans - list (eg L1)
-#output: STR0
-#trash : L1
-STR0->STR4
-
-[list]nttl5
-prgmLST2ST
-#input : Ans - list (eg L1)
-#output: STR0
-#trash : L1
-STR0->STR5
-
-[list]nttl6
-prgmLST2ST
-#input : Ans - list (eg L1)
-#output: STR0
-#trash : L1
-STR0->STR6
-
-[list]nttl7
-prgmLST2ST
-#input : Ans - list (eg L1)
-#output: STR0
-#trash : L1
-STR0->STR7
 
 Lbl mm # main menu
 
-    # reload 2 since it might have been trashed
+    "decoding note titles..."->STR0
+    prgmPTSTLNFT
+    #input: STR0 - string - string to put on screen
+
+    # reload titles since they might have been trashed
 
     [list]nttl2
     prgmLST2ST
@@ -80,7 +48,42 @@ Lbl mm # main menu
     #trash : L1
     STR0->STR2
 
-    Menu("notes","exit",ex,STR2,n2,STR3,n3,STR4,n4,STR5,n5,STR6,n6,STR7,n7)
+    [list]nttl3
+    prgmLST2ST
+    #input : Ans - list (eg L1)
+    #output: STR0
+    #trash : L1
+    STR0->STR3
+
+    [list]nttl4
+    prgmLST2ST
+    #input : Ans - list (eg L1)
+    #output: STR0
+    #trash : L1
+    STR0->STR4
+
+    [list]nttl5
+    prgmLST2ST
+    #input : Ans - list (eg L1)
+    #output: STR0
+    #trash : L1
+    STR0->STR5
+
+    [list]nttl6
+    prgmLST2ST
+    #input : Ans - list (eg L1)
+    #output: STR0
+    #trash : L1
+    STR0->STR6
+
+    [list]nttl7
+    prgmLST2ST
+    #input : Ans - list (eg L1)
+    #output: STR0
+    #trash : L1
+    STR0->STR7
+
+    Menu("notes","<exit>",ex,STR2,n2,STR3,n3,STR4,n4,STR5,n5,STR6,n6,STR7,n7)
 
 # save selected note
 
@@ -123,7 +126,7 @@ Menu(STR0,"go back",mm,"edit",ed,"rename",rn,"delete content",dl)
 
 Lbl ed # edit note
 
-    "ldng cntnt..."->STR0
+    "decoding note content..."->STR0
     prgmPTSTLNFT
     #input: STR0 - string - string to put on screen
 
@@ -154,8 +157,7 @@ Lbl ed # edit note
     #output: STR0
     #trash : L1
 
-    STR0 # set Ans
-
+    STR0
     prgmTXTEDTR
     #input : Ans - string
     #output: Ans
@@ -183,7 +185,7 @@ Lbl ed # edit note
 
     If c=7
         L1->[list]ntdt7
-
+    
     Goto mm # go back to main menu
 
 Lbl rn # rename note
