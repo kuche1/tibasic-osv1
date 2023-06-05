@@ -188,16 +188,20 @@ Lbl ed # edit note
 
 Lbl rn # rename note
 
-    STR0->STR1
-    prgmGETSTRBF
-    #input : STR1 - fill input buffer with this before user input
-    #return: Ans - resulting string
-    #trash : STR0 STR1 STR2
+    If length(STR0)=0
+    Then
+        "enter new name for note <>"->STR0
+    Else
+        "enter new name for note <"+STR0+">"->STR0
+    End
 
-    Ans->STR0 # compatibility with old call to `prgmGETSTR`
+    prgmPTSTLNFT
+    #input: STR0 - string - string to put on screen
 
-    # If length(STR0)>0&STR0="!" # emergency exit
-    #     Goto ex # TODO this needs to be updated if archiving is implemented
+    ""
+    prgmGETSTFST
+    #input : Ans - string - prompt
+    #return: STR0 - user input
 
     If c=2
     Then

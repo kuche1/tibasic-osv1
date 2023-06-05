@@ -1,4 +1,6 @@
 
+# TODO this stops working when `Ans` is longer than 16 chars
+
 #info
 #   returns string from user
 #   can handle fast typing
