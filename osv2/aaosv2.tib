@@ -8,8 +8,10 @@
 # fix the emergency exit prompts (!)
 #
 # implement screen shutdown and screen brightness fncs
+#
+# give `Lbl 1` a name
 
-#trash : a STR0-STR7 L0 (some more might be missing)
+#trash : a b STR0-STR7 L0 (some more might be missing)
 #return: Ans - return code
 
 prgmCLRSTACK
@@ -66,23 +68,9 @@ Lbl 1
         Goto 2
     End
 
-    If STR0="n"|STR0="nts"|STR0="notes"
-    Then
-        prgmNOTES
-        #trash: STR0-STR7 L1
-
-        Goto 1
-    End
-
-    If STR0="o"|STR0="off"|STR0="poweroff" # turn calc off
-    Then
-        prgmTURNOFF # when calc is turned back on it will continue down from here
-        Goto 1
-    End
-
     If STR0="h"|STR0="hlp"|STR0="help"
     Then
-        "b=btr=btry=battery e=ext=exit n=nts=notes o=off=poweroff h=hlp=help m=r=ram=mem"->STR0
+        "b=btr=btry=battery e=ext=exit h=hlp=help m=r=ram=mem n=nts=notes o=p=off=poweroff t=d=time:get time:set"->STR0
         prgmPTSTLNFT
         #input: STR0 - string - string to put on screen
 
@@ -103,6 +91,67 @@ Lbl 1
         "free ram: "+STR0+" bytes"->STR0
         prgmPTSTLNFT
         #input: STR0 - string - string to put on screen
+
+        Goto 1
+    End
+
+    If STR0="n"|STR0="nts"|STR0="notes"
+    Then
+        prgmNOTES
+        #trash: STR0-STR7 L1
+
+        Goto 1
+    End
+
+    If STR0="o"|STR0="p"|STR0="off"|STR0="poweroff" # turn calc off
+    Then
+        prgmTURNOFF # when calc is turned back on it will continue down from here
+        Goto 1
+    End
+
+    If STR0="t"|STR0="d"|STR0="time:get"
+    Then
+        getDate->L1
+        L1(1)->a # year
+        L1(2)->b # month
+        L1(3)->c # day
+
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        "year:"+STR0->STR1 # store final string here
+
+        b->a
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        STR1+" month:"+STR0->STR1 # store final string here
+
+        c->a
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        STR1+" day:"+STR0->STR1 # store final string here
+
+        STR1->STR0
+        prgmPTSTLNFT
+        #input: STR0 - string - string to put on screen
+
+        Goto 1
+    End
+
+    If STR0="time:set"
+    Then
+        Input "year: ",a
+        Input "month: ",b
+        Input "day: ",c
+        setDate(a,b,c)
 
         Goto 1
     End
