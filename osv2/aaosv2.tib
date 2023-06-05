@@ -139,6 +139,34 @@ Lbl 1
 
         STR1+" day:"+STR0->STR1 # store final string here
 
+        getTime->L1
+        L1(1)->a # hour
+        L1(2)->b # minute
+        L1(3)->c # second
+
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        STR1+" hour:"+STR0->STR1 # store final string here
+
+        b->a
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        STR1+" minute:"+STR0->STR1 # store final string here
+
+        c->a
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        STR1+" second:"+STR0->STR1 # store final string here
+
         STR1->STR0
         prgmPTSTLNFT
         #input: STR0 - string - string to put on screen
@@ -151,7 +179,14 @@ Lbl 1
         Input "year: ",a
         Input "month: ",b
         Input "day: ",c
+
         setDate(a,b,c)
+
+        Input "hour: ",a
+        Input "minute: ",b
+        Input "second: ",c
+
+        setTime(a,b,c)
 
         Goto 1
     End
