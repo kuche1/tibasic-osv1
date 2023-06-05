@@ -111,6 +111,9 @@ Lbl 1
 
     If STR0="t"|STR0="d"|STR0="time:get"
     Then
+
+        # print date
+
         getDate->L1
         L1(1)->a # year
         L1(2)->b # month
@@ -121,7 +124,7 @@ Lbl 1
         #return: STR0
         #trash : L1 L2 Y1
 
-        "year:"+STR0->STR1 # store final string here
+        STR0->STR1 # store final string here
 
         b->a
         prgmNUMTOSTR
@@ -129,7 +132,7 @@ Lbl 1
         #return: STR0
         #trash : L1 L2 Y1
 
-        STR1+" month:"+STR0->STR1 # store final string here
+        STR1+"/"+STR0->STR1
 
         c->a
         prgmNUMTOSTR
@@ -137,7 +140,13 @@ Lbl 1
         #return: STR0
         #trash : L1 L2 Y1
 
-        STR1+" day:"+STR0->STR1 # store final string here
+        STR1+"/"+STR0->STR1
+
+        STR1->STR0
+        prgmPTSTLNFT
+        #input: STR0 - string - string to put on screen
+
+        # print time
 
         getTime->L1
         L1(1)->a # hour
@@ -149,7 +158,7 @@ Lbl 1
         #return: STR0
         #trash : L1 L2 Y1
 
-        STR1+" hour:"+STR0->STR1 # store final string here
+        STR0->STR1 # store final string here
 
         b->a
         prgmNUMTOSTR
@@ -157,7 +166,7 @@ Lbl 1
         #return: STR0
         #trash : L1 L2 Y1
 
-        STR1+" minute:"+STR0->STR1 # store final string here
+        STR1+":"+STR0->STR1
 
         c->a
         prgmNUMTOSTR
@@ -165,7 +174,7 @@ Lbl 1
         #return: STR0
         #trash : L1 L2 Y1
 
-        STR1+" second:"+STR0->STR1 # store final string here
+        STR1+":"+STR0->STR1
 
         STR1->STR0
         prgmPTSTLNFT
