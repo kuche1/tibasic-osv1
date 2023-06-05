@@ -14,8 +14,6 @@
 
 prgmCLRSTACK
 
-prgmPUSHB
-
 prgmCLRSCR
 
 # main loop
@@ -29,7 +27,7 @@ Lbl 1
     If length(STR0)=0 # avoid errors related to `=` down the line
     Goto 1
 
-    If STR0="btr" # show battery level
+    If STR0="b"|STR0="btr"|STR0="btry"|STR0="battery" # show battery level
     Then
         prgmGETBTRY
         # return: Ans
@@ -64,13 +62,13 @@ Lbl 1
         Goto 1
     End
 
-    If STR0="ext" # exit
+    If STR0="e"|STR0="ext"|STR0="exit" # exit
     Then
         0->a
         Goto 2
     End
 
-    If STR0="nts"
+    If STR0="n"|STR0="nts"|STR0="notes"
     Then
         prgmNOTES
         #trash: STR0-STR7 L1
@@ -78,22 +76,22 @@ Lbl 1
         Goto 1
     End
 
-    If STR0="off" # turn calc off
+    If STR0="o"|STR0="off"|STR0="poweroff" # turn calc off
     Then
         prgmTURNOFF # when calc is turned back on it will continue down from here
         Goto 1
     End
 
-    If STR0="hlp"
+    If STR0="h"|STR0="hlp"|STR0="help"
     Then
-        "btr=battery-level ext=exit nts=notes off=shut-down hlp=help-msg ram=free-ram"->STR0
+        "b=btr=btry=battery e=ext=exit n=nts=notes o=off=poweroff h=hlp=help m=ram=mem"->STR0
         prgmPTSTLNFT
         #input: STR0 - string - string to put on screen
 
         Goto 1
     End
 
-    If STR0="ram"
+    If STR0="m"|STR0="ram"|STR0="mem"
     Then
         prgmGETRAM
         #return: Ans
@@ -113,7 +111,7 @@ Lbl 1
 
     # requested command stored in STR0
 
-    "unknwn cmd: <"+STR0+"> call <hlp> to lst cmds"->STR0
+    "unknown cmd: <"+STR0+"> call <h> to list cmds"->STR0
     prgmPTSTLNFT
     #input: STR0 - string - string to put on screen
 
@@ -121,8 +119,6 @@ Goto 1
 Lbl 2
 
 prgmCLRSCR
-
-prgmPOPB
 
 prgmCLRSTACK
 
