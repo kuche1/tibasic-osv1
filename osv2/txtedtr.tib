@@ -1,33 +1,13 @@
 
-# TODO this is fucking stupid and needs to be replaced with a better non-hacky implementation
+# TODO
 #
 # add quit without saving btn? (can be easily done by copying to STR8 or STR9)
 #
-# TODO additional return var that indicates if the content was changed
+# additional return var that indicates if the content was changed
 
 #input : Ans - string
 #output: Ans
-#trash : STR0 STR1 STR2 STR3 STR4 STR7
-
-
-
-
-
-# #### old code
-# Ans->STR1
-# prgmGETSTRBF
-# #input : STR1 - fill input buffer with this before user input
-# #return: Ans - resulting string
-# #trash : STR0 STR1 STR2
-
-
-
-
-
-
-
-
-
+#trash : STR0-STR4 STR7 STR8
 
 
 Ans->STR0
@@ -36,22 +16,6 @@ prgmPUSHA
 prgmPUSHB
 prgmPUSHC
 
-# length(STR0)->a # length of data
-
-# If a<70 # TODO this needs to be %64 or smt # 5*14
-# Then
-#     If a=0
-#     Then
-#         1->a
-#         " "->STR0
-#     End
-
-#     70-a->a # how much more do we need to reach the target
-#     While a>0
-#         STR0+" "->STR0
-#         a-1->a
-#     End
-# End
 
 If length(STR0)=0
     " "->STR0

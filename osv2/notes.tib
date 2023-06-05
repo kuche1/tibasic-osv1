@@ -1,12 +1,11 @@
 
 #TODO
 # archive the titles and the data
-# add option to delete note?
 
 #info
 #   app used for writing down notes
 
-#trash: STR0-STR7 L1
+#trash: STR0-STR4 STR7 STR8 L1
 
 prgmPUSHA
 prgmPUSHB
@@ -161,7 +160,7 @@ Lbl ed # edit note
     prgmTXTEDTR
     #input : Ans - string
     #output: Ans
-    #trash : STR0 STR1 STR2
+    #trash : STR0-STR4 STR7 STR8
 
     prgmST2LST
     #input : Ans - string
