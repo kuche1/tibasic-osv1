@@ -1,0 +1,11 @@
+
+ClrHome
+
+# clear list in case anyone fucked the content up
+ClrList [list]curps
+
+# create list if it doesn't exist already
+# SetUpEditor [list]curps
+
+1->[list]curps(1) # y
+1->[list]curps(2) # x

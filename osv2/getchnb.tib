@@ -1,0 +1,44 @@
+
+#info
+#   nonblocking `getchar`
+
+#return: Ans - string - len will be 0 if no key event
+#trash : a
+
+# main loop
+Lbl 1
+
+    # numeric code of user input
+    getKey->a
+
+    # if no key was pressed: return
+    If a=0
+    Then
+        "" # this sets `Ans`
+        Goto 2
+    End
+
+    # F4
+    If a=14
+    Then
+        prgmTGLDISP
+        Goto 1
+    End
+
+    # first 10 chars are unreachable and including them is a waste of PM
+    a-10->a
+
+    # index the char from this table
+    # F1 is 1 - backspace
+    # F5 is 5 - emergency exit
+    # enter is 95
+    sub("^???!?????123456????7890??????abc()?????defgh?????ijklm?????nopqr?????stuvw?????xyz,'?????? .-~",a,1)
+    #    1   5   10   15   20   25   30   35   40   45   50   55   60   65   70   75   80   85   90   95
+
+    # ^^^ this will set `Ans`
+
+    # exit the loop
+    Goto 2
+
+Goto 1
+Lbl 2

@@ -1,0 +1,7 @@
+
+#info
+#   shows amount of free ram
+
+#return: Ans
+
+Asm(prgmZGETRAM)

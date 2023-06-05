@@ -1,0 +1,7 @@
+
+#info
+#   puts char on screen but does not increase the cursor counter
+
+#input: STR0 - character to put on screen
+
+Output([list]curps(1),[list]curps(2),STR0)

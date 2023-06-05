@@ -1,0 +1,17 @@
+
+#info
+#   increases cursor Y by 1, sets cur X to 1
+
+#trash: a
+
+[list]curps(1)->a # y
+
+a+1->a
+
+If a=9
+    1->a
+
+Output(a,1,"                ") # clear line so that there is no overlap petween old text and new text
+
+a->[list]curps(1) # y
+1->[list]curps(2) # x

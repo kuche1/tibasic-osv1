@@ -1,0 +1,139 @@
+
+# TODO
+# use Ans for PUTSTR
+# use PUTSTRLN everywhere where possible
+# create PUSH<start><end> as to improve performance
+# make sure all trash if set to 0 (if possible for the values to take a lot of mem)
+
+#trash : a STR0-STR7 L0 (some more might be missing)
+#return: Ans - return code
+
+prgmCLRSTACK
+
+prgmPUSHB
+
+prgmCLRSCR
+
+# main loop
+Lbl 1
+
+    ">"
+    prgmGETSTFST
+    #input : Ans - string - prompt
+    #return: STR0 - user input
+
+    If length(STR0)=0 # avoid errors related to `=` down the line
+    Goto 1
+
+    If STR0="!" # emergency exit
+    Then
+        1->a
+        Goto 2
+    End
+
+    If STR0="btr" # show battery level
+    Then
+        prgmGETBTRY
+        # return: Ans
+        # 0:4 <-> low:high
+
+        Ans->a
+        # calc battery level
+        a*20->a # low bound
+        a+20->b # high bound
+
+        "battery level: "->STR2
+
+        # `a` already set
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        STR2+STR0+" to "->STR2
+
+        b->a
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        STR2+STR0+" percent"->STR0
+
+        prgmPUTSTR
+        #input: STR0 - string to put on screen
+        #trash: STR0 STR1
+
+        prgmPUTLN
+        #trash: STR0
+
+        Goto 1
+    End
+
+    If STR0="ext" # exit
+    Then
+        0->a
+        Goto 2
+    End
+
+    If STR0="nts"
+    Then
+        prgmNOTES
+        #trash: STR0-STR7 L1
+
+        Goto 1
+    End
+
+    If STR0="off" # turn calc off
+    Then
+        prgmTURNOFF # when calc is turned back on it will continue down from here
+        Goto 1
+    End
+
+    If STR0="hlp"
+    Then
+        "btr=battery-level ext=exit nts=notes off=shut-down hlp=help-msg ram=free-ram"->STR0
+        prgmPUTSTR # trash: STR0 STR1
+        prgmPUTLN # trash: STR0
+        Goto 1
+    End
+
+    If STR0="ram"
+    Then
+        prgmGETRAM
+        #return: Ans
+
+        Ans->a
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        "free ram: "+STR0+" bytes"->STR0
+        prgmPUTSTR
+        #input: STR0 - string to put on screen
+        #trash: STR0 STR1
+
+        prgmPUTLN
+        #trash: STR0
+
+        Goto 1
+    End
+
+    # requested command stored in STR0
+
+    "unknwn cmd: <"+STR0+"> call <hlp> to lst cmds"->STR0
+    prgmPUTSTRLN
+    #input: STR0 - string to print
+    #trash: STR0 STR1
+
+Goto 1
+Lbl 2
+
+prgmCLRSCR
+
+prgmPOPB
+
+prgmCLRSTACK
+
+a # return code

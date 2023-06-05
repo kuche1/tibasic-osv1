@@ -1,0 +1,27 @@
+
+#info
+#   stalls until a button is pressed and when that button is pressed
+#   the string value is returned as `STR0`
+#   emergyncy exit is triggered by pressing F5 and the return is "!"
+
+#return: STR0
+
+prgmPUSHA
+
+Lbl ml # main loop
+
+    prgmGETCHNB
+    #return: Ans - string - len will be 0 if no key event
+    #trash : a
+
+    # if no input, poll
+    If length(Ans)=0
+    Then
+        Goto ml
+    End
+
+    # if a key was pressed, exit the loop
+
+Ans->STR0
+
+prgmPOPA

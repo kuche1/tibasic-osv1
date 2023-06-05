@@ -1,0 +1,8 @@
+
+#info
+#   gives battery level
+
+#return
+#   Ans - battery level, 0 is lowest, 4 is highest
+
+Asm(prgmZGETBTRY)

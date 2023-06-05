@@ -1,0 +1,336 @@
+
+#TODO
+# archive the titles and the data
+# add option to delete note?
+
+#info
+#   app used for writing down notes
+
+#trash: STR0-STR7 L1
+
+prgmPUSHA
+prgmPUSHB
+prgmPUSHC
+prgmPUSHD
+prgmPUSHE
+
+# create lists if they don't exist
+
+# note titles
+SetUpEditor [list]nttl2
+SetUpEditor [list]nttl3
+SetUpEditor [list]nttl4
+SetUpEditor [list]nttl5
+SetUpEditor [list]nttl6
+SetUpEditor [list]nttl7
+
+# note datas
+SetUpEditor [list]ntdt2
+SetUpEditor [list]ntdt3
+SetUpEditor [list]ntdt4
+SetUpEditor [list]ntdt5
+SetUpEditor [list]ntdt6
+SetUpEditor [list]ntdt7
+
+# 2 will be reloaded later
+
+[list]nttl3
+prgmLST2ST
+#input : Ans - list (eg L1)
+#output: STR0
+#trash : L1
+STR0->STR3
+
+[list]nttl4
+prgmLST2ST
+#input : Ans - list (eg L1)
+#output: STR0
+#trash : L1
+STR0->STR4
+
+[list]nttl5
+prgmLST2ST
+#input : Ans - list (eg L1)
+#output: STR0
+#trash : L1
+STR0->STR5
+
+[list]nttl6
+prgmLST2ST
+#input : Ans - list (eg L1)
+#output: STR0
+#trash : L1
+STR0->STR6
+
+[list]nttl7
+prgmLST2ST
+#input : Ans - list (eg L1)
+#output: STR0
+#trash : L1
+STR0->STR7
+
+Lbl mm # main menu
+
+    # reload 2 since it might have been trashed
+
+    [list]nttl2
+    prgmLST2ST
+    #input : Ans - list (eg L1)
+    #output: STR0
+    #trash : L1
+    STR0->STR2
+
+    Menu("notes","exit",ex,STR2,n2,STR3,n3,STR4,n4,STR5,n5,STR6,n6,STR7,n7)
+
+# save selected note
+
+Lbl n2
+    2->c
+    STR2->STR0
+    Goto nn
+
+Lbl n3
+    3->c
+    STR3->STR0
+    Goto nn
+
+Lbl n4
+    4->c
+    STR4->STR0
+    Goto nn
+
+Lbl n5
+    5->c
+    STR5->STR0
+    Goto nn
+
+Lbl n6
+    6->c
+    STR6->STR0
+    Goto nn
+
+Lbl n7
+    7->c
+    STR7->STR0
+    Goto nn
+
+Lbl nn
+
+# number is saved in `c`
+# name is saved in `STR0`
+
+Menu(STR0,"go back",mm,"edit",ed,"rename",rn,"delete content",dl)
+
+Lbl ed # edit note
+
+    prgmCLRSCR
+
+    "ldng cntnt..."->STR0
+    prgmPUTSTR
+    #input: STR0 - string to put on screen
+    #trash: STR0 STR1
+
+    # set `Ans` based on current note
+
+    If c=2
+        [list]ntdt2
+
+    If c=3
+        [list]ntdt3
+
+    If c=4
+        [list]ntdt4
+
+    If c=5
+        [list]ntdt5
+
+    If c=6
+        [list]ntdt6
+
+    If c=7
+        [list]ntdt7
+
+    # `Ans` set by ifs
+
+    prgmLST2ST
+    #input : Ans - list (eg L1)
+    #output: STR0
+    #trash : L1
+
+    STR0 # set Ans
+
+    prgmTXTEDTR
+    #input : Ans - string
+    #output: Ans
+    #trash : STR0 STR1 STR2
+
+    prgmST2LST
+    #input : Ans - string
+    #output: L1
+    #trash : STR0 STR1
+
+    If c=2
+        L1->[list]ntdt2
+
+    If c=3
+        L1->[list]ntdt3
+
+    If c=4
+        L1->[list]ntdt4
+
+    If c=5
+        L1->[list]ntdt5
+
+    If c=6
+        L1->[list]ntdt6
+
+    If c=7
+        L1->[list]ntdt7
+
+    Goto mm # go back to main menu
+
+Lbl rn # rename note
+
+    STR0->STR2 # save for input buffer to set to name of note
+
+    "enter new name: "->STR0
+
+    prgmPUTSTR
+    #input: STR0 - string to put on screen
+    #trash: STR0 STR1
+
+    STR2->STR1 # input buffer is now name of note
+    prgmGETSTRBF
+    #input : STR1 - fill input buffer with this before user input
+    #return: Ans - resulting string
+    #trash : STR0 STR1 STR2
+
+    Ans->STR0 # compatibility with old call to `prgmGETSTR`
+
+    # If length(STR0)>0&STR0="!" # emergency exit
+    #     Goto ex # TODO this needs to be updated if archiving is implemented
+
+    If c=2
+    Then
+        STR0->STR2
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0 STR1
+
+        L1->[list]nttl2
+    End
+
+    If c=3
+    Then
+        STR0->STR3
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0 STR1
+
+        L1->[list]nttl3
+    End
+
+    If c=4
+    Then
+        STR0->STR4
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0 STR1
+
+        L1->[list]nttl4
+    End
+
+    If c=5
+    Then
+        STR0->STR5
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0 STR1
+
+        L1->[list]nttl5
+    End
+
+    If c=6
+    Then
+        STR0->STR6
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0 STR1
+
+        L1->[list]nttl6
+    End
+
+    If c=7
+    Then
+        STR0->STR7
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0 STR1
+
+        L1->[list]nttl7
+    End
+
+    Goto mm # go back to main menu, now that the appropriate STR variable has been updated
+
+Lbl dl # delete note
+
+    Menu("confirm deletion","no",mm,"yes",dy)
+
+    Lbl dy
+
+    If c=2
+        0->dim([list]ntdt2)
+
+    If c=3
+        0->dim([list]ntdt3)
+
+    If c=4
+        0->dim([list]ntdt4)
+
+    If c=5
+        0->dim([list]ntdt5)
+
+    If c=6
+        0->dim([list]ntdt6)
+
+    If c=7
+        0->dim([list]ntdt7)
+
+    Goto mm
+
+Lbl ex
+
+ClrList L1
+
+""->STR0
+""->STR1
+""->STR2
+""->STR3
+""->STR4
+""->STR5
+""->STR6
+""->STR7
+
+prgmPOPE
+prgmPOPD
+prgmPOPC
+prgmPOPB
+prgmPOPA

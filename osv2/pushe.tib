@@ -1,0 +1,15 @@
+
+#info
+#   pushes a variable onto the stack
+
+#trashed
+#   z
+
+# create list named `stack` if it does not exist already
+SetUpEditor [list]stack
+
+# get length of stack
+dim([list]stack)->z
+
+# append
+e->[list]stack(z+1)

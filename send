@@ -19,7 +19,7 @@ def main(program_name):
     # assert program_name.upper() == program_name
     assert len(program_name) <= 8
 
-    with open(f'./osv1/{program_name}.tib', 'r') as f:
+    with open(f'./osv2/{program_name}.tib', 'r') as f:
         data = f.read()
 
     data_new = []

@@ -1,0 +1,59 @@
+
+#input: STR0 - string to put on screen
+#trash: STR0 STR1
+
+prgmPUSHA
+prgmPUSHB
+
+
+# while length is greater than amount of chrs left on line
+# print the whole line
+# after that print char by char
+
+
+[list]curps(2)->a # where is the cursor X
+17-a->a # how many chars do we have until next line
+
+length(STR0)->b # how long is STR0
+
+Lbl cl # cut loop
+
+    If b>a
+    Then
+
+        sub(STR0,1,a)->STR1 # part to print
+
+        b-a->b # update len
+
+        sub(STR0,a+1,b)->STR0 # cut from string
+
+        Output([list]curps(1),[list]curps(2),STR1)
+
+        prgmINCCURY # increase cur Y by 1, sets cur X to 1
+        #trash: a
+
+        16->a # we now have 16 chars until next line
+
+        Goto cl
+
+    Else
+
+        [list]curps(2)->a # cur pos X
+        Output([list]curps(1),a,STR0)
+        a+b->a # update cur pos X
+
+        If a=17
+        Then
+            prgmINCCURY # increase cur Y by 1, sets cur X to 1
+            # trash: a
+        Else
+            a->[list]curps(2)
+        End
+
+    End
+
+Lbl le # loop end
+
+
+prgmPOPB
+prgmPOPA

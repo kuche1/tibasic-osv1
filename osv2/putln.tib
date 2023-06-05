@@ -1,0 +1,18 @@
+
+#info
+#   puts a new line on screen
+
+#trash: STR0
+
+prgmPUSHA
+prgmPUSHB
+
+# set cur to last character on line
+16->[list]curps(2)
+
+# by calling `putchr` now we have forced the clear of the next line and the cursor is now on the 1st char of the next line
+" "->STR0
+prgmPUTCHAR # trash a b
+
+prgmPOPB
+prgmPOPA
