@@ -191,15 +191,7 @@ Lbl ed # edit note
 
 Lbl rn # rename note
 
-    STR0->STR2 # save for input buffer to set to name of note
-
-    "enter new name: "->STR0
-
-    prgmPUTSTR
-    #input: STR0 - string to put on screen
-    #trash: STR0 STR1
-
-    STR2->STR1 # input buffer is now name of note
+    STR0->STR1
     prgmGETSTRBF
     #input : STR1 - fill input buffer with this before user input
     #return: Ans - resulting string
