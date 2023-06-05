@@ -2,7 +2,6 @@
 #TODO
 # archive the titles and the data
 # add option to delete note?
-# ask for confirmation when deleting note
 
 #info
 #   app used for writing down notes
@@ -192,25 +191,26 @@ Lbl ed # edit note
 
 Lbl rn # rename note
 
-    If length(STR0)=0
-    Then
-        "enter new name for <>: "->STR0
-    Else
-        "enter new name for <"+STR0+">: "->STR0
-    End
-
     prgmCLRSCR
+
+    STR0->STR2 # save for input buffer to set to name of note
+
+    "enter new name: "->STR0
 
     prgmPUTSTR
     #input: STR0 - string to put on screen
     #trash: STR0 STR1
 
-    prgmGETSTR
-    #return: STR0
-    #trash : STR0 STR1
+    STR2->STR1 # input buffer is now name of note
+    prgmGETSTRBF
+    #input : STR1 - fill input buffer with this before user input
+    #return: Ans - resulting string
+    #trash : STR0 STR1 STR2
 
-    If length(STR0)>0 and STR0="!" # emergency exit
-        Goto ex # TODO this needs to be updated if archiving is implemented
+    Ans->STR0 # compatibility with old call to `prgmGETSTR`
+
+    # If length(STR0)>0&STR0="!" # emergency exit
+    #     Goto ex # TODO this needs to be updated if archiving is implemented
 
     If c=2
     Then

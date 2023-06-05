@@ -1,6 +1,8 @@
 
 # TODO
 # try and use the blocking `getch` and only update cursor on keypress or make `getchnb` return 2 values so that we don't have to check the len
+# rename to `getstbf`
+# make sure that everyone respects the emergency exit
 
 #info
 #   returns string from user; initial buffer value can be set
