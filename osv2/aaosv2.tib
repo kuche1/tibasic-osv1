@@ -1,10 +1,9 @@
 
 # TODO
+#
 # use Ans to pass arguments where it makes sense
 # create PUSH<start><end> as to improve performance
-# make sure all trash if set to 0 (if possible for the values to take a lot of mem)
-#
-# depricate PUTSTR and PUTLN
+# make sure all trash is set to 0 (if possible for the values to take a lot of mem)
 #
 # fix the emergency exit prompts (!)
 
@@ -27,12 +26,6 @@ Lbl 1
 
     If length(STR0)=0 # avoid errors related to `=` down the line
     Goto 1
-
-    If STR0="!" # emergency exit
-    Then
-        1->a
-        Goto 2
-    End
 
     If STR0="btr" # show battery level
     Then

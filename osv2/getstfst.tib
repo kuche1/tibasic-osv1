@@ -1,8 +1,4 @@
 
-# TODO
-# this does not update the cursor pos, so it might be a good idea to reset screen after calling this
-# use this where possible
-
 #info
 #   returns string from user
 #   can handle fast typing
