@@ -190,15 +190,13 @@ Lbl rn # rename note
 
     If length(STR0)=0
     Then
-        "enter new name for note <>"->STR0
+        "enter new name for note <>: "
     Else
-        "enter new name for note <"+STR0+">"->STR0
+        "enter new name for note <"+STR0+">: "
     End
 
-    prgmPTSTLNFT
-    #input: STR0 - string - string to put on screen
+    # Ans gets set by the ifs above
 
-    ""
     prgmGETSTFST
     #input : Ans - string - prompt
     #return: STR0 - user input

@@ -5,16 +5,20 @@
 
 #input: STR0 - string - string to put on screen
 
+prgmPUSHA
+
 length(STR0)->a # length of input string
 
 Lbl pl # print loop
 
-    If a>16
+    If a>16 # TODO this might be optimisable by using start and end vars instead of modifying string every time
     Then
         Disp sub(STR0,1,16) # print first part
         a-16->a # update len
-        sub(STR0,17,a)->STR0 # cur first part
+        sub(STR0,17,a)->STR0 # cut first part
         Goto pl
     End
 
 Disp STR0
+
+prgmPOPA

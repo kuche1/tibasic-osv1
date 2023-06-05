@@ -1,5 +1,5 @@
 
 "enter new name for note <imprvmnts>"->STR0
 
-prgmPTSTLNFT
-#input: STR0 - string - string to put on screen
+prgmGETSTFST
+

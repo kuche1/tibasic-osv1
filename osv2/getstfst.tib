@@ -1,6 +1,4 @@
 
-# TODO this stops working when `Ans` is longer than 16 chars
-
 #info
 #   returns string from user
 #   can handle fast typing
@@ -8,4 +6,25 @@
 #input : Ans - string - prompt
 #return: STR0 - user input
 
-Input Ans,STR0
+Ans->STR0
+
+prgmPUSHA
+prgmPUSHB
+
+length(STR0)->a # legnth remaining
+1->b # cut start
+
+Lbl sl # shorten loop
+
+    If a>16 # TODO this might be optimisable by using start and end vars instead of modifying string every time
+    Then
+        Disp sub(STR0,b,16) # print part
+        a-16->a # update len
+        b+16->b # update start
+        Goto sl
+    End
+
+Input sub(STR0,b,a),STR0
+
+prgmPOPB
+prgmPOPA
