@@ -1,19 +1,14 @@
 
-# TODO this can be made faster by using the first method exclusively
-
 #input: STR0 - string to put on screen
 #trash: STR0 STR1
 
 prgmPUSHA
 prgmPUSHB
-prgmPUSHC
-prgmPUSHD
 
 
 # while length is greater than amount of chrs left on line
 # print the whole line
 # after that print char by char
-
 
 
 [list]curps(2)->a # where is the cursor X
@@ -25,6 +20,7 @@ Lbl cl # cut loop
 
     If b>a
     Then
+
         sub(STR0,1,a)->STR1 # part to print
 
         b-a->b # update len
@@ -39,23 +35,25 @@ Lbl cl # cut loop
         16->a # we now have 16 chars until next line
 
         Goto cl
+
+    Else
+
+        [list]curps(2)->a # cur pos X
+        Output([list]curps(1),a,STR0)
+        a+b->a # update cur pos X
+
+        If a=17
+        Then
+            prgmINCCURY # increase cur Y by 1, sets cur X to 1
+            # trash: a
+        Else
+            a->[list]curps(2)
+        End
+
     End
 
 Lbl le # loop end
 
 
-
-
-STR0->STR1
-
-length(STR1)->d
-
-For(c,1,d)
-    sub(STR1,c,1)->STR0
-    prgmPUTCHAR # trash a b
-End
-
-prgmPOPD
-prgmPOPC
 prgmPOPB
 prgmPOPA
