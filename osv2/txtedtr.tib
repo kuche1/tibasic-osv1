@@ -93,7 +93,7 @@ Lbl pe # prepare eidt
     Disp "----------------"
     Disp "len is limited"
     Disp "----------------"
-    Disp ">>"+STR7
+    Disp ">>"+STR7 # TODO make it so that the `>` is automatically filled based on line len
     Disp "----------------"
     Disp "entr new cntnt:"
     Disp "----------------"
