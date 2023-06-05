@@ -10,6 +10,8 @@
 # implement screen shutdown and screen brightness fncs
 #
 # give `Lbl 1` a name
+#
+# create a timer a[[]]
 
 #trash : a b STR0-STR7 L0 (some more might be missing)
 #return: Ans - return code

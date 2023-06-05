@@ -4,6 +4,8 @@
 # add quit without saving btn? (can be easily done by copying to STR8 or STR9)
 #
 # additional return var that indicates if the content was changed
+#
+# add parameter for lines passed on btn press
 
 #input : Ans - string
 #output: Ans
@@ -15,47 +17,50 @@ Ans->STR0
 prgmPUSHA
 prgmPUSHB
 prgmPUSHC
+prgmPUSHD
+prgmPUSHE
 
+14->e # characters per line
 
 If length(STR0)=0
     " "->STR0
 
-1->a # start index
+1->d # start index
 
 Lbl rl # refresh lines
 
     # handle go back
-    If a<1
+    If d<1
     Then
-        1->a
+        1->d
     End
 
     # handle go forward
-    While length(STR0)<a+14*5
+    While length(STR0)<d+e*5
         STR0+" "->STR0
     End
 
     # this seems like shit but is actually not too slow
-    sub(STR0,a+14*0,14)->STR1
-    sub(STR0,a+14*1,14)->STR2
-    sub(STR0,a+14*2,14)->STR3
-    sub(STR0,a+14*3,14)->STR4
-    sub(STR0,a+14*4,14)->STR4
+    sub(STR0,d+e*0,e)->STR1
+    sub(STR0,d+e*1,e)->STR2
+    sub(STR0,d+e*2,e)->STR3
+    sub(STR0,d+e*3,e)->STR4
+    sub(STR0,d+e*4,e)->STR4
 
     STR0->STR7
 
+    d/e->a # TODO can we make this faster by doing integer division?
     prgmNUMTOSTR
     #input : a
     #return: STR0
     #trash : L1 L2 Y1
-    "offset "+STR0->STR8
+    "offsetl1c1 "+STR0->STR8
 
     STR7->STR0
 
 Lbl ml # main loop
 
     # TODO we can make it so that there is only 1 additional btn for all the 3 actions (and we can add some more)
-    # TODO show offset in title
     Menu(STR8,STR1,l1,STR2,l2,STR3,l3,STR4,l4,"<prev>",pp,"<next>",np,"<done>",dn)
 
     Lbl l1:
@@ -84,6 +89,7 @@ Lbl pe # prepare eidt
 
     Ans->STR7
 
+    # TODO just use output, it will skip the scroll animation
     Disp "----------------"
     Disp "len is limited"
     Disp "----------------"
@@ -104,13 +110,13 @@ Lbl pe # prepare eidt
         1->c
     End
 
-    If c>14
+    If c>e
     Then
-        # cut to 14th character
-        sub(STR7,1,14)->STR7
+        # cut to Nth character
+        sub(STR7,1,e)->STR7
     Else
         # append whitespace until it reaches the number of chars needed
-        While c<14
+        While c<e
             c+1->c
             STR7+" "->STR7
         End
@@ -134,7 +140,7 @@ Lbl pe # prepare eidt
     # this is a fucking hack and is probably not optimal, but fuck tibasic
     " "+STR0+" "->STR0
 
-    sub(STR0,1,a)+STR7+sub(STR0,a+length(STR7),length(STR0)-a-length(STR7)+1)->STR0
+    sub(STR0,1,d)+STR7+sub(STR0,d+length(STR7),length(STR0)-d-length(STR7)+1)->STR0
 
     ""->STR7 # clear var
 
@@ -145,11 +151,11 @@ Lbl pe # prepare eidt
     # Goto rl
 
 Lbl pp: # prev
-    a-14*2->a
+    d-e*2->d
     Goto rl
 
 Lbl np: # next
-    a+14*2->a
+    d+e*2->d
     Goto rl
 
 Lbl dn: # done
@@ -161,32 +167,10 @@ Lbl dn: # done
 ""->STR7
 ""->STR8
 
+prgmPOPE
+prgmPOPD
 prgmPOPC
 prgmPOPB
 prgmPOPA
 
 STR0 # set Ans
-
-
-
-
-
-
-
-
-# Ans->STR1 # original data
-
-# "----------------"->STR0
-# prgmPTSTLNFT
-# #input: STR0 - string - string to put on screen
-
-# STR1->STR0
-# prgmPTSTLNFT
-# #input: STR0 - string - string to put on screen
-
-# "----------------"
-# prgmGETSTFST
-# #input : Ans - string - prompt
-# #return: STR0 - user input
-
-# STR0

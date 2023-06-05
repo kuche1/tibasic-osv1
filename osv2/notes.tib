@@ -1,7 +1,4 @@
 
-#TODO
-# archive the titles and the data
-
 #info
 #   app used for writing down notes
 
@@ -44,9 +41,7 @@ UnArchive [list]nttl7
 
 Lbl mm # main menu
 
-    "decoding note titles..."->STR0
-    prgmPTSTLNFT
-    #input: STR0 - string - string to put on screen
+    Disp "dcdng nt ttls..."
 
     # reload titles since they might have been trashed
 
@@ -92,6 +87,8 @@ Lbl mm # main menu
     #trash : L1
     STR0->STR7
 
+    # Disp "done" # not enough time for the use to see this
+
     Menu("notes","<exit>",ex,STR2,n2,STR3,n3,STR4,n4,STR5,n5,STR6,n6,STR7,n7)
 
 # save selected note
@@ -135,9 +132,7 @@ Menu(STR0,"go back",mm,"edit",ed,"rename",rn,"delete content",dl)
 
 Lbl ed # edit note
 
-    "decoding note content..."->STR0
-    prgmPTSTLNFT
-    #input: STR0 - string - string to put on screen
+    Disp "unarch nt cnt..."
 
     # set `Ans` based on current note
 
@@ -177,6 +172,8 @@ Lbl ed # edit note
         [list]ntdt7
     End
 
+    Disp "dcdng nt ctnt..."
+
     # `Ans` set by ifs
 
     prgmLST2ST
@@ -184,20 +181,22 @@ Lbl ed # edit note
     #output: STR0
     #trash : L1
 
+    Disp "done"
+
     STR0
     prgmTXTEDTR
     #input : Ans - string
     #output: Ans
     #trash : STR0-STR4 STR7 STR8
 
-    # TODO put a note here, saying that the msg is being encoded
+    Disp "encding cntnt..." # TODO hopefully this does not mess with Ans
 
     prgmST2LST
     #input : Ans - string
     #output: L1
     #trash : STR0 STR1
 
-    # TODO put a note here, saying that the msg is being archived
+    Disp "archvng cntnt..." # TODO hopefully this does not mess with Ans
 
     If c=2
     Then
@@ -234,6 +233,8 @@ Lbl ed # edit note
         L1->[list]ntdt7
         Archive [list]ntdt7
     End
+
+    Disp "done"
     
     Goto mm # go back to main menu
 
