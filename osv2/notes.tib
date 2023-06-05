@@ -13,7 +13,8 @@ prgmPUSHC
 prgmPUSHD
 prgmPUSHE
 
-# create lists if they don't exist
+
+# crete lists if they don't exist
 
 # note titles
 SetUpEditor [list]nttl2
@@ -30,6 +31,15 @@ SetUpEditor [list]ntdt4
 SetUpEditor [list]ntdt5
 SetUpEditor [list]ntdt6
 SetUpEditor [list]ntdt7
+
+
+# unarchive titles
+UnArchive [list]nttl2
+UnArchive [list]nttl3
+UnArchive [list]nttl4
+UnArchive [list]nttl5
+UnArchive [list]nttl6
+UnArchive [list]nttl7
 
 
 Lbl mm # main menu
@@ -132,22 +142,40 @@ Lbl ed # edit note
     # set `Ans` based on current note
 
     If c=2
+    Then
+        UnArchive [list]ntdt2
         [list]ntdt2
+    End
 
     If c=3
+    Then
+        UnArchive [list]ntdt3
         [list]ntdt3
+    End
 
     If c=4
+    Then
+        UnArchive [list]ntdt4
         [list]ntdt4
+    End
 
     If c=5
+    Then
+        UnArchive [list]ntdt5
         [list]ntdt5
+    End
 
     If c=6
+    Then
+        UnArchive [list]ntdt6
         [list]ntdt6
+    End
 
     If c=7
+    Then
+        UnArchive [list]ntdt7
         [list]ntdt7
+    End
 
     # `Ans` set by ifs
 
@@ -162,28 +190,50 @@ Lbl ed # edit note
     #output: Ans
     #trash : STR0-STR4 STR7 STR8
 
+    # TODO put a note here, saying that the msg is being encoded
+
     prgmST2LST
     #input : Ans - string
     #output: L1
     #trash : STR0 STR1
 
+    # TODO put a note here, saying that the msg is being archived
+
     If c=2
+    Then
         L1->[list]ntdt2
+        Archive [list]ntdt2
+    End
 
     If c=3
+    Then
         L1->[list]ntdt3
+        Archive [list]ntdt3
+    End
 
     If c=4
+    Then
         L1->[list]ntdt4
+        Archive [list]ntdt4
+    End
 
     If c=5
+    Then
         L1->[list]ntdt5
+        Archive [list]ntdt5
+    End
 
     If c=6
+    Then
         L1->[list]ntdt6
+        Archive [list]ntdt6
+    End
 
     If c=7
+    Then
         L1->[list]ntdt7
+        Archive [list]ntdt7
+    End
     
     Goto mm # go back to main menu
 
@@ -289,22 +339,46 @@ Lbl dl # delete note
     Lbl dy
 
     If c=2
+    Then
+        UnArchive [list]ntdt2
         0->dim([list]ntdt2)
+        Archive [list]ntdt2
+    End
 
     If c=3
+    Then
+        UnArchive [list]ntdt3
         0->dim([list]ntdt3)
+        Archive [list]ntdt3
+    End
 
     If c=4
+    Then
+        UnArchive [list]ntdt4
         0->dim([list]ntdt4)
+        Archive [list]ntdt4
+    End
 
     If c=5
+    Then
+        UnArchive [list]ntdt5
         0->dim([list]ntdt5)
+        Archive [list]ntdt5
+    End
 
     If c=6
+    Then
+        UnArchive [list]ntdt6
         0->dim([list]ntdt6)
+        Archive [list]ntdt6
+    End
 
     If c=7
+    Then
+        UnArchive [list]ntdt7
         0->dim([list]ntdt7)
+        Archive [list]ntdt7
+    End
 
     Goto mm
 
@@ -320,6 +394,14 @@ ClrList L1
 ""->STR5
 ""->STR6
 ""->STR7
+
+# archive note titles
+Archive [list]nttl2
+Archive [list]nttl3
+Archive [list]nttl4
+Archive [list]nttl5
+Archive [list]nttl6
+Archive [list]nttl7
 
 prgmPOPE
 prgmPOPD
