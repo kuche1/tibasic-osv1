@@ -80,7 +80,7 @@ Lbl rl # refresh lines
 
 Lbl mm # main menu
 
-    Menu(STR8,STR1,l1,STR2,l2,STR3,l3,STR4,l4,"<placeholder>",mm,"<placeholder>",mm,"<action>",ac)
+    Menu(STR8,"<action>",ac,STR1,l1,STR2,l2,STR3,l3,STR4,l4)
 
     Lbl l1:
         1->b
@@ -158,7 +158,7 @@ Lbl mm # main menu
 
 Lbl ac: # action
 
-    Menu("action","<save+exit>",se,"<discard+exit>",de,"",ac,"<prev>",pp,"<next>",np)
+    Menu("action","<save+exit>",se,"<discard+exit>",de,"",ac,"<prev>",pp,"<next>",np,"",ac,"<back>",mm)
 
     Lbl pp: # prev
         d-e*f->d
