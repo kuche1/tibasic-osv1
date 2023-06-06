@@ -5,7 +5,7 @@
 
 #input : Ans - string
 #output: Ans - string ||| a - 0[don't save returned data] 1[save returned data]
-#trash : STR0-STR4 STR7 STR8
+#trash : STR0-STR5 STR7 STR8
 
 
 Ans->STR0
@@ -148,23 +148,41 @@ Lbl mm # main menu
     # needs to be updated along with var `g`
 
     If b=1
-        STR7->STR1
+    Then
+        STR7
+    Else
+        STR1
+    End
     
     If b=2
-        STR7->STR2
+    Then
+        Ans+STR7
+    Else
+        Ans+STR2
+    End
 
     If b=3
-        STR7->STR3
+    Then
+        Ans+STR7
+    Else
+        Ans+STR3
+    End
 
     If b=4
-        STR7->STR4
+    Then
+        Ans+STR7
+    Else
+        Ans+STR4
+    End
 
     If b=5
-        STR7->STR5
+    Then
+        Ans+STR7
+    Else
+        Ans+STR5
+    End
 
-    # this is inefficient but I am lazy
-    # needs to be updated along with var `g`
-    STR1+STR2+STR3+STR4+STR5->STR7
+    Ans->STR7
     
     # this is a fucking hack and is probably not optimal, but fuck tibasic
     " "+STR0+" "->STR0
@@ -205,6 +223,7 @@ Lbl rt: # return
 ""->STR2
 ""->STR3
 ""->STR4
+""->STR5
 ""->STR7
 ""->STR8
 
