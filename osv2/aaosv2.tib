@@ -77,7 +77,7 @@ Lbl ml # main loop
         Goto ml
     End
 
-    If STR0="e"|STR0="exit" # exit
+    If STR0="e"|STR0="exit"
     Then
         0->a
         Goto 2
