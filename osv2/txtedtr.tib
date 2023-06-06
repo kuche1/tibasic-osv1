@@ -135,8 +135,7 @@ Lbl pe # prepare eidt
     # unhack
     sub(STR0,2,length(STR0)-1)->STR0
 
-    Goto ml
-    # Goto rl
+    Goto rl
 
 Lbl pp: # prev
     d-e*2->d

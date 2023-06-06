@@ -31,3 +31,7 @@ End
 
 prgmPOPB
 prgmPOPA
+
+
+# http://tibasicdev.wikidot.com/string-to-list
+# 1+seq(inString("0123456789abcdefghijklmnopqrstuvwxyz :?[theta].,()",sub(Str1,A,1)),A,1,length(Str1→L₁

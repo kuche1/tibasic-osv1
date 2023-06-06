@@ -15,7 +15,9 @@
 #
 # add eval command
 #
-# implement diablo 4
+# implement diablo 5
+#
+# make it so that big programs such as notes are archived by defaults and are only unarchived to be executed
 
 #trash : a b STR0-STR7 L0 (some more might be missing)
 #return: Ans - return code
