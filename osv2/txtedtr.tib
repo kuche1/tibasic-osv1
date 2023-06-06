@@ -6,6 +6,8 @@
 # additional return var that indicates if the content was changed
 #
 # add parameter for lines passed on btn press
+#
+# use something other than STR0 for storing the main data
 
 #input : Ans - string
 #output: Ans
@@ -49,12 +51,26 @@ Lbl rl # refresh lines
 
     STR0->STR7
 
-    d/e->a # TODO can we make this faster by doing integer division?
+    (d-1)/e->a
     prgmNUMTOSTR
     #input : a
     #return: STR0
     #trash : L1 L2 Y1
-    "offsetl1c1 "+STR0->STR8
+    "s"+STR0->STR8
+
+    a+4->a
+    prgmNUMTOSTR
+    #input : a
+    #return: STR0
+    #trash : L1 L2 Y1
+    STR8+" e"+STR0->STR8
+
+    (length(STR7)-1)/e->a
+    prgmNUMTOSTR
+    #input : a
+    #return: STR0
+    #trash : L1 L2 Y1
+    STR8+" t"+STR0->STR8
 
     STR7->STR0
 

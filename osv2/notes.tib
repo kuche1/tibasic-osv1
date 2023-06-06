@@ -26,7 +26,7 @@ SetUpEditor [list]nttl7
 
 Lbl mm # main menu
 
-    Disp "dcdng nt ttls..."
+    Disp "decding ttls..."
 
     # reload titles since they might have been trashed
 
@@ -177,7 +177,7 @@ Lbl ed # edit note
     #output: Ans
     #trash : STR0-STR4 STR7 STR8
 
-    Disp "encding cntnt..." # TODO hopefully this does not mess with Ans
+    Disp "encdng cntnt..." # TODO hopefully this does not mess with Ans
 
     prgmST2LST
     #input : Ans - string
@@ -384,6 +384,8 @@ ClrList L1
 ""->STR6
 ""->STR7
 
+Disp "arch ttls"
+
 # archive note titles
 Archive [list]nttl2
 Archive [list]nttl3
@@ -391,6 +393,8 @@ Archive [list]nttl4
 Archive [list]nttl5
 Archive [list]nttl6
 Archive [list]nttl7
+
+Disp "done"
 
 prgmPOPE
 prgmPOPD
