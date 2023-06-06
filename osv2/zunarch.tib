@@ -1,8 +1,6 @@
 
-# DOES NOT WORK
-
 #info
-#   archives anything
+#   unarchives anything
 
 #input - Ans - string - name of var, prefixed with type
 
@@ -27,9 +25,9 @@
 # "FTEST
 
 AsmPrgm
-EFD74AD604C0   #Get the pointers to Ans
-EB4E234623     #Get the size and location of the string
-117884EDB012   #Copy it to OP1
-EFF142D8       #Locate the var, exit if it doesn't exist
-78B7C0         #Exit if it is already archived
-EFD84FC9       #Archive it and exit
+EFD74AD604C0
+EB4E234623
+117884EDB0
+12EFF142D8
+78B7C8         #Only difference
+EFD84FC9

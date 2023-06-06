@@ -69,11 +69,18 @@ Lbl ml # main loop
         Goto ml
     End
 
-    If STR0="diablo5"
+    If STR0="d5"|STR0="diablo5"
     Then
-        # UnArchive prgmDIABLO5
+        "DIABLO5"
+        prgmUNARPRGM
+        #input: Ans - string - program name (eg notes)
+
         prgmDIABLO5
-        # Archive prgmDIABLO5
+
+        "DIABLO5"
+        prgmARCHPRGM
+        #input: Ans - string - program name (eg notes)
+
         Goto ml
     End
 
@@ -85,7 +92,7 @@ Lbl ml # main loop
 
     If STR0="h"|STR0="help"
     Then
-        "b=battery diablo5 e=exit h=help m=r=ram=mem n=notes o=p=off=poweroff t=d=time:get time:set"->STR0
+        "b=battery d5=diablo5 e=exit h=help m=r=ram=mem n=notes o=p=off=poweroff t=d=time:get time:set"->STR0
         prgmPTSTLNFT
         #input: STR0 - string - string to put on screen
 
@@ -112,8 +119,16 @@ Lbl ml # main loop
 
     If STR0="n"|STR0="notes"
     Then
+        "NOTES"
+        prgmUNARPRGM
+        #input: Ans - string - program name (eg notes)
+
         prgmNOTES
-        #trash: STR0-STR7 L1
+        #trash: idkman it's too much
+
+        "NOTES"
+        prgmARCHPRGM
+        #input: Ans - string - program name (eg notes)
 
         Goto ml
     End

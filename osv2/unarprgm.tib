@@ -1,0 +1,8 @@
+
+#info
+#   archives a program
+
+#input: Ans - string - program name (eg notes)
+
+"E"+Ans
+Asm(prgmZUNARCH)
