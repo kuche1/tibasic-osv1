@@ -1,20 +1,15 @@
 
-# TODO benchmark and if make prgmCH2ASC depricated
-
 #info
 #   converts string to list
 
 #input : Ans - string
 #output: L1
-#trash : STR0 STR1
+#trash : STR0
 
-
-# UPDATE: STR0 doesn't get trashed
-
-Ans->STR1
+Ans->STR0
 
 prgmPUSHA
 
-seq(inString("0123456789abcdefghijklmnopqrstuvwxyz :?[theta].,()",sub(STR1,a,1)),a,1,length(STR1)->L1
+seq(inString("0123456789abcdefghijklmnopqrstuvwxyz :?[theta].,()",sub(STR0,a,1)),a,1,length(STR0)->L1
 
 prgmPOPA

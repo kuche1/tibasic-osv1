@@ -177,25 +177,14 @@ Lbl ed # edit note
     #output: Ans
     #trash : STR0-STR4 STR7 STR8
 
-    Disp "encdng cntnt..." # TODO hopefully this does not mess with Ans
-
-    Ans->STR0
-
-    startTmr->a
-
-    STR0
+    Disp "encdng cntnt..."
 
     prgmST2LST
     #input : Ans - string
     #output: L1
-    #trash : STR0 STR1
+    #trash : STR0
 
-    checkTmr(a)->a
-
-    Disp "time taken",a
-    Input "prsentr",STR0
-
-    Disp "archvng cntnt..." # TODO hopefully this does not mess with Ans
+    Disp "archvng cntnt..."
 
     If c=2
     Then
@@ -260,7 +249,7 @@ Lbl rn # rename note
         prgmST2LST
         #input : Ans - string
         #output: L1
-        #trash : STR0 STR1
+        #trash : STR0
 
         L1->[list]nttl2
     End
@@ -273,7 +262,7 @@ Lbl rn # rename note
         prgmST2LST
         #input : Ans - string
         #output: L1
-        #trash : STR0 STR1
+        #trash : STR0
 
         L1->[list]nttl3
     End
@@ -286,7 +275,7 @@ Lbl rn # rename note
         prgmST2LST
         #input : Ans - string
         #output: L1
-        #trash : STR0 STR1
+        #trash : STR0
 
         L1->[list]nttl4
     End
@@ -299,7 +288,7 @@ Lbl rn # rename note
         prgmST2LST
         #input : Ans - string
         #output: L1
-        #trash : STR0 STR1
+        #trash : STR0
 
         L1->[list]nttl5
     End
@@ -312,7 +301,7 @@ Lbl rn # rename note
         prgmST2LST
         #input : Ans - string
         #output: L1
-        #trash : STR0 STR1
+        #trash : STR0
 
         L1->[list]nttl6
     End
@@ -325,7 +314,7 @@ Lbl rn # rename note
         prgmST2LST
         #input : Ans - string
         #output: L1
-        #trash : STR0 STR1
+        #trash : STR0
 
         L1->[list]nttl7
     End
