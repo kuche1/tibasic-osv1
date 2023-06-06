@@ -151,8 +151,8 @@ Lbl pe # prepare eidt
     # this is a fucking hack and is probably not optimal, but fuck tibasic
     " "+STR0+" "->STR0
 
-    # sub(STR0,1,d)+STR7+sub(STR0,d+length(STR7),length(STR0)-d-length(STR7)+1)->STR0 # this makes the new content replace the old lines
-    sub(STR0,1,d)+STR7+sub(STR0,d+e,length(STR0)-d-e+1)->STR0 # this makes the new content only replace 1 line and if there's more insert itself
+    # this makes the new content only replace 1 line and if there's more insert itself
+    sub(STR0,1,d)+STR7+sub(STR0,d+length(STR7),length(STR0)-d-length(STR7))->STR0
 
     ""->STR7 # clear var
 
