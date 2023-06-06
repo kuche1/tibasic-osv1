@@ -1,17 +1,13 @@
 
 # TODO
 #
-# add quit without saving btn? (can be easily done by copying to STR8 or STR9)
-#
 # additional return var that indicates if the content was changed
-#
-# add parameter for lines passed on btn press
 #
 # use something other than STR0 for storing the main data
 
 #input : Ans - string
 #output: Ans - string
-#trash : STR0-STR4 STR7 STR8
+#trash : STR0-STR4 STR7 STR8 STR9
 
 
 Ans->STR0
@@ -23,13 +19,13 @@ prgmPUSHD
 prgmPUSHE
 prgmPUSHF
 
+###################### defines
 14->e # characters per line
 2->f # pages passed on press of prev/next
-
-If length(STR0)=0
-    " "->STR0
-
 1->d # start index
+######################
+
+STR0->STR9 # save original string so that it can be recovered if the user decides to discard the changes
 
 Lbl rl # refresh lines
 
@@ -82,10 +78,9 @@ Lbl rl # refresh lines
 
     STR7->STR0
 
-Lbl ml # main loop
+Lbl mm # main menu
 
-    # TODO we can make it so that there is only 1 additional btn for all the 3 actions (and we can add some more)
-    Menu(STR8,STR1,l1,STR2,l2,STR3,l3,STR4,l4,"<prev>",pp,"<next>",np,"<done>",dn)
+    Menu(STR8,STR1,l1,STR2,l2,STR3,l3,STR4,l4,"<placeholder>",mm,"<placeholder>",mm,"<action>",ac)
 
     Lbl l1:
         1->b
@@ -107,7 +102,7 @@ Lbl ml # main loop
         STR4
         Goto pe
 
-Lbl pe # prepare eidt
+    Lbl pe # prepare eidt
 
     # b - indicates which STR we're modifying
 
@@ -161,15 +156,23 @@ Lbl pe # prepare eidt
 
     Goto rl
 
-Lbl pp: # prev
-    d-e*f->d
-    Goto rl
+Lbl ac: # action
 
-Lbl np: # next
-    d+e*f->d
-    Goto rl
+    Menu("action","<save+exit>",se,"<discard+exit>",de,"",ac,"<prev>",pp,"<next>",np)
 
-Lbl dn: # done
+    Lbl pp: # prev
+        d-e*f->d
+        Goto rl
+
+    Lbl np: # next
+        d+e*f->d
+        Goto rl
+
+Lbl de: # discard and exit
+
+STR9->STR0 # load saved string
+
+Lbl se: # save and exit
 
 ""->STR1
 ""->STR2

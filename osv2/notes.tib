@@ -2,7 +2,7 @@
 #info
 #   app used for writing down notes
 
-#trash: STR0-STR4 STR7 STR8 L1
+#trash: STR0-STR4 STR7-STR9 L1
 
 prgmPUSHA
 prgmPUSHB
@@ -172,7 +172,7 @@ Lbl ed # edit note
     prgmTXTEDTR
     #input : Ans - string
     #output: Ans
-    #trash : STR0-STR4 STR7 STR8
+    #trash : STR0-STR4 STR7 STR8 STR9
 
     Disp "encdng cntnt..."
 
