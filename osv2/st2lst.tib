@@ -8,32 +8,13 @@
 #output: L1
 #trash : STR0 STR1
 
+
+# UPDATE: STR0 doesn't get trashed
+
 Ans->STR1
 
 prgmPUSHA
-prgmPUSHB
 
-length(STR1)->b
+seq(inString("0123456789abcdefghijklmnopqrstuvwxyz :?[theta].,()",sub(STR1,a,1)),a,1,length(STR1)->L1
 
-ClrList L1
-
-For(a,1,b)
-    # a - idx of cur char
-    # b - idx of last char
-
-    sub(STR1,a,1)->STR0 # save cur char
-    # this also sets Ans
-
-    prgmCH2ASC
-    #input : Ans - eg "f" - char for conversion
-    #output: Ans - resulting numeric value
-
-    Ans->L1(a)
-End
-
-prgmPOPB
 prgmPOPA
-
-
-# http://tibasicdev.wikidot.com/string-to-list
-# 1+seq(inString("0123456789abcdefghijklmnopqrstuvwxyz :?[theta].,()",sub(Str1,A,1)),A,1,length(Str1→L₁

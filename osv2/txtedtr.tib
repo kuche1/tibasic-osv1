@@ -10,7 +10,7 @@
 # use something other than STR0 for storing the main data
 
 #input : Ans - string
-#output: Ans
+#output: Ans - string
 #trash : STR0-STR4 STR7 STR8
 
 
@@ -38,7 +38,7 @@ Lbl rl # refresh lines
     End
 
     # handle go forward
-    While length(STR0)<d+e*5
+    While length(STR0)<d+e*4
         STR0+" "->STR0
     End
 
@@ -47,7 +47,6 @@ Lbl rl # refresh lines
     sub(STR0,d+e*1,e)->STR2
     sub(STR0,d+e*2,e)->STR3
     sub(STR0,d+e*3,e)->STR4
-    sub(STR0,d+e*4,e)->STR4
 
     STR0->STR7
 

@@ -26,7 +26,7 @@ SetUpEditor [list]nttl7
 
 Lbl mm # main menu
 
-    Disp "decding ttls..."
+    Disp "dcdng ttls..."
 
     # reload titles since they might have been trashed
 
@@ -160,7 +160,7 @@ Lbl ed # edit note
         [list]ntdt7
     End
 
-    Disp "decding cntnt..."
+    Disp "dcdng cntnt..."
 
     # `Ans` set by ifs
 
@@ -179,10 +179,21 @@ Lbl ed # edit note
 
     Disp "encdng cntnt..." # TODO hopefully this does not mess with Ans
 
+    Ans->STR0
+
+    startTmr->a
+
+    STR0
+
     prgmST2LST
     #input : Ans - string
     #output: L1
     #trash : STR0 STR1
+
+    checkTmr(a)->a
+
+    Disp "time taken",a
+    Input "prsentr",STR0
 
     Disp "archvng cntnt..." # TODO hopefully this does not mess with Ans
 
