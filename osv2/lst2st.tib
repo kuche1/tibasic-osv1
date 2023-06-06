@@ -8,7 +8,7 @@
 
 
 #################### new method
-#### took 3sec when benchmarked with note titles
+#### takes 3sec when benchmarked with note titles
 
 
 Ans->L1
@@ -31,7 +31,7 @@ prgmPOPA
 
 
 #################### old method
-#### took 5sec when benchmarked with note titles
+#### takes 5sec when benchmarked with note titles
 
 # Ans->L1
 
