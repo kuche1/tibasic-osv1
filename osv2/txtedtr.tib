@@ -157,7 +157,7 @@ Lbl pe # prepare eidt
     ""->STR7 # clear var
 
     # unhack
-    sub(STR0,2,length(STR0)-1)->STR0
+    sub(STR0,2,length(STR0)-2)->STR0
 
     Goto rl
 
