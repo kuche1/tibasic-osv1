@@ -24,7 +24,7 @@ prgmPUSHE
 prgmPUSHF
 
 14->e # characters per line
-2 ->f # pages passed on press of prev/next
+2->f # pages passed on press of prev/next
 
 If length(STR0)=0
     " "->STR0
