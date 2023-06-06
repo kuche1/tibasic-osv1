@@ -27,6 +27,9 @@ prgmPUSHF
 
 STR0->STR9 # save original string so that it can be recovered if the user decides to discard the changes
 
+If length(STR0)=0
+    " "->STR0
+
 Lbl rl # refresh lines
 
     # handle go back
