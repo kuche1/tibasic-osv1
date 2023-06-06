@@ -5,6 +5,6 @@
 #input : Ans - eg "f" - char for conversion
 #output: Ans - resulting numeric value
 
-inString("0123456789abcdefghijklmnopqrstuvwxyz ",Ans)
+inString("0123456789abcdefghijklmnopqrstuvwxyz :?[theta].,()",Ans)
 # if we get an error here that means that we have forgotten a character
 # or that input is not of len 1
