@@ -171,7 +171,7 @@ Lbl ed # edit note
     STR0
     prgmTXTEDTR
     #input : Ans - string
-    #output: Ans
+    #output: Ans - string ||| a - 0[don't save returned data] 1[save returned data]
     #trash : STR0-STR4 STR7 STR8 STR9
 
     Disp "encdng cntnt..."
@@ -181,45 +181,49 @@ Lbl ed # edit note
     #output: L1
     #trash : STR0
 
-    Disp "arch cntnt..."
+    If a=1 # if given signal to save returned data
 
-    If c=2
-    Then
-        L1->[list]ntdt2
-        Archive [list]ntdt2
+        Disp "arch cntnt..."
+
+        If c=2
+        Then
+            L1->[list]ntdt2
+            Archive [list]ntdt2
+        End
+
+        If c=3
+        Then
+            L1->[list]ntdt3
+            Archive [list]ntdt3
+        End
+
+        If c=4
+        Then
+            L1->[list]ntdt4
+            Archive [list]ntdt4
+        End
+
+        If c=5
+        Then
+            L1->[list]ntdt5
+            Archive [list]ntdt5
+        End
+
+        If c=6
+        Then
+            L1->[list]ntdt6
+            Archive [list]ntdt6
+        End
+
+        If c=7
+        Then
+            L1->[list]ntdt7
+            Archive [list]ntdt7
+        End
+
+        Disp "done"
+    
     End
-
-    If c=3
-    Then
-        L1->[list]ntdt3
-        Archive [list]ntdt3
-    End
-
-    If c=4
-    Then
-        L1->[list]ntdt4
-        Archive [list]ntdt4
-    End
-
-    If c=5
-    Then
-        L1->[list]ntdt5
-        Archive [list]ntdt5
-    End
-
-    If c=6
-    Then
-        L1->[list]ntdt6
-        Archive [list]ntdt6
-    End
-
-    If c=7
-    Then
-        L1->[list]ntdt7
-        Archive [list]ntdt7
-    End
-
-    Disp "done"
     
     Goto mm # go back to main menu
 

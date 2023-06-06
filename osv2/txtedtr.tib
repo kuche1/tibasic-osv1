@@ -6,7 +6,7 @@
 # use something other than STR0 for storing the main data
 
 #input : Ans - string
-#output: Ans - string
+#output: Ans - string ||| a - 0[don't save returned data] 1[save returned data]
 #trash : STR0-STR4 STR7 STR8 STR9
 
 
@@ -23,7 +23,7 @@ prgmPUSHF
 14->e # characters per line
 2->f # pages passed on press of prev/next
 1->d # start index
-######################
+###################### globals
 
 # this needs to be done before saving the str as to not cause an error when exiting and discarding
 If length(STR0)=0
@@ -172,11 +172,16 @@ Lbl ac: # action
         d+e*f->d
         Goto rl
 
-Lbl de: # discard and exit
+    Lbl de: # discard and exit
+        STR9->STR0 # load saved string
+        0->a # tell callee to not save returned data
+        Goto rt
 
-STR9->STR0 # load saved string
+    Lbl se: # save and exit
+        1->a # tell calee to save returned data
+        Goto rt
 
-Lbl se: # save and exit
+Lbl rt: # return
 
 ""->STR1
 ""->STR2
