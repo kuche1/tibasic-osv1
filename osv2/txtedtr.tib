@@ -91,16 +91,9 @@ Lbl pe # prepare eidt
 
     # TODO just use output, it will skip the scroll animation
     Disp "----------------"
-    Disp "len is limited"
-    Disp "----------------"
-    Disp ">>"+STR7 # TODO make it so that the `>` is automatically filled based on line len
-    Disp "----------------"
-    Disp "entr new cntnt:"
+    Disp ">>"+STR7 # `>` needs to be updated; TODO check if we can automate this quickly
     Disp "----------------"
     Input ">>",STR7
-
-    # TODO what do we do if the len is greater than the limit
-    #   do we (cut) or (give waraning and get input again) or (insert the fat msg)
 
     length(STR7)->c
 
@@ -110,16 +103,10 @@ Lbl pe # prepare eidt
         1->c
     End
 
-    If c>e
-    Then
-        # cut to Nth character
-        sub(STR7,1,e)->STR7
-    Else
-        # append whitespace until it reaches the number of chars needed
-        While c<e
-            c+1->c
-            STR7+" "->STR7
-        End
+    # fill with whitespace until is divisable by line
+    While remainder(c,e)!=0
+        STR7+" "->STR7
+        c+1->c
     End
 
     If b=1

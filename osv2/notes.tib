@@ -11,32 +11,14 @@ prgmPUSHD
 prgmPUSHE
 
 
-# crete lists if they don't exist
-
-# note titles
+# create note titles if hey don't exist
+# this will unarchive them if they do
 SetUpEditor [list]nttl2
 SetUpEditor [list]nttl3
 SetUpEditor [list]nttl4
 SetUpEditor [list]nttl5
 SetUpEditor [list]nttl6
 SetUpEditor [list]nttl7
-
-# note datas
-SetUpEditor [list]ntdt2
-SetUpEditor [list]ntdt3
-SetUpEditor [list]ntdt4
-SetUpEditor [list]ntdt5
-SetUpEditor [list]ntdt6
-SetUpEditor [list]ntdt7
-
-
-# unarchive titles
-UnArchive [list]nttl2
-UnArchive [list]nttl3
-UnArchive [list]nttl4
-UnArchive [list]nttl5
-UnArchive [list]nttl6
-UnArchive [list]nttl7
 
 
 Lbl mm # main menu
@@ -136,39 +118,42 @@ Lbl ed # edit note
 
     # set `Ans` based on current note
 
+    # create lists if they don't exist
+    # and unarchive if they do
+
     If c=2
     Then
-        UnArchive [list]ntdt2
+        SetUpEditor [list]ntdt2
         [list]ntdt2
     End
 
     If c=3
     Then
-        UnArchive [list]ntdt3
+        SetUpEditor [list]ntdt3
         [list]ntdt3
     End
 
     If c=4
     Then
-        UnArchive [list]ntdt4
+        SetUpEditor [list]ntdt4
         [list]ntdt4
     End
 
     If c=5
     Then
-        UnArchive [list]ntdt5
+        SetUpEditor [list]ntdt5
         [list]ntdt5
     End
 
     If c=6
     Then
-        UnArchive [list]ntdt6
+        SetUpEditor [list]ntdt6
         [list]ntdt6
     End
 
     If c=7
     Then
-        UnArchive [list]ntdt7
+        SetUpEditor [list]ntdt7
         [list]ntdt7
     End
 

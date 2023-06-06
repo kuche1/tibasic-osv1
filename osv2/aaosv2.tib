@@ -12,6 +12,8 @@
 # give `Lbl 1` a name
 #
 # create a timer a[[]]
+#
+# add eval command
 
 #trash : a b STR0-STR7 L0 (some more might be missing)
 #return: Ans - return code
