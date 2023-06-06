@@ -30,19 +30,29 @@ If length(STR0)=0
 
 Lbl rl # refresh lines
 
+    Disp "min..."
+
     # handle go back
     min(1,d)->d
 
+    Disp "max..."
+
     # handle go forward
-    While length(STR0)<d+e*4
-        STR0+" "->STR0
+    STR0
+    While length(Ans)<d+e*4
+        Ans+" "
     End
+    Ans->STR0
+
+    Disp "cut..."
 
     # this seems like shit but is actually not too slow
     sub(STR0,d+e*0,e)->STR1
     sub(STR0,d+e*1,e)->STR2
     sub(STR0,d+e*2,e)->STR3
     sub(STR0,d+e*3,e)->STR4
+
+    Disp "calc idx..."
 
     STR0->STR7
 
@@ -75,6 +85,8 @@ Lbl rl # refresh lines
     STR8+" t"+STR0->STR8
 
     STR7->STR0
+
+    Disp "done"
 
 Lbl mm # main menu
 
