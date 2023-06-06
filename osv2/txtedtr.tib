@@ -1,13 +1,11 @@
 
 # TODO
 #
-# additional return var that indicates if the content was changed (we could do that instead of saving the input string in STR9 (as to save some RAM))
-#
 # use something other than STR0 for storing the main data
 
 #input : Ans - string
 #output: Ans - string ||| a - 0[don't save returned data] 1[save returned data]
-#trash : STR0-STR4 STR7 STR8 STR9
+#trash : STR0-STR4 STR7 STR8
 
 
 Ans->STR0
@@ -28,8 +26,6 @@ prgmPUSHF
 # this needs to be done before saving the str as to not cause an error when exiting and discarding
 If length(STR0)=0
     " "->STR0
-
-STR0->STR9 # save original string so that it can be recovered if the user decides to discard the changes
 
 Lbl rl # refresh lines
 
@@ -173,7 +169,6 @@ Lbl ac: # action
         Goto rl
 
     Lbl de: # discard and exit
-        STR9->STR0 # load saved string
         0->a # tell callee to not save returned data
         Goto rt
 

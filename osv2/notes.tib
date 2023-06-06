@@ -172,7 +172,7 @@ Lbl ed # edit note
     prgmTXTEDTR
     #input : Ans - string
     #output: Ans - string ||| a - 0[don't save returned data] 1[save returned data]
-    #trash : STR0-STR4 STR7 STR8 STR9
+    #trash : STR0-STR4 STR7 STR8
 
     If a=1 # if given signal to save returned data
 
