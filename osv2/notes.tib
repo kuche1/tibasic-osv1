@@ -179,6 +179,7 @@ Lbl ed # edit note
     # TODO arch txtedtr
 
     If a=1 # if given signal to save returned data
+    Then
 
         Disp "encdng cntnt..."
 
@@ -332,6 +333,8 @@ Lbl dl # delete note
 
     Lbl dy
 
+    Disp "deleting..."
+
     If c=2
     Then
         UnArchive [list]ntdt2
@@ -373,6 +376,8 @@ Lbl dl # delete note
         0->dim([list]ntdt7)
         Archive [list]ntdt7
     End
+
+    Disp "done"
 
     Goto mm
 

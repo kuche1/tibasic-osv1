@@ -30,16 +30,14 @@ If length(STR0)=0
 
 Lbl rl # refresh lines
 
-    Disp "min..."
-
     # handle go back
-    min(1,d)->d
+    max(1,d)->d
 
     Disp "max..."
 
     # handle go forward
     STR0
-    While length(Ans)<d+e*4
+    While length(Ans)<d+e*4-1
         Ans+" "
     End
     Ans->STR0
@@ -77,7 +75,7 @@ Lbl rl # refresh lines
     #trash : L1 L2 Y1
     STR8+" n"+STR0->STR8
 
-    (length(STR7)-1)/e->a
+    length(STR7)/e->a
     prgmNUMTOSTR
     #input : a
     #return: STR0
