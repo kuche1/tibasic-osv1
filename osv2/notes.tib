@@ -117,7 +117,7 @@ Menu(STR0,"go back",mm,"edit",ed,"rename",rn,"delete content",dl)
 
 Lbl ed # edit note
 
-    Disp "unarch nt cnt..."
+    Disp "unarch cntnt..."
 
     # set `Ans` based on current note
 
@@ -184,7 +184,7 @@ Lbl ed # edit note
     #output: L1
     #trash : STR0
 
-    Disp "archvng cntnt..."
+    Disp "arch cntnt..."
 
     If c=2
     Then
@@ -384,7 +384,7 @@ ClrList L1
 ""->STR6
 ""->STR7
 
-Disp "arch ttls"
+Disp "arch ttls..."
 
 # archive note titles
 Archive [list]nttl2
