@@ -20,8 +20,9 @@ prgmPUSHF
 ###################### defines
 14->e # characters per line
 2->f # pages passed on press of prev/next
-1->d # start index
 ###################### globals
+1->d # start index
+######################
 
 # this needs to be done before saving the str as to not cause an error when exiting and discarding
 If length(STR0)=0
@@ -30,10 +31,7 @@ If length(STR0)=0
 Lbl rl # refresh lines
 
     # handle go back
-    If d<1
-    Then
-        1->d
-    End
+    min(1,d)->d
 
     # handle go forward
     While length(STR0)<d+e*4
