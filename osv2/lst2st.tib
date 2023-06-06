@@ -6,44 +6,64 @@
 #output: STR0
 #trash : L1
 
+
+#################### new method
+#### took 3sec when benchmarked with note titles
+
+
 Ans->L1
 
 prgmPUSHA
-prgmPUSHB
-prgmPUSHC
 
-dim(L1)->b
-
-""->STR0
-
-For(a,1,b)
-    # a - idx of cur char
-    # b - idx of last char
-
-    L1(a)->c # save cur char
-    # this also sets Ans
-
-    prgmASC2CH
-    #input : Ans - numeric value
-    #output: Ans - eg "f" - resulting char
-
-    If length(STR0)=0
-    Then
-        Ans->STR0
-    Else
-        STR0+Ans->STR0
-    End
+" "
+For(a,1,dim(L1))
+    Ans+sub("0123456789abcdefghijklmnopqrstuvwxyz :?[theta].,()",L1(a),1)
 End
 
-prgmPOPC
-prgmPOPB
+If length(Ans)=1
+Then
+    ""->STR0
+Else
+    sub(Ans,2,length(Ans)-1)->STR0
+End
+
 prgmPOPA
 
 
+#################### old method
+#### took 5sec when benchmarked with note titles
+
 # Ans->L1
 
-# " "
-# For(A,1,dim(L1))
-#     Ans+sub("0123456789abcdefghijklmnopqrstuvwxyz :?[theta].,()",L1(A),1)
+# prgmPUSHA
+# prgmPUSHB
+# prgmPUSHC
+
+# dim(L1)->b
+
+# " "->STR0
+
+# For(a,1,b)
+#     # a - idx of cur char
+#     # b - idx of last char
+
+#     L1(a)->c # save cur char
+#     # this also sets Ans
+
+#     prgmASC2CH
+#     #input : Ans - numeric value
+#     #output: Ans - eg "f" - resulting char
+
+#     STR0+Ans->STR0
 # End
-# sub(Ans,2,length(Ans)-1)->STR0
+
+# If length(STR0)=1
+# Then
+#     ""->STR0
+# Else
+#     sub(STR0,1,length(STR0)-1)->STR0
+# End
+
+# prgmPOPC
+# prgmPOPB
+# prgmPOPA

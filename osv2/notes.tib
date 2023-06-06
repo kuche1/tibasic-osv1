@@ -1,4 +1,7 @@
 
+# TODO
+# see why exiting takes so long
+
 #info
 #   app used for writing down notes
 
@@ -157,7 +160,7 @@ Lbl ed # edit note
         [list]ntdt7
     End
 
-    Disp "dcdng nt ctnt..."
+    Disp "decding cntnt..."
 
     # `Ans` set by ifs
 
