@@ -1,7 +1,7 @@
 
 # TODO
 #
-# additional return var that indicates if the content was changed
+# additional return var that indicates if the content was changed (we could do that instead of saving the input string in STR9 (as to save some RAM))
 #
 # use something other than STR0 for storing the main data
 
@@ -25,10 +25,11 @@ prgmPUSHF
 1->d # start index
 ######################
 
-STR0->STR9 # save original string so that it can be recovered if the user decides to discard the changes
-
+# this needs to be done before saving the str as to not cause an error when exiting and discarding
 If length(STR0)=0
     " "->STR0
+
+STR0->STR9 # save original string so that it can be recovered if the user decides to discard the changes
 
 Lbl rl # refresh lines
 
