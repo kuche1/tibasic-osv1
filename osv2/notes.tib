@@ -174,14 +174,14 @@ Lbl ed # edit note
     #output: Ans - string ||| a - 0[don't save returned data] 1[save returned data]
     #trash : STR0-STR4 STR7 STR8 STR9
 
-    Disp "encdng cntnt..."
-
-    prgmST2LST
-    #input : Ans - string
-    #output: L1
-    #trash : STR0
-
     If a=1 # if given signal to save returned data
+
+        Disp "encdng cntnt..."
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0
 
         Disp "arch cntnt..."
 
