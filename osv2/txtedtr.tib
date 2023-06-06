@@ -21,8 +21,10 @@ prgmPUSHB
 prgmPUSHC
 prgmPUSHD
 prgmPUSHE
+prgmPUSHF
 
 14->e # characters per line
+2 ->f # pages passed on press of prev/next
 
 If length(STR0)=0
     " "->STR0
@@ -63,6 +65,13 @@ Lbl rl # refresh lines
     #return: STR0
     #trash : L1 L2 Y1
     STR8+" e"+STR0->STR8
+
+    a+f->a
+    prgmNUMTOSTR
+    #input : a
+    #return: STR0
+    #trash : L1 L2 Y1
+    STR8+" n"+STR0->STR8
 
     (length(STR7)-1)/e->a
     prgmNUMTOSTR
@@ -153,11 +162,11 @@ Lbl pe # prepare eidt
     Goto rl
 
 Lbl pp: # prev
-    d-e*2->d
+    d-e*f->d
     Goto rl
 
 Lbl np: # next
-    d+e*2->d
+    d+e*f->d
     Goto rl
 
 Lbl dn: # done
@@ -169,6 +178,7 @@ Lbl dn: # done
 ""->STR7
 ""->STR8
 
+prgmPOPF
 prgmPOPE
 prgmPOPD
 prgmPOPC

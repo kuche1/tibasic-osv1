@@ -6,6 +6,8 @@
 
 Ans is always consideted trashed
 
+z is always considered trashed
+
 ##### generic
 
 list names are limited to 5 characters

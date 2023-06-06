@@ -6,4 +6,4 @@
 SetUpEditor [list]stack
 
 # append
-e->[list]stack(dim([list]stack)+1)
+f->[list]stack(dim([list]stack)+1)
