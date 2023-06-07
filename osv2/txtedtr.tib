@@ -12,7 +12,6 @@
 
 Ans->STR0
 
-prgmPUSHA
 prgmPUSHB
 prgmPUSHC
 prgmPUSHD
@@ -23,7 +22,7 @@ prgmPUSHG
 ###################### defines
 14->e # characters per line
 2->f # pages passed on press of prev/next
-5->g # editable lines per screen; NOTE updating this number alone is not sufficient
+6->g # lines per screen; NOTE updating this number alone is not sufficient
 ###################### globals
 1->d # start index
 ######################
@@ -48,12 +47,13 @@ Lbl rl # refresh lines
     Disp "cut..."
 
     # this seems like shit but is actually not too slow
-    # needs to be updated along with var `g`
+    # needs to be updated alongside var `g`
     sub(STR0,d+e*0,e)->STR1
     sub(STR0,d+e*1,e)->STR2
     sub(STR0,d+e*2,e)->STR3
     sub(STR0,d+e*3,e)->STR4
     sub(STR0,d+e*4,e)->STR5
+    sub(STR0,d+e*5,e)->STR6
 
     Disp "calc idx..."
 
@@ -66,7 +66,7 @@ Lbl rl # refresh lines
     #trash : L1 L2 Y1
     "s"+STR0->STR8
 
-    a+4->a
+    a+g->a
     prgmNUMTOSTR
     #input : a
     #return: STR0
@@ -94,7 +94,7 @@ Lbl rl # refresh lines
 Lbl mm # main menu
 
     # needs to be updated along with var `g`
-    Menu(STR8,STR1,l1,STR2,l2,STR3,l3,STR4,l4,STR5,l5,"<placeholder>",mm,"<action>",ac)
+    Menu(STR8,STR1,l1,STR2,l2,STR3,l3,STR4,l4,STR5,l5,STR6,l6,"<action>",ac)
 
     Lbl l1:
         1->b
@@ -183,6 +183,13 @@ Lbl mm # main menu
         Ans+STR5
     End
 
+    If b=6
+    Then
+        Ans+STR7
+    Else
+        Ans+STR6
+    End
+
     Ans->STR7
     
     # fuck tibasic
@@ -238,6 +245,5 @@ prgmPOPE
 prgmPOPD
 prgmPOPC
 prgmPOPB
-prgmPOPA
 
 STR0 # set Ans

@@ -168,15 +168,11 @@ Lbl ed # edit note
 
     Disp "done"
 
-    # TODO unarch txtedtr
-
     STR0
     prgmTXTEDTR
     #input : Ans - string
     #output: Ans - string ||| a - 0[don't save returned data] 1[save returned data]
     #trash : STR0-STR5 STR7 STR8
-
-    # TODO arch txtedtr
 
     If a=1 # if given signal to save returned data
     Then
