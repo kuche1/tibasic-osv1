@@ -66,7 +66,7 @@ def deal_with_program(input_file):
 
     compiled_file = f'/tmp/{program_name}.8xp'
 
-    subprocess.run(['../compiler/tibasic', '-o', compiled_file, preprocessed_file], check=True) # TODO finally put the compiler into its own repo
+    subprocess.run(['ti84cc', '-o', compiled_file, preprocessed_file], check=True)
 
     # os.remove(preprocessed_file)
 
