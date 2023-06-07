@@ -9,7 +9,7 @@ prgmUNARPRGM
 #input: Ans - string - program name (eg notes)
 
 prgmYNOTES
-#trash: STR0-STR4 STR7-STR9 L1
+# go see regs for yourself
 
 "YNOTES"
 prgmARCHPRGM
