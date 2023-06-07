@@ -15,11 +15,17 @@ BAD_WORDS = [
     '₁', '₂', '►'
 ]
 
-def deal_with_program(program_name):
-    # assert program_name.upper() == program_name
+def deal_with_program(input_file):
+
+    tmp = '.tib'
+    assert input_file.endswith(tmp)
+    program_name = input_file[:-len(tmp)]
+
+    # assert input_file.upper() == input_file
+
     assert len(program_name) <= 8
 
-    with open(f'./osv2/{program_name}.tib', 'r') as f:
+    with open(input_file, 'r') as f:
         data = f.read()
 
     data_new = []
@@ -44,28 +50,28 @@ def deal_with_program(program_name):
 
     data = data_new
 
-    preprocessed_file = f'./{program_name}.tib'
+    preprocessed_file = f'/tmp/{input_file}.tib'
 
     with open(preprocessed_file, 'w')as f:
         f.write('\n'.join(data))
 
-    # delete all previous compiled files
-    for path, _, files in os.walk('.'):
-        break
-    for file in files:
-        if not file.endswith('.8xp'):
-            continue
-        p = os.path.join(path, file)
-        os.remove(p)
+    # # delete all previous compiled files
+    # for path, _, files in os.walk('.'):
+    #     break
+    # for file in files:
+    #     if not file.endswith('.8xp'):
+    #         continue
+    #     p = os.path.join(path, file)
+    #     os.remove(p)
 
-    compiled_file = f'./{program_name}.8xp'
+    compiled_file = f'/tmp/{program_name}.8xp'
 
-    subprocess.run(['./compiler/tibasic', '-o', compiled_file, preprocessed_file], check=True)
+    subprocess.run(['../compiler/tibasic', '-o', compiled_file, preprocessed_file], check=True) # TODO finally put the compiler into its own repo
 
-    os.remove(preprocessed_file)
+    # os.remove(preprocessed_file)
 
     subprocess.run(['tilp', '--no-gui', compiled_file], check=True)
 
 if __name__ == '__main__':
-    for program in sys.argv[1:]
+    for program in sys.argv[1:]:
         deal_with_program(program)
