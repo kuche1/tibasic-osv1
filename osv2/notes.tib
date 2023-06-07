@@ -1,16 +1,19 @@
 
-#info
-#   app used for writing down notes
-
-#trash: STR0-STR4 STR7-STR9 L1
+Disp "unarch notes..."
 
 "YNOTES"
 prgmUNARPRGM
 #input: Ans - string - program name (eg notes)
 
+Disp "done"
+
 prgmYNOTES
 # go see regs for yourself
+
+Disp "arch notes..."
 
 "YNOTES"
 prgmARCHPRGM
 #input: Ans - string - program name (eg notes)
+
+Disp "done"
