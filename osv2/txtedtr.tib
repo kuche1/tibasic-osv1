@@ -95,7 +95,7 @@ Lbl rl # refresh lines
 Lbl mm # main menu
 
     # needs to be updated along with var `g`
-    Menu(STR8,"<action>",ac,STR1,l1,STR2,l2,STR3,l3,STR4,l4,STR5,l5)
+    Menu(STR8,STR1,l1,STR2,l2,STR3,l3,STR4,l4,STR5,l5,"<placeholder>",mm,"<action>",ac)
 
     Lbl l1:
         1->b

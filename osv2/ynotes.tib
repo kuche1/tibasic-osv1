@@ -71,7 +71,7 @@ Lbl mm # main menu
 
     Disp "done"
 
-    Menu("notes","<exit>",ex,STR2,n2,STR3,n3,STR4,n4,STR5,n5,STR6,n6,STR7,n7)
+    Menu("notes",STR2,n2,STR3,n3,STR4,n4,STR5,n5,STR6,n6,STR7,n7,"<exit>",ex)
 
 # save selected note
 
