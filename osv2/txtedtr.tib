@@ -21,7 +21,7 @@ prgmPUSHG
 
 ###################### defines
 14->e # characters per line
-2->f # pages passed on press of prev/next
+4->f # pages passed on press of prev/next
 6->g # lines per screen; NOTE updating this number alone is not sufficient
 ###################### globals
 1->d # start index
@@ -96,30 +96,66 @@ Lbl mm # main menu
     # needs to be updated along with var `g`
     Menu(STR8,STR1,l1,STR2,l2,STR3,l3,STR4,l4,STR5,l5,STR6,l6,"<action>",ac)
 
-    Lbl l1:
+    # needs to be updated along with var `g`
+    Lbl l1
         1->b
-        STR1
-        Goto pe
-
-    Lbl l2:
+        # STR1
+        Goto la
+    Lbl l2
         2->b
-        STR2
-        Goto pe
-
-    Lbl l3:
+        # STR2
+        Goto la
+    Lbl l3
         3->b
-        STR3
-        Goto pe
-
-    Lbl l4:
+        # STR3
+        Goto la
+    Lbl l4
         4->b
-        STR4
+        # STR4
+        Goto la
+    Lbl l4
+        5->b
+        # STR5
+        Goto la
+
+    Lbl la # line action
+
+    Menu("line action","<edit>",el,"<TODO insert>",la,"<TODO append>",la,"",la,"",la,"",la,"<delete>",dl)
+
+    Lbl el # edit line
+
+        # needs to be updated alongside var `g`
+        If b=1
+            STR1
+        If b=2
+            STR2
+        If b=3
+            STR3
+        If b=4
+            STR4
+        If b=5
+            STR5
+
         Goto pe
 
-    Lbl l4:
-        5->b
-        STR5
-        Goto pe
+    Lbl dl # delete line
+
+        " "
+        # needs to be updated alongside var `g`
+        If b!=1
+            Ans+STR1
+        If b!=2
+            Ans+STR2
+        If b!=3
+            Ans+STR3
+        If b!=4
+            Ans+STR4
+        If b!=5
+            Ans+STR5
+        
+        sub(2,length(Ans)-1)->STR0
+
+        Goto rl
 
     Lbl pe # prepare eidt
 
@@ -146,7 +182,7 @@ Lbl mm # main menu
         c+1->c
     End
 
-    # needs to be updated along with var `g`
+    # needs to be updated alongside var `g`
 
     If b=1
     Then
