@@ -400,10 +400,12 @@ Archive [list]nttl5
 Archive [list]nttl6
 Archive [list]nttl7
 
-Disp "done"
+Disp "pop..."
 
 prgmPOPE
 prgmPOPD
 prgmPOPC
 prgmPOPB
 prgmPOPA
+
+Disp "done"
