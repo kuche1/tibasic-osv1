@@ -99,28 +99,27 @@ Lbl mm # main menu
     # needs to be updated along with var `g`
     Lbl l1
         1->b
-        # STR1
         Goto la
     Lbl l2
         2->b
-        # STR2
         Goto la
     Lbl l3
         3->b
-        # STR3
         Goto la
     Lbl l4
         4->b
-        # STR4
         Goto la
     Lbl l4
         5->b
-        # STR5
+        Goto la
+    Lbl l6
+        6->b
         Goto la
 
     Lbl la # line action
 
-    Menu("line action","<edit>",el,"<TODO insert>",la,"<TODO append>",la,"",la,"",la,"",la,"<delete>",dl)
+    Menu("line action","<edit>",el,"<TODO insert>",la,"<TODO append>",la,"",la,"",la,"<delete>",dl,"<back>",rl)
+    # TODO we could replace `rl` with `mm` if it turns out to be too slow
 
     Lbl el # edit line
 
@@ -135,6 +134,8 @@ Lbl mm # main menu
             STR4
         If b=5
             STR5
+        If b=6
+            STR6
 
         Goto pe
 
@@ -152,8 +153,10 @@ Lbl mm # main menu
             Ans+STR4
         If b!=5
             Ans+STR5
+        If b!=6
+            Ans+STR6
         
-        sub(2,length(Ans)-1)->STR0
+        sub(Ans,2,length(Ans)-1)->STR0
 
         Goto rl
 

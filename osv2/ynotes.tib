@@ -110,7 +110,7 @@ Lbl nn
 # number is saved in `c`
 # name is saved in `STR0`
 
-Menu(STR0,"go back",mm,"edit",ed,"rename",rn,"delete content",dl)
+Menu(STR0,"edit",ed,"rename",rn,"delete content",dl,"",nn,"",nn,"",nn,"go back",mm)
 
 Lbl ed # edit note
 
