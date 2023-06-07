@@ -109,7 +109,7 @@ Lbl mm # main menu
     Lbl l4
         4->b
         Goto la
-    Lbl l4
+    Lbl l5
         5->b
         Goto la
     Lbl l6
@@ -118,26 +118,8 @@ Lbl mm # main menu
 
     Lbl la # line action
 
-    Menu("line action","<edit>",el,"<TODO insert>",la,"<TODO append>",la,"",la,"",la,"<delete>",dl,"<back>",rl)
+    Menu("line action","<edit>",pe,"<TODO insert>",la,"<TODO append>",la,"",la,"",la,"<delete>",dl,"<back>",rl)
     # TODO we could replace `rl` with `mm` if it turns out to be too slow
-
-    Lbl el # edit line
-
-        # needs to be updated alongside var `g`
-        If b=1
-            STR1
-        If b=2
-            STR2
-        If b=3
-            STR3
-        If b=4
-            STR4
-        If b=5
-            STR5
-        If b=6
-            STR6
-
-        Goto pe
 
     Lbl dl # delete line
 
@@ -162,7 +144,19 @@ Lbl mm # main menu
 
     Lbl pe # prepare eidt
 
-    # b - indicates which STR we're modifying
+    # needs to be updated alongside var `g`
+    If b=1
+        STR1
+    If b=2
+        STR2
+    If b=3
+        STR3
+    If b=4
+        STR4
+    If b=5
+        STR5
+    If b=6
+        STR6
 
     # get input from stdin
 
@@ -239,10 +233,16 @@ Lbl mm # main menu
     "?"+STR0+"?"->STR0
     d+1->d
 
-    # this makes the new content only replace 1 line and if there's more insert itself
+    # # this replaces STR0 cont with STR7
+    # sub(STR0,1,d-1) # prefix
+    # Ans+STR7 # middle part
+    # Ans+sub(STR0,d+length(STR7),length(STR0)-d-length(STR7)+1) # suffix
+
+    # this inserts new STR7 where old STR1+STR2+STR... would have been
+    e*g->a # original length of blocks shown on screen
     sub(STR0,1,d-1) # prefix
     Ans+STR7 # middle part
-    Ans+sub(STR0,d+length(STR7),length(STR0)-d-length(STR7)+1) # suffix
+    Ans+sub(STR0,d+a,length(STR0)-d-a+1) # suffix
 
     # remove the useless chars added earlier
     sub(Ans,2,length(Ans)-2)->STR0
