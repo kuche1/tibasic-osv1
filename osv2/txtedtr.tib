@@ -28,7 +28,6 @@ prgmPUSHG
 1->d # start index
 ######################
 
-# this needs to be done before saving the str as to not cause an error when exiting and discarding
 If length(STR0)=0
     " "->STR0
 
