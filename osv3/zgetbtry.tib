@@ -1,0 +1,13 @@
+
+#info
+#   gives battery level
+
+#return
+#   Ans - battery level, 0 is lowest, 4 is highest
+
+AsmPrgm
+EF6F4C3D280A78FE1E
+3805
+EF21521808
+EFB3503E042001AF
+EF8C47EFBF4AC9

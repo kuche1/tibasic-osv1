@@ -1,0 +1,14 @@
+
+#info
+#   converts num to str
+
+#input : a
+#return: STR0
+#trash : L1 L2 Y1
+#        ?a ?b ??????
+
+{0,1->L1
+aAns->L2
+LinReg(ax+b) Y1
+Equ->String(Y1,STR0
+sub(STR0,1,length(STR0)-3->STR0

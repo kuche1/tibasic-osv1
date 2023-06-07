@@ -1,0 +1,33 @@
+
+#info
+#   archives anything
+
+#input - Ans - string - name of var, prefixed with type
+
+# Input: Ans is a string with the name of the variable to archive. The name needs a prefix byte to determine what type of variable it is. Some of them are: 
+#
+#  and      Real/Complex
+# A         List
+# B         Matrix
+# C         Equation
+# D         String
+# [         Program/Protected program
+# E         Program/Protected program
+# F         Program/Protected program
+# G         Picture
+# H         GDB
+# U         Appvar
+
+# For example, to archive prgmTEST, any of these inputs will work: 
+#
+# "[TEST
+# "ETEST
+# "FTEST
+
+AsmPrgm
+EFD74AD604C0   #Get the pointers to Ans
+EB4E234623     #Get the size and location of the string
+117884EDB012   #Copy it to OP1
+EFF142D8       #Locate the var, exit if it doesn't exist
+78B7C0         #Exit if it is already archived
+EFD84FC9       #Archive it and exit

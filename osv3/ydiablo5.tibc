@@ -1,0 +1,52 @@
+
+// TODO implement
+
+/////////////////////////////////////// instructions
+
+#define lbl(name) Lbl name
+#define jmp(label) Goto label
+
+#define put(text) Disp text
+
+/////////////////////////////////////// programs
+
+#define push(var) prgmPUSH ## var
+#define pop(var) prgmPOP ## var
+
+/////////////////////////////////////// labels
+
+#define LBL_PLAY pl
+#define LBL_OPTIONS op
+#define LBL_EXIT ex
+
+/////////////////////////////////////// variables
+
+#define VAR_PLAYER_X c
+#define VAR_PLAYER_Y d
+
+///////////////////////////////////////
+
+push(VAR_PLAYER_X)
+push(VAR_PLAYER_Y)
+
+Menu("diablo 5","play",LBL_PLAY,"options",LBL_OPTIONS,"exit",LBL_EXIT)
+
+lbl(LBL_PLAY)
+
+    put("this is fucking gamepaly")
+
+    jmp(LBL_EXIT)
+
+lbl(LBL_OPTIONS)
+
+    put("no options")
+
+    jmp(LBL_EXIT)
+
+lbl(LBL_EXIT)
+
+    put("thx 4 playing")
+    put("diablo5")
+
+pop(VAR_PLAYER_Y)
+pop(VAR_PLAYER_X)

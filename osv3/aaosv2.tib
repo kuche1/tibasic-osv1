@@ -1,0 +1,224 @@
+
+# TODO
+#
+# use Ans to pass arguments where it makes sense
+# create PUSH<start><end> as to improve performance
+# make sure all trash is set to 0 (if possible for the values to take a lot of mem)
+#
+# timer + stopwatch
+#
+# add eval command
+#
+# make sure txtedtr gets auto archived/unarchived
+
+# MBY
+#
+# implement screen shutdown and screen brightness fncs
+
+#trash : a b STR0-STR7 L0 (some more might be missing)
+#return: Ans - return code
+
+prgmCLRSTACK
+
+Lbl ml # main loop
+
+    ">>"
+    prgmGETSTFST
+    #input : Ans - string - prompt
+    #return: STR0 - user input
+
+    If length(STR0)=0 # avoid errors related to `=` down the line
+    Goto ml
+
+    If STR0="b"|STR0="battery" # show battery level
+    Then
+        prgmGETBTRY
+        # return: Ans
+        # 0:4 <-> low:high
+
+        Ans->a
+        # calc battery level
+        a*20->a # low bound
+        a+20->b # high bound
+
+        "battery level: "->STR2
+
+        # `a` already set
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        STR2+STR0+" to "->STR2
+
+        b->a
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        STR2+STR0+" percent"->STR0
+
+        prgmPTSTLNFT
+        #input: STR0 - string - string to put on screen
+
+        Goto ml
+    End
+
+    If STR0="d5"|STR0="diablo5"
+    Then
+        prgmDIABLO5
+
+        Goto ml
+    End
+
+    If STR0="e"|STR0="exit"
+    Then
+        0->a
+        Goto 2
+    End
+
+    If STR0="h"|STR0="help"
+    Then
+        "b=battery d5=diablo5 e=exit h=help m=r=ram=mem n=notes o=p=off=poweroff t=d=time:get time:set"->STR0
+        prgmPTSTLNFT
+        #input: STR0 - string - string to put on screen
+
+        Goto ml
+    End
+
+    If STR0="m"|STR0="r"|STR0="ram"|STR0="mem"
+    Then
+        prgmGETRAM
+        #return: Ans
+
+        Ans->a
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        "free ram: "+STR0+" bytes"->STR0
+        prgmPTSTLNFT
+        #input: STR0 - string - string to put on screen
+
+        Goto ml
+    End
+
+    If STR0="n"|STR0="notes"
+    Then
+        prgmNOTES
+        #trash: idkman it's too much
+
+        Goto ml
+    End
+
+    If STR0="o"|STR0="p"|STR0="off"|STR0="poweroff" # turn calc off
+    Then
+        prgmTURNOFF # when calc is turned back on it will continue down from here
+        Goto ml
+    End
+
+    If STR0="t"|STR0="d"|STR0="time:get"
+    Then
+
+        # print date
+
+        getDate->L1
+        L1(1)->a # year
+        L1(2)->b # month
+        L1(3)->c # day
+
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        STR0->STR1 # store final string here
+
+        b->a
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        STR1+"/"+STR0->STR1
+
+        c->a
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        STR1+"/"+STR0->STR1
+
+        STR1->STR0
+        prgmPTSTLNFT
+        #input: STR0 - string - string to put on screen
+
+        # print time
+
+        getTime->L1
+        L1(1)->a # hour
+        L1(2)->b # minute
+        L1(3)->c # second
+
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        STR0->STR1 # store final string here
+
+        b->a
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        STR1+":"+STR0->STR1
+
+        c->a
+        prgmNUMTOSTR
+        #input : a
+        #return: STR0
+        #trash : L1 L2 Y1
+
+        STR1+":"+STR0->STR1
+
+        STR1->STR0
+        prgmPTSTLNFT
+        #input: STR0 - string - string to put on screen
+
+        Goto ml
+    End
+
+    If STR0="time:set"
+    Then
+        Input "year: ",a
+        Input "month: ",b
+        Input "day: ",c
+
+        setDate(a,b,c)
+
+        Input "hour: ",a
+        Input "minute: ",b
+        Input "second: ",c
+
+        setTime(a,b,c)
+
+        Goto ml
+    End
+
+    # requested command stored in STR0
+
+    "unknown cmd: <"+STR0+"> call <h> to list cmds"->STR0
+    prgmPTSTLNFT
+    #input: STR0 - string - string to put on screen
+
+Goto ml
+Lbl 2
+
+prgmCLRSTACK
+
+a # return code

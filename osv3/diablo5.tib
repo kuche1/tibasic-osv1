@@ -1,0 +1,18 @@
+
+Disp "unar diablo5..."
+
+"YDIABLO5"
+prgmUNARPRGM
+#input: Ans - string - program name (eg notes)
+
+Disp "done"
+
+prgmYDIABLO5
+
+Disp "arch diablo5..."
+
+"YDIABLO5"
+prgmARCHPRGM
+#input: Ans - string - program name (eg notes)
+
+Disp "done"

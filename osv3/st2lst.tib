@@ -1,0 +1,15 @@
+
+#info
+#   converts string to list
+
+#input : Ans - string
+#output: L1
+#trash : STR0
+
+Ans->STR0
+
+prgmPUSHA
+
+seq(inString("0123456789abcdefghijklmnopqrstuvwxyz :?[theta].,()",sub(STR0,a,1)),a,1,length(STR0))->L1
+
+prgmPOPA

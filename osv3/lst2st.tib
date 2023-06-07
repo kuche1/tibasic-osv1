@@ -1,0 +1,26 @@
+
+#info
+#   converts list to string
+
+#input : Ans - list (eg L1)
+#output: STR0
+#trash : L1
+
+
+Ans->L1
+
+prgmPUSHA
+
+" "
+For(a,1,dim(L1))
+    Ans+sub("0123456789abcdefghijklmnopqrstuvwxyz :?[theta].,()",L1(a),1)
+End
+
+If length(Ans)=1
+Then
+    ""->STR0
+Else
+    sub(Ans,2,length(Ans)-1)->STR0
+End
+
+prgmPOPA

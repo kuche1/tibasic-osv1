@@ -1,0 +1,10 @@
+
+# DOES NOT WORK
+
+#info
+#   unarchives anything
+#   see archiving version for more info
+
+#input - Ans - string - name of var, prefixed with type
+
+Asm(prgmZUNARCH)

@@ -1,0 +1,5 @@
+
+#info
+#   tiggles the display state between on and off; does not mess with the running code
+
+Asm(prgmZTGLDISP)

@@ -1,0 +1,19 @@
+
+Disp "unarch notes..."
+
+"YNOTES"
+prgmUNARPRGM
+#input: Ans - string - program name (eg notes)
+
+Disp "done"
+
+prgmYNOTES
+# go see regs for yourself
+
+Disp "arch notes..."
+
+"YNOTES"
+prgmARCHPRGM
+#input: Ans - string - program name (eg notes)
+
+Disp "done"

@@ -1,0 +1,28 @@
+
+startTmr->a
+
+For(b,1,5)
+    " "
+    While length(Ans)<60
+        Ans+" "
+    End
+End
+
+Ans->STR0
+
+checkTmr(a)->a
+
+Disp a
+
+Disp length(STR0)
+
+
+
+# 5 times: append space 39 times - sec: 9, 8, 8
+# 5 times: insert space 39 times - sec: 9, 9, 9
+
+
+# test 5*60: append: 13, 13, 13
+# test 5*60: insert: 13, 13, 13
+
+# test 5*60: insert ans: 8, 8
