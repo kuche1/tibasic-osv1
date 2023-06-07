@@ -1,0 +1,211 @@
+PORTAL
+Made By Alex Marcolina
+Builderboy2005@Yahoo.com
+
+The Files You Just Opened:
+PORTAL.8xp------Portal the Game
+PEDIT.8xp-------Portal Level Editor
+READ-ME---------You're Reading it...
+
+-Portal is based of the game of the same name by Valve Software.
+
+
+Table Of Contents:
+I)----About The Game
+II)---Instructions       Important!!!
+III)--Saving
+IV)---Level Editor
+V)----Advanced Editing
+VI)---Portal for the TI-83
+VII)--Transfering Progress
+VIII)-Known Bugs
+Final words
+
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+I) About the Game
+
+In Portal, you are a test subject at The Aperture Science Enrichment Program and are testing
+The recent invention of the Portal Gun!  Yay!  It allows you to shoot portals and move
+between them.  Those who have played the official version will remember GlaDos...  And
+She's back in the calculator version!  GlaDOS is your narrator and guide and is the one
+that will monitor all your tests.  But when the tests are over...  Watch Out!  the game 
+isn't over yet...
+
+Portal has 8 challenging levels with a save game function for the people who can't finish
+the game in one sitting  ;)
+
+Portal is also MirageOS compatible so you don't have to keep unarchiving it  :)
+
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+II) Instructions       IMPORTANT!!!
+
+In Game, GlaDOS gives very little instructions cause she's just rude that way (And i wanted
+to keep the file size at a minimum.  Most of the file size is just GlaDOS talking)
+
+The game is set up like a simple platform game.
+
+Arrow Keys------Left/Right
+2nd-------------View Lasers (They Kill you!)
+MODE------------Save and Quit
+Number pad------Shoot Portals
+
+		
+Like This->	7 8 9
+		4   6
+		1 2 3
+
+In relative to the center key
+There is shooting diagonally, but there is no shooting portals at point blank range, as they 
+take up one space.
+Certain objects do not support portals, and the portal will disappear as soon as it hits
+It.
+
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+III) Saving
+
+In-Game, press mode to save and quit.  When you return to the menu, an option will
+appear that says "resume"  use the number pad to select it to resume the level.
+NOTE: Resuming game will only bring you back to the level, not restore any progress
+
+There is a very slight possibility that playing other games will delete your progress
+
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+IV) Using the Portal Editor
+
+NOTE: Not for beginners
+
+In the beginning, a blank screen will appear with a square on it.  The square is your cursor.  
+
+NOTE: Adding things other than blocks will store the information and display a symbol unique to pedit that represents
+what you just added
+
+
+
+Arrow Keys------Move Cursor
+2nd-------------Add Block
+ALPHA-----------Remove Block
+(X,T,0,n)-------Starting Point (Note, if the starting point is in mid-air, you will not fall)
+STAT------------Door Position
+MODE------------Portal 1 Starting Position
+Del-------------Portal 2 Starting Position
+MATH------------Key (optional)
+Apps------------Block to be removed in the key retrieval
+X-1-------------Vertical Laser 1 (Optional)
+Sin-------------Vertical Laser 2 (Optional)
+Cos-------------Horizontal Laser 1 (Optional)
+Tan-------------Horizontile Laser 2 (Optional)
+^---------------Clear Lasers
+Clear-----------View Instructions
+Enter-----------Save Game
+
+Like saved games
+Playing any other games have a slight possibility of deleating your level
+
+After you create a level using Pedit, an option will appear on the Portal main screen that says "Custom Level"
+Use the number pad to select it to play your custom level
+
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+V) Advanced Editing:
+
+The button Sto> has two functions.  In portal, when you press Sto> it will save a screenshot and quit out.  When
+you go to Pedit, press Sto> again to load the screenshot to edit it.  However, the screenshot does not include starting location,
+door location, key location, laser location, or portal starting location, although you may still be able to see them in
+the screenshot.  You need to go and replace them.  The Sto> function is for terrain editing only
+
+
+
+When you edit a level in Pedit, it is stored to a list named Lvl.
+however, after you create a level and save it, on the home screen type
+
+Ans>(listname)
+
+This will store your level to a custom list.  Note that this must be done DIRECTLY after creating the level in pedit.
+if you are using MirageOS, after you create the level, quit out to the home screen and it should still work
+
+Portal only plays custom levels stored in the list Lvl, so when in Pedit, press Zoom and input the name of your level.
+(It must be un-archived!)  it will load it to the list Lvl, and you will be able to play it using Portal
+
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+VI) Portal for the TI-83
+
+The Portal for TI-83 is not much different.  It WILL run slower, so don't
+be allarmed.  The timer option in levels 4 and 8 have also been removed,
+
+
+Why take out the clock?
+
+
+The TI-83 does not have a clock, and i wanted the timer to be as accurate
+as possible.  
+
+I considered creating a for() loop timer, but it would only run
+when you are standing still, as to not restrict the falling, shooting, moving options
+But as a consequense, doing anything besides standing still would stop the clock, and this
+would drasticaly change the amount of time it actualy takes.
+
+(Consider if you put yourself in an infinit loop, you would have an unlimited amount of time to examin the level
+to plan out your path!)
+
+But still not much has changed, the portal level editor (Pedit) still works, and if you are lazy
+you can use the 83 version on your 84 and get speed, and no timers.
+
+Level saving works accross versions, so if you save on level 4 on the 84 version, you can resume on
+the 83 version.  The same applies for custome levels.
+
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+VII) Transfering proggress
+
+To tranfer proggress that you have completed in PORTAL, send the list sav and the list lvl to the calculator you wish
+to play it on.  If sav or lvl does not exist, than you have nothing Saved!  This tranfers proggress
+and levels saved in the general list.  (If you don't know what a generaly saved level is, refer to the level editing 
+portion of this READ-ME)
+
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+VIII) Known Bugs
+
+There is a small problem with the upgradable Portal Gun, you will only run into it on level 8, but that
+is why i made it a hidden feature, cause i took out lots of safety features to make it run faster.
+
+You may or may not consider this a bug, but i'm going to put it in here anyway.  You CAN get yourself
+stuck in an infinite loop, and you can't escape, you just have to restart.  there is no way around this, so
+just don't be dumb casue you really can't do it by accident. 
+
+If you find any other problems, just Email Me at Builderboy2005@yahoo.com
+
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-
+
+Final Word:
+
+Portal is an excellent strategy game with a great replayability factor.  The level editor
+Expands the number of things to do, and allows for people to come up with even harder levels
+than i had the heart to put into the game
+
+The program is not locked, and is free for editing (Just don't come crying to me if
+you screw it up). Parts have been labeled for user ease (and mine too!) 
+Email me if you have any questions
+
+
+
+overall, i'm GLaD that you downloaded this game and hope you have a fun time playing it.
+
+
+
+Special Thanks to:
+Steven Turner for helping me come up with the final idea for how it all was going to work
+Andrew and Jordan for beta testing
+all the basic programs that were kind enough not to lock their programs so i could learn
+I know i will return the favor
+
+:)
+
+
+Builderboy2005@yahoo.com

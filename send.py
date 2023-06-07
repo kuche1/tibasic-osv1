@@ -15,7 +15,7 @@ BAD_WORDS = [
     '₁', '₂', '►'
 ]
 
-def main(program_name):
+def deal_with_program(program_name):
     # assert program_name.upper() == program_name
     assert len(program_name) <= 8
 
@@ -67,4 +67,5 @@ def main(program_name):
     subprocess.run(['tilp', '--no-gui', compiled_file], check=True)
 
 if __name__ == '__main__':
-    main(sys.argv[1])
+    for program in sys.argv[1:]
+        deal_with_program(program)
