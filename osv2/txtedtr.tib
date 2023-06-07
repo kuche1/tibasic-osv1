@@ -2,6 +2,8 @@
 # TODO
 #
 # use something other than STR0 for storing the main data
+#
+# make an archiving wrapper around this
 
 #input : Ans - string
 #output: Ans - string ||| a - 0[don't save returned data] 1[save returned data]
