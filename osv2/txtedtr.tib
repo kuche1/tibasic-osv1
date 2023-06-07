@@ -119,7 +119,7 @@ Lbl mm # main menu
     Lbl la # line action
 
     Menu("line action","<edit>",pe,"<TODO insert>",la,"<TODO append>",la,"",la,"",la,"<delete>",dl,"<back>",rl)
-    # TODO we could replace `rl` with `mm` if it turns out to be too slow
+    # we could replace `rl` with `mm` if it turns out to be too slow
 
     Lbl dl # delete line
 
