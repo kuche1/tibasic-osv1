@@ -1,0 +1,413 @@
+
+#info
+#   app used for writing down notes
+
+#trash: STR0-STR4 STR7-STR9 L1
+
+prgmPUSHA
+prgmPUSHB
+prgmPUSHC
+prgmPUSHD
+prgmPUSHE
+
+
+# create note titles if hey don't exist
+# this will unarchive them if they do
+SetUpEditor [list]nttl2
+SetUpEditor [list]nttl3
+SetUpEditor [list]nttl4
+SetUpEditor [list]nttl5
+SetUpEditor [list]nttl6
+SetUpEditor [list]nttl7
+
+
+Lbl mm # main menu
+
+    Disp "dcdng ttls..."
+
+    # reload titles since they might have been trashed
+
+    [list]nttl2
+    prgmLST2ST
+    #input : Ans - list (eg L1)
+    #output: STR0
+    #trash : L1
+    STR0->STR2
+
+    [list]nttl3
+    prgmLST2ST
+    #input : Ans - list (eg L1)
+    #output: STR0
+    #trash : L1
+    STR0->STR3
+
+    [list]nttl4
+    prgmLST2ST
+    #input : Ans - list (eg L1)
+    #output: STR0
+    #trash : L1
+    STR0->STR4
+
+    [list]nttl5
+    prgmLST2ST
+    #input : Ans - list (eg L1)
+    #output: STR0
+    #trash : L1
+    STR0->STR5
+
+    [list]nttl6
+    prgmLST2ST
+    #input : Ans - list (eg L1)
+    #output: STR0
+    #trash : L1
+    STR0->STR6
+
+    [list]nttl7
+    prgmLST2ST
+    #input : Ans - list (eg L1)
+    #output: STR0
+    #trash : L1
+    STR0->STR7
+
+    Disp "done"
+
+    Menu("notes","<exit>",ex,STR2,n2,STR3,n3,STR4,n4,STR5,n5,STR6,n6,STR7,n7)
+
+# save selected note
+
+Lbl n2
+    2->c
+    STR2->STR0
+    Goto nn
+
+Lbl n3
+    3->c
+    STR3->STR0
+    Goto nn
+
+Lbl n4
+    4->c
+    STR4->STR0
+    Goto nn
+
+Lbl n5
+    5->c
+    STR5->STR0
+    Goto nn
+
+Lbl n6
+    6->c
+    STR6->STR0
+    Goto nn
+
+Lbl n7
+    7->c
+    STR7->STR0
+    Goto nn
+
+Lbl nn
+
+# number is saved in `c`
+# name is saved in `STR0`
+
+Menu(STR0,"go back",mm,"edit",ed,"rename",rn,"delete content",dl)
+
+Lbl ed # edit note
+
+    Disp "unarch cntnt..."
+
+    # set `Ans` based on current note
+
+    # create lists if they don't exist
+    # and unarchive if they do
+
+    If c=2
+    Then
+        SetUpEditor [list]ntdt2
+        [list]ntdt2
+    End
+
+    If c=3
+    Then
+        SetUpEditor [list]ntdt3
+        [list]ntdt3
+    End
+
+    If c=4
+    Then
+        SetUpEditor [list]ntdt4
+        [list]ntdt4
+    End
+
+    If c=5
+    Then
+        SetUpEditor [list]ntdt5
+        [list]ntdt5
+    End
+
+    If c=6
+    Then
+        SetUpEditor [list]ntdt6
+        [list]ntdt6
+    End
+
+    If c=7
+    Then
+        SetUpEditor [list]ntdt7
+        [list]ntdt7
+    End
+
+    Disp "dcdng cntnt..."
+
+    # `Ans` set by ifs
+
+    prgmLST2ST
+    #input : Ans - list (eg L1)
+    #output: STR0
+    #trash : L1
+
+    Disp "done"
+
+    # TODO unarch txtedtr
+
+    STR0
+    prgmTXTEDTR
+    #input : Ans - string
+    #output: Ans - string ||| a - 0[don't save returned data] 1[save returned data]
+    #trash : STR0-STR5 STR7 STR8
+
+    # TODO arch txtedtr
+
+    If a=1 # if given signal to save returned data
+    Then
+
+        Disp "encdng cntnt..."
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0
+
+        Disp "arch cntnt..."
+
+        If c=2
+        Then
+            L1->[list]ntdt2
+            Archive [list]ntdt2
+        End
+
+        If c=3
+        Then
+            L1->[list]ntdt3
+            Archive [list]ntdt3
+        End
+
+        If c=4
+        Then
+            L1->[list]ntdt4
+            Archive [list]ntdt4
+        End
+
+        If c=5
+        Then
+            L1->[list]ntdt5
+            Archive [list]ntdt5
+        End
+
+        If c=6
+        Then
+            L1->[list]ntdt6
+            Archive [list]ntdt6
+        End
+
+        If c=7
+        Then
+            L1->[list]ntdt7
+            Archive [list]ntdt7
+        End
+
+        Disp "done"
+    
+    End
+    
+    Goto mm # go back to main menu
+
+Lbl rn # rename note
+
+    If length(STR0)=0
+    Then
+        "enter new name for note <>: "
+    Else
+        "enter new name for note <"+STR0+">: "
+    End
+
+    # Ans gets set by the ifs above
+
+    prgmGETSTFST
+    #input : Ans - string - prompt
+    #return: STR0 - user input
+
+    If c=2
+    Then
+        STR0->STR2
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0
+
+        L1->[list]nttl2
+    End
+
+    If c=3
+    Then
+        STR0->STR3
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0
+
+        L1->[list]nttl3
+    End
+
+    If c=4
+    Then
+        STR0->STR4
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0
+
+        L1->[list]nttl4
+    End
+
+    If c=5
+    Then
+        STR0->STR5
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0
+
+        L1->[list]nttl5
+    End
+
+    If c=6
+    Then
+        STR0->STR6
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0
+
+        L1->[list]nttl6
+    End
+
+    If c=7
+    Then
+        STR0->STR7
+        # this also sets `Ans`
+
+        prgmST2LST
+        #input : Ans - string
+        #output: L1
+        #trash : STR0
+
+        L1->[list]nttl7
+    End
+
+    Goto mm # go back to main menu, now that the appropriate STR variable has been updated
+
+Lbl dl # delete note
+
+    Menu("confirm deletion","no",mm,"yes",dy)
+
+    Lbl dy
+
+    Disp "deleting..."
+
+    If c=2
+    Then
+        UnArchive [list]ntdt2
+        0->dim([list]ntdt2)
+        Archive [list]ntdt2
+    End
+
+    If c=3
+    Then
+        UnArchive [list]ntdt3
+        0->dim([list]ntdt3)
+        Archive [list]ntdt3
+    End
+
+    If c=4
+    Then
+        UnArchive [list]ntdt4
+        0->dim([list]ntdt4)
+        Archive [list]ntdt4
+    End
+
+    If c=5
+    Then
+        UnArchive [list]ntdt5
+        0->dim([list]ntdt5)
+        Archive [list]ntdt5
+    End
+
+    If c=6
+    Then
+        UnArchive [list]ntdt6
+        0->dim([list]ntdt6)
+        Archive [list]ntdt6
+    End
+
+    If c=7
+    Then
+        UnArchive [list]ntdt7
+        0->dim([list]ntdt7)
+        Archive [list]ntdt7
+    End
+
+    Disp "done"
+
+    Goto mm
+
+Lbl ex
+
+ClrList L1
+
+""->STR0
+""->STR1
+""->STR2
+""->STR3
+""->STR4
+""->STR5
+""->STR6
+""->STR7
+
+Disp "arch ttls..."
+
+# archive note titles
+Archive [list]nttl2
+Archive [list]nttl3
+Archive [list]nttl4
+Archive [list]nttl5
+Archive [list]nttl6
+Archive [list]nttl7
+
+Disp "done"
+
+prgmPOPE
+prgmPOPD
+prgmPOPC
+prgmPOPB
+prgmPOPA
