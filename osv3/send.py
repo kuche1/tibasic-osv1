@@ -49,6 +49,14 @@ def deal_with_program(input_file):
 
     if use_new_preprocessor:
     
+        # copy all `.h` files
+        for path, folders, files in os.walk('.'): # TODO hardcoded path
+            for file in files:
+                if file.endswith('.h'):
+                    path_to_file = os.path.join(path, file)
+                    shutil.copyfile(path_to_file, f'/tmp/{file}')
+            break
+
         not_preprocessed_file_c = f'/tmp/{program_name}.c'
         shutil.copyfile(input_file, not_preprocessed_file_c)
 

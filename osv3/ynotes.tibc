@@ -110,7 +110,7 @@ Lbl nn
 // number is saved in `c`
 // name is saved in `STR0`
 
-Menu(STR0,"<edit>",ed,"<rename>",rn,"",nn,"",nn,"",nn,"<del cntnt>",dl,"<back>",mm)
+Menu(STR0,"<edit>",ed,"",nn,"<rename>",rn,"",nn,"",nn,"<del cntnt>",dl,"<back>",mm)
 
 Lbl ed // edit note
 
@@ -231,14 +231,13 @@ Lbl ed // edit note
 Lbl rn // rename note
 
     If length(STR0)=0
-    Then
-        "enter new name for note <>: "
-    Else
-        "enter new name for note <"+STR0+">: "
-    End
+        " "->STR0
 
-    // Ans gets set by the ifs above
+    Disp "--- old name ---"
+    Disp ">>"+STR0
+    Disp "--- new name ---"
 
+    ">>"
     prgmGETSTFST
     //input : Ans - string - prompt
     //return: STR0 - user input

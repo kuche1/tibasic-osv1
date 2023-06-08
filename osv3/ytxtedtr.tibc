@@ -1,0 +1,305 @@
+
+// TODO
+//
+// use something other than STR0 for storing the main data
+//
+// make an archiving wrapper around this
+
+//input : Ans - string
+//output: Ans - string ||| a - 0[don't save returned data] 1[save returned data]
+//trash : STR0-STR5 STR7 STR8
+
+#include "common.h"
+
+Ans->STR0
+
+prgmPUSHB
+prgmPUSHC
+prgmPUSHD
+prgmPUSHE
+prgmPUSHF
+prgmPUSHG
+
+//////////////////////////////////////////// constants
+// using variables and not raw values since
+// it is faster in tibasic
+
+#define CONST_CHARS_PER_LINE e
+14->CONST_CHARS_PER_LINE
+
+#define CONST_LINES_PASS_ON_BTN_PRESS f
+4->CONST_LINES_PASS_ON_BTN_PRESS
+
+#define CONST_LINES_PER_SCREEN g
+6->CONST_LINES_PER_SCREEN // NOTE updating this number alone is not sufficient
+
+//////////////////////////////////////////// variables
+
+#define VAR_START_IDX d
+1->VAR_START_IDX
+
+////////////////////////////////////////////
+
+If length(STR0)=0
+    " "->STR0
+
+Lbl rl // refresh lines
+
+    // handle go back
+    max(1,VAR_START_IDX)->VAR_START_IDX
+
+    Disp "max..."
+
+    // handle go forward
+    STR0
+    While length(Ans)<VAR_START_IDX+CONST_CHARS_PER_LINE*CONST_LINES_PER_SCREEN-1
+        Ans+" "
+    End
+    Ans->STR0
+
+    Disp "cut..."
+
+    // this seems like shit but is actually not too slow
+    // needs to be updated alongside `CONST_LINES_PER_SCREEN`
+    sub(STR0,VAR_START_IDX+CONST_CHARS_PER_LINE*0,CONST_CHARS_PER_LINE)->STR1
+    sub(STR0,VAR_START_IDX+CONST_CHARS_PER_LINE*1,CONST_CHARS_PER_LINE)->STR2
+    sub(STR0,VAR_START_IDX+CONST_CHARS_PER_LINE*2,CONST_CHARS_PER_LINE)->STR3
+    sub(STR0,VAR_START_IDX+CONST_CHARS_PER_LINE*3,CONST_CHARS_PER_LINE)->STR4
+    sub(STR0,VAR_START_IDX+CONST_CHARS_PER_LINE*4,CONST_CHARS_PER_LINE)->STR5
+    sub(STR0,VAR_START_IDX+CONST_CHARS_PER_LINE*5,CONST_CHARS_PER_LINE)->STR6
+
+    Disp "calc idx..."
+
+    STR0->STR7
+
+    (VAR_START_IDX-1)/CONST_CHARS_PER_LINE->a
+    prgmNUMTOSTR
+    //input : a
+    //return: STR0
+    //trash : L1 L2 Y1
+    "s"+STR0->STR8
+
+    a+CONST_LINES_PER_SCREEN->a
+    prgmNUMTOSTR
+    //input : a
+    //return: STR0
+    //trash : L1 L2 Y1
+    STR8+" e"+STR0->STR8
+
+    a+CONST_LINES_PASS_ON_BTN_PRESS->a
+    prgmNUMTOSTR
+    //input : a
+    //return: STR0
+    //trash : L1 L2 Y1
+    STR8+" n"+STR0->STR8
+
+    length(STR7)/CONST_CHARS_PER_LINE->a
+    prgmNUMTOSTR
+    //input : a
+    //return: STR0
+    //trash : L1 L2 Y1
+    STR8+" t"+STR0->STR8
+
+    STR7->STR0
+
+    Disp "done"
+
+Lbl mm // main menu
+
+    // needs to be updated alongside `CONST_LINES_PER_SCREEN`
+    Menu(STR8,STR1,l1,STR2,l2,STR3,l3,STR4,l4,STR5,l5,STR6,l6,"<action>",ac)
+
+    // needs to be updated alongside `CONST_LINES_PER_SCREEN`
+    Lbl l1
+        1->b
+        Goto la
+    Lbl l2
+        2->b
+        Goto la
+    Lbl l3
+        3->b
+        Goto la
+    Lbl l4
+        4->b
+        Goto la
+    Lbl l5
+        5->b
+        Goto la
+    Lbl l6
+        6->b
+        Goto la
+
+    Lbl la // line action
+
+    Menu("line action","<edit>",pe,"<TODO insert>",la,"<TODO append>",la,"",la,"",la,"<delete>",dl,"<back>",rl)
+    // we could replace `rl` with `mm` if it turns out to be too slow
+
+    Lbl dl // delete line
+
+        " "
+        // needs to be updated alongside `CONST_LINES_PER_SCREEN`
+        If b!=1
+            Ans+STR1
+        If b!=2
+            Ans+STR2
+        If b!=3
+            Ans+STR3
+        If b!=4
+            Ans+STR4
+        If b!=5
+            Ans+STR5
+        If b!=6
+            Ans+STR6
+        
+        sub(Ans,2,length(Ans)-1)->STR7
+
+        Goto ci // ductape string back together
+
+    Lbl pe // prepare eidt
+
+    // needs to be updated alongside `CONST_LINES_PER_SCREEN`
+    If b=1
+        STR1
+    If b=2
+        STR2
+    If b=3
+        STR3
+    If b=4
+        STR4
+    If b=5
+        STR5
+    If b=6
+        STR6
+
+    // get input from stdin
+
+        Ans->STR7
+
+        Disp "--- old line ---"
+        Disp ">>"+STR7
+        Disp "--- new line ---"
+        Input ">>",STR7
+
+        length(STR7)->c
+
+        If c=0
+        Then
+            " "->STR7
+            1->c
+        End
+
+        // fill with whitespace until is divisable by line
+        While remainder(c,CONST_CHARS_PER_LINE)!=0
+            STR7+" "->STR7
+            c+1->c
+        End
+
+        // needs to be updated alongside `CONST_LINES_PER_SCREEN`
+
+        If b=1
+        Then
+            STR7
+        Else
+            STR1
+        End
+        
+        If b=2
+        Then
+            Ans+STR7
+        Else
+            Ans+STR2
+        End
+
+        If b=3
+        Then
+            Ans+STR7
+        Else
+            Ans+STR3
+        End
+
+        If b=4
+        Then
+            Ans+STR7
+        Else
+            Ans+STR4
+        End
+
+        If b=5
+        Then
+            Ans+STR7
+        Else
+            Ans+STR5
+        End
+
+        If b=6
+        Then
+            Ans+STR7
+        Else
+            Ans+STR6
+        End
+
+        Ans->STR7
+    
+    Lbl ci // use cached input
+
+    // fuck tibasic
+    "?"+STR0+"?"->STR0
+    VAR_START_IDX+1->VAR_START_IDX
+
+    // // this replaces STR0 cont with STR7
+    // sub(STR0,1,VAR_START_IDX-1) // prefix
+    // Ans+STR7 // middle part
+    // Ans+sub(STR0,VAR_START_IDX+length(STR7),length(STR0)-VAR_START_IDX-length(STR7)+1) // suffix
+
+    // this inserts new STR7 where old STR1+STR2+STR... would have been
+    CONST_CHARS_PER_LINE*CONST_LINES_PER_SCREEN->a // original length of blocks shown on screen
+    sub(STR0,1,VAR_START_IDX-1) // prefix
+    Ans+STR7 // middle part
+    Ans+sub(STR0,VAR_START_IDX+a,length(STR0)-VAR_START_IDX-a+1) // suffix
+
+    // remove the useless chars added earlier
+    sub(Ans,2,length(Ans)-2)->STR0
+    VAR_START_IDX-1->VAR_START_IDX
+
+    ""->STR7 // clear var
+
+    Goto rl
+
+Lbl ac: // action
+
+    Menu("action","<save+exit>",se,"<discard+exit>",de,"",ac,"<prev>",pp,"<next>",np,"",ac,"<back>",mm)
+
+    Lbl pp: // prev
+        VAR_START_IDX-CONST_CHARS_PER_LINE*CONST_LINES_PASS_ON_BTN_PRESS->VAR_START_IDX
+        Goto rl
+
+    Lbl np: // next
+        VAR_START_IDX+CONST_CHARS_PER_LINE*CONST_LINES_PASS_ON_BTN_PRESS->VAR_START_IDX
+        Goto rl
+
+    Lbl de: // discard and exit
+        0->a // tell callee to not save returned data
+        Goto rt
+
+    Lbl se: // save and exit
+        1->a // tell calee to save returned data
+        Goto rt
+
+Lbl rt: // return
+
+""->STR1
+""->STR2
+""->STR3
+""->STR4
+""->STR5
+""->STR7
+""->STR8
+
+prgmPOPG
+prgmPOPF
+prgmPOPE
+prgmPOPD
+prgmPOPC
+prgmPOPB
+
+STR0 // set Ans

@@ -1,4 +1,13 @@
 
+#input : Ans - string
+#output: Ans - string ||| a - 0[don't save returned data] 1[save returned data]
+#trash : STR0-STR5 STR7 STR8
+
+
+Ans->STR0
+
+
+
 Disp "unarch txted..."
 
 "YTXTEDTR"
@@ -7,10 +16,13 @@ prgmUNARPRGM
 
 Disp "done"
 
+
+
+STR0
 prgmYTXTEDTR
-#input : Ans - string
-#output: Ans - string ||| a - 0[don't save returned data] 1[save returned data]
-#trash : STR0-STR5 STR7 STR8
+Ans->STR0
+
+
 
 Disp "arch txted..."
 
@@ -19,3 +31,7 @@ prgmARCHPRGM
 #input: Ans - string - program name (eg notes)
 
 Disp "done"
+
+
+
+STR0
