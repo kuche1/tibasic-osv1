@@ -13,12 +13,12 @@ prgmPUSHE
 
 # create note titles if hey don't exist
 # this will unarchive them if they do
+SetUpEditor [list]nttl1
 SetUpEditor [list]nttl2
 SetUpEditor [list]nttl3
 SetUpEditor [list]nttl4
 SetUpEditor [list]nttl5
 SetUpEditor [list]nttl6
-SetUpEditor [list]nttl7
 
 
 Lbl mm # main menu
@@ -27,42 +27,42 @@ Lbl mm # main menu
 
     # reload titles since they might have been trashed
 
-    [list]nttl2
+    [list]nttl1
     prgmLST2ST
     #input : Ans - list (eg L1)
     #output: STR0
     #trash : L1
     STR0->STR2
 
-    [list]nttl3
+    [list]nttl2
     prgmLST2ST
     #input : Ans - list (eg L1)
     #output: STR0
     #trash : L1
     STR0->STR3
 
-    [list]nttl4
+    [list]nttl3
     prgmLST2ST
     #input : Ans - list (eg L1)
     #output: STR0
     #trash : L1
     STR0->STR4
 
-    [list]nttl5
+    [list]nttl4
     prgmLST2ST
     #input : Ans - list (eg L1)
     #output: STR0
     #trash : L1
     STR0->STR5
 
-    [list]nttl6
+    [list]nttl5
     prgmLST2ST
     #input : Ans - list (eg L1)
     #output: STR0
     #trash : L1
     STR0->STR6
 
-    [list]nttl7
+    [list]nttl6
     prgmLST2ST
     #input : Ans - list (eg L1)
     #output: STR0
@@ -253,7 +253,7 @@ Lbl rn # rename note
         #output: L1
         #trash : STR0
 
-        L1->[list]nttl2
+        L1->[list]nttl1
     End
 
     If c=3
@@ -266,7 +266,7 @@ Lbl rn # rename note
         #output: L1
         #trash : STR0
 
-        L1->[list]nttl3
+        L1->[list]nttl2
     End
 
     If c=4
@@ -279,7 +279,7 @@ Lbl rn # rename note
         #output: L1
         #trash : STR0
 
-        L1->[list]nttl4
+        L1->[list]nttl3
     End
 
     If c=5
@@ -292,7 +292,7 @@ Lbl rn # rename note
         #output: L1
         #trash : STR0
 
-        L1->[list]nttl5
+        L1->[list]nttl4
     End
 
     If c=6
@@ -305,7 +305,7 @@ Lbl rn # rename note
         #output: L1
         #trash : STR0
 
-        L1->[list]nttl6
+        L1->[list]nttl5
     End
 
     If c=7
@@ -318,7 +318,7 @@ Lbl rn # rename note
         #output: L1
         #trash : STR0
 
-        L1->[list]nttl7
+        L1->[list]nttl6
     End
 
     Goto mm # go back to main menu, now that the appropriate STR variable has been updated
@@ -394,12 +394,12 @@ Disp "arch ttls..."
 
 # don't archive titles as to save some time on exit - they don't take too much memory anyways
 # # archive note titles
+# Archive [list]nttl1
 # Archive [list]nttl2
 # Archive [list]nttl3
 # Archive [list]nttl4
 # Archive [list]nttl5
 # Archive [list]nttl6
-# Archive [list]nttl7
 
 Disp "pop..."
 
