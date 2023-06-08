@@ -392,14 +392,14 @@ ClrList L1
 
 Disp "arch ttls..."
 
-# don't archive titles as to save some time on exit - they don't take too much memory anyways
-# # archive note titles
-# Archive [list]nttl1
-# Archive [list]nttl2
-# Archive [list]nttl3
-# Archive [list]nttl4
-# Archive [list]nttl5
-# Archive [list]nttl6
+# archive note titles
+# this takes some time
+Archive [list]nttl1
+Archive [list]nttl2
+Archive [list]nttl3
+Archive [list]nttl4
+Archive [list]nttl5
+Archive [list]nttl6
 
 Disp "pop..."
 
