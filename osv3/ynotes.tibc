@@ -1,8 +1,8 @@
 
-#info
-#   app used for writing down notes
+//info
+//   app used for writing down notes
 
-#trash: STR0-STR4 STR7-STR9 L1
+//trash: STR0-STR4 STR7-STR9 L1
 
 prgmPUSHA
 prgmPUSHB
@@ -11,8 +11,8 @@ prgmPUSHD
 prgmPUSHE
 
 
-# create note titles if hey don't exist
-# this will unarchive them if they do
+// create note titles if hey don't exist
+// this will unarchive them if they do
 SetUpEditor [list]nttl1
 SetUpEditor [list]nttl2
 SetUpEditor [list]nttl3
@@ -21,59 +21,59 @@ SetUpEditor [list]nttl5
 SetUpEditor [list]nttl6
 
 
-Lbl mm # main menu
+Lbl mm // main menu
 
     Disp "dcdng ttls..."
 
-    # reload titles since they might have been trashed
+    // reload titles since they might have been trashed
 
     [list]nttl1
     prgmLST2ST
-    #input : Ans - list (eg L1)
-    #output: STR0
-    #trash : L1
+    //input : Ans - list (eg L1)
+    //output: STR0
+    //trash : L1
     STR0->STR2
 
     [list]nttl2
     prgmLST2ST
-    #input : Ans - list (eg L1)
-    #output: STR0
-    #trash : L1
+    //input : Ans - list (eg L1)
+    //output: STR0
+    //trash : L1
     STR0->STR3
 
     [list]nttl3
     prgmLST2ST
-    #input : Ans - list (eg L1)
-    #output: STR0
-    #trash : L1
+    //input : Ans - list (eg L1)
+    //output: STR0
+    //trash : L1
     STR0->STR4
 
     [list]nttl4
     prgmLST2ST
-    #input : Ans - list (eg L1)
-    #output: STR0
-    #trash : L1
+    //input : Ans - list (eg L1)
+    //output: STR0
+    //trash : L1
     STR0->STR5
 
     [list]nttl5
     prgmLST2ST
-    #input : Ans - list (eg L1)
-    #output: STR0
-    #trash : L1
+    //input : Ans - list (eg L1)
+    //output: STR0
+    //trash : L1
     STR0->STR6
 
     [list]nttl6
     prgmLST2ST
-    #input : Ans - list (eg L1)
-    #output: STR0
-    #trash : L1
+    //input : Ans - list (eg L1)
+    //output: STR0
+    //trash : L1
     STR0->STR7
 
     Disp "done"
 
     Menu("notes",STR2,n2,STR3,n3,STR4,n4,STR5,n5,STR6,n6,STR7,n7,"<exit>",ex)
 
-# save selected note
+// save selected note
 
 Lbl n2
     2->c
@@ -107,19 +107,19 @@ Lbl n7
 
 Lbl nn
 
-# number is saved in `c`
-# name is saved in `STR0`
+// number is saved in `c`
+// name is saved in `STR0`
 
 Menu(STR0,"<edit>",ed,"<rename>",rn,"",nn,"",nn,"",nn,"<del cntnt>",dl,"<back>",mm)
 
-Lbl ed # edit note
+Lbl ed // edit note
 
     Disp "unarch cntnt..."
 
-    # set `Ans` based on current note
+    // set `Ans` based on current note
 
-    # create lists if they don't exist
-    # and unarchive if they do
+    // create lists if they don't exist
+    // and unarchive if they do
 
     If c=2
     Then
@@ -159,30 +159,30 @@ Lbl ed # edit note
 
     Disp "dcdng cntnt..."
 
-    # `Ans` set by ifs
+    // `Ans` set by ifs
 
     prgmLST2ST
-    #input : Ans - list (eg L1)
-    #output: STR0
-    #trash : L1
+    //input : Ans - list (eg L1)
+    //output: STR0
+    //trash : L1
 
     Disp "done"
 
     STR0
     prgmTXTEDTR
-    #input : Ans - string
-    #output: Ans - string ||| a - 0[don't save returned data] 1[save returned data]
-    #trash : STR0-STR5 STR7 STR8
+    //input : Ans - string
+    //output: Ans - string ||| a - 0[don't save returned data] 1[save returned data]
+    //trash : STR0-STR5 STR7 STR8
 
-    If a=1 # if given signal to save returned data
+    If a=1 // if given signal to save returned data
     Then
 
         Disp "encdng cntnt..."
 
         prgmST2LST
-        #input : Ans - string
-        #output: L1
-        #trash : STR0
+        //input : Ans - string
+        //output: L1
+        //trash : STR0
 
         Disp "arch cntnt..."
 
@@ -226,9 +226,9 @@ Lbl ed # edit note
     
     End
     
-    Goto mm # go back to main menu
+    Goto mm // go back to main menu
 
-Lbl rn # rename note
+Lbl rn // rename note
 
     If length(STR0)=0
     Then
@@ -237,21 +237,21 @@ Lbl rn # rename note
         "enter new name for note <"+STR0+">: "
     End
 
-    # Ans gets set by the ifs above
+    // Ans gets set by the ifs above
 
     prgmGETSTFST
-    #input : Ans - string - prompt
-    #return: STR0 - user input
+    //input : Ans - string - prompt
+    //return: STR0 - user input
 
     If c=2
     Then
         STR0->STR2
-        # this also sets `Ans`
+        // this also sets `Ans`
 
         prgmST2LST
-        #input : Ans - string
-        #output: L1
-        #trash : STR0
+        //input : Ans - string
+        //output: L1
+        //trash : STR0
 
         L1->[list]nttl1
     End
@@ -259,12 +259,12 @@ Lbl rn # rename note
     If c=3
     Then
         STR0->STR3
-        # this also sets `Ans`
+        // this also sets `Ans`
 
         prgmST2LST
-        #input : Ans - string
-        #output: L1
-        #trash : STR0
+        //input : Ans - string
+        //output: L1
+        //trash : STR0
 
         L1->[list]nttl2
     End
@@ -272,12 +272,12 @@ Lbl rn # rename note
     If c=4
     Then
         STR0->STR4
-        # this also sets `Ans`
+        // this also sets `Ans`
 
         prgmST2LST
-        #input : Ans - string
-        #output: L1
-        #trash : STR0
+        //input : Ans - string
+        //output: L1
+        //trash : STR0
 
         L1->[list]nttl3
     End
@@ -285,12 +285,12 @@ Lbl rn # rename note
     If c=5
     Then
         STR0->STR5
-        # this also sets `Ans`
+        // this also sets `Ans`
 
         prgmST2LST
-        #input : Ans - string
-        #output: L1
-        #trash : STR0
+        //input : Ans - string
+        //output: L1
+        //trash : STR0
 
         L1->[list]nttl4
     End
@@ -298,12 +298,12 @@ Lbl rn # rename note
     If c=6
     Then
         STR0->STR6
-        # this also sets `Ans`
+        // this also sets `Ans`
 
         prgmST2LST
-        #input : Ans - string
-        #output: L1
-        #trash : STR0
+        //input : Ans - string
+        //output: L1
+        //trash : STR0
 
         L1->[list]nttl5
     End
@@ -311,19 +311,19 @@ Lbl rn # rename note
     If c=7
     Then
         STR0->STR7
-        # this also sets `Ans`
+        // this also sets `Ans`
 
         prgmST2LST
-        #input : Ans - string
-        #output: L1
-        #trash : STR0
+        //input : Ans - string
+        //output: L1
+        //trash : STR0
 
         L1->[list]nttl6
     End
 
-    Goto mm # go back to main menu, now that the appropriate STR variable has been updated
+    Goto mm // go back to main menu, now that the appropriate STR variable has been updated
 
-Lbl dl # delete note
+Lbl dl // delete note
 
     Menu("confirm deletion","no",mm,"yes",dy)
 
@@ -392,8 +392,8 @@ ClrList L1
 
 Disp "arch ttls..."
 
-# archive note titles
-# this takes some time
+// archive note titles
+// this takes some time
 Archive [list]nttl1
 Archive [list]nttl2
 Archive [list]nttl3

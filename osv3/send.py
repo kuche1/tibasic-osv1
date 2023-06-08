@@ -16,8 +16,8 @@ BAD_WORDS = [
     '₁', '₂', '►'
 ]
 
-EXTENSION_PARSE_HASHTAG_ONLY = '.tib'
-EXTENSION_PARSE_C_PREPROCESSOR_AND_HASHTAG = '.tibc'
+EXTENSION_OLD_PP = '.tib'
+EXTENSION_PARSE_NEW_PP = '.tibc'
 
 def term(cmds:list):
     subprocess.run(cmds, check=True)
@@ -26,15 +26,15 @@ def deal_with_program(input_file):
 
     # determine preprocessor based on extension
 
-    use_c_preprocessor = None
+    use_new_preprocessor = None
     extension = None
 
-    if input_file.endswith(EXTENSION_PARSE_HASHTAG_ONLY):
-        use_c_preprocessor = False
-        extension = EXTENSION_PARSE_HASHTAG_ONLY
-    elif input_file.endswith(EXTENSION_PARSE_C_PREPROCESSOR_AND_HASHTAG):
-        use_c_preprocessor = True
-        extension = EXTENSION_PARSE_C_PREPROCESSOR_AND_HASHTAG
+    if input_file.endswith(EXTENSION_OLD_PP):
+        use_new_preprocessor = False
+        extension = EXTENSION_OLD_PP
+    elif input_file.endswith(EXTENSION_PARSE_NEW_PP):
+        use_new_preprocessor = True
+        extension = EXTENSION_PARSE_NEW_PP
     else:
         assert False
 
@@ -47,7 +47,7 @@ def deal_with_program(input_file):
 
     # preprocess c
 
-    if use_c_preprocessor:
+    if use_new_preprocessor:
     
         not_preprocessed_file_c = f'/tmp/{program_name}.c'
         shutil.copyfile(input_file, not_preprocessed_file_c)
@@ -61,35 +61,75 @@ def deal_with_program(input_file):
 
     # preprocess python
 
-    with open(preprocessed_file_c, 'r') as f:
-        data = f.read()
+    if use_new_preprocessor:
 
-    data_new = []
-    for line in data.splitlines():
-        if COMMENT in line:
-            line = line.split(COMMENT)
-            line = line[0]
+        # TODO remove `#`` only if at beginning of line
 
-        while line.startswith(' ') or line.startswith('\t'):
-            line = line[1:]
+        with open(preprocessed_file_c, 'r') as f:
+            data = f.read()
 
-        while line.endswith(' ') or line.endswith('\t'):
-            line = line[:-1]
+        data_new = []
+        for line in data.splitlines():
 
-        if line.count(' ') + line.count('\t') == len(line):
-            continue
+            # if line starts with `#`, delete line
+            if len(line) and line[0] == COMMENT:
+                continue
 
-        for badword in BAD_WORDS:
-            assert badword not in line, f'bad word found `{badword}`'
+            while line.startswith(' ') or line.startswith('\t'):
+                line = line[1:]
 
-        data_new += [line]
+            while line.endswith(' ') or line.endswith('\t'):
+                line = line[:-1]
 
-    data = data_new
+            if line.count(' ') + line.count('\t') == len(line):
+                continue
 
-    preprocessed_file = f'/tmp/{program_name}.tib'
+            for badword in BAD_WORDS:
+                assert badword not in line, f'bad word found `{badword}`'
 
-    with open(preprocessed_file, 'w')as f:
-        f.write('\n'.join(data))
+            data_new += [line]
+
+        data = data_new
+
+        preprocessed_file = f'/tmp/{program_name}.tib'
+
+        with open(preprocessed_file, 'w')as f:
+            f.write('\n'.join(data))
+
+    else:
+
+        # old preprocessor
+        # considers everything after `#` a comment
+
+        with open(preprocessed_file_c, 'r') as f:
+            data = f.read()
+
+        data_new = []
+        for line in data.splitlines():
+            if COMMENT in line:
+                line = line.split(COMMENT)
+                line = line[0]
+
+            while line.startswith(' ') or line.startswith('\t'):
+                line = line[1:]
+
+            while line.endswith(' ') or line.endswith('\t'):
+                line = line[:-1]
+
+            if line.count(' ') + line.count('\t') == len(line):
+                continue
+
+            for badword in BAD_WORDS:
+                assert badword not in line, f'bad word found `{badword}`'
+
+            data_new += [line]
+
+        data = data_new
+
+        preprocessed_file = f'/tmp/{program_name}.tib'
+
+        with open(preprocessed_file, 'w')as f:
+            f.write('\n'.join(data))
 
     # compile
 
