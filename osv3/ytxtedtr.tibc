@@ -22,7 +22,7 @@ prgmPUSHG
 
 //////////////////////////////////////////// constants
 // using variables and not raw values since
-// it is faster in tibasic
+// this is faster in tibasic
 
 #define CONST_CHARS_PER_LINE e
 14->CONST_CHARS_PER_LINE
