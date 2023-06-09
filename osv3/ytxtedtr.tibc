@@ -20,18 +20,26 @@ prgmPUSHE
 prgmPUSHF
 prgmPUSHG
 
+//////////////////////////////////////////// defines
+
+#define DEF_CHARS_PER_LINE 14
+
+#define DEF_LINES_PASS_ON_BTN_PRESS 4
+
+#define DEF_LINES_PER_SCREEN 6
+
 //////////////////////////////////////////// constants
 // using variables and not raw values since
 // this is faster in tibasic
 
 #define CONST_CHARS_PER_LINE e
-14->CONST_CHARS_PER_LINE
+DEF_CHARS_PER_LINE->CONST_CHARS_PER_LINE
 
 #define CONST_LINES_PASS_ON_BTN_PRESS f
-4->CONST_LINES_PASS_ON_BTN_PRESS
+DEF_LINES_PASS_ON_BTN_PRESS->CONST_LINES_PASS_ON_BTN_PRESS
 
 #define CONST_LINES_PER_SCREEN g
-6->CONST_LINES_PER_SCREEN // NOTE updating this number alone is not sufficient
+DEF_LINES_PER_SCREEN->CONST_LINES_PER_SCREEN
 
 //////////////////////////////////////////// variables
 
@@ -59,14 +67,10 @@ Lbl rl // refresh lines
 
     Disp "cut..."
 
-    // this seems like shit but is actually not too slow
-    // needs to be updated alongside `CONST_LINES_PER_SCREEN`
-    sub(STR0,VAR_START_IDX+CONST_CHARS_PER_LINE*0,CONST_CHARS_PER_LINE)->STR1
-    sub(STR0,VAR_START_IDX+CONST_CHARS_PER_LINE*1,CONST_CHARS_PER_LINE)->STR2
-    sub(STR0,VAR_START_IDX+CONST_CHARS_PER_LINE*2,CONST_CHARS_PER_LINE)->STR3
-    sub(STR0,VAR_START_IDX+CONST_CHARS_PER_LINE*3,CONST_CHARS_PER_LINE)->STR4
-    sub(STR0,VAR_START_IDX+CONST_CHARS_PER_LINE*4,CONST_CHARS_PER_LINE)->STR5
-    sub(STR0,VAR_START_IDX+CONST_CHARS_PER_LINE*5,CONST_CHARS_PER_LINE)->STR6
+    // this seems bad but is actually not too slow
+    ${for <line_num> 0 DEF_LINES_PER_SCREEN 
+        sub(STR0,VAR_START_IDX+CONST_CHARS_PER_LINE*<line_num>,CONST_CHARS_PER_LINE)->STR${add <line_num> 1}
+    }
 
     Disp "calc idx..."
 
@@ -106,28 +110,13 @@ Lbl rl // refresh lines
 
 Lbl mm // main menu
 
-    // needs to be updated alongside `CONST_LINES_PER_SCREEN`
-    Menu(STR8,STR1,l1,STR2,l2,STR3,l3,STR4,l4,STR5,l5,STR6,l6,"<action>",ac)
+    Menu(STR8,${for <line_num> 0 DEF_LINES_PER_SCREEN STR${add 1 <line_num>},l${add 1 <line_num>},}"<action>",ac)
 
-    // needs to be updated alongside `CONST_LINES_PER_SCREEN`
-    Lbl l1
-        1->b
-        Goto la
-    Lbl l2
-        2->b
-        Goto la
-    Lbl l3
-        3->b
-        Goto la
-    Lbl l4
-        4->b
-        Goto la
-    Lbl l5
-        5->b
-        Goto la
-    Lbl l6
-        6->b
-        Goto la
+    ${for <line_num> 0 DEF_LINES_PER_SCREEN 
+        Lbl l${add 1 <line_num>}
+            ${add 1 <line_num>}->b
+            Goto la
+    }
 
     Lbl la // line action
 
@@ -137,19 +126,10 @@ Lbl mm // main menu
     Lbl dl // delete line
 
         " "
-        // needs to be updated alongside `CONST_LINES_PER_SCREEN`
-        If b!=1
-            Ans+STR1
-        If b!=2
-            Ans+STR2
-        If b!=3
-            Ans+STR3
-        If b!=4
-            Ans+STR4
-        If b!=5
-            Ans+STR5
-        If b!=6
-            Ans+STR6
+        ${for <line_num> 0 DEF_LINES_PER_SCREEN 
+            If b!=${add 1 <line_num>}
+                Ans+STR${add 1 <line_num>}
+        }
         
         sub(Ans,2,length(Ans)-1)->STR7
 
@@ -157,19 +137,10 @@ Lbl mm // main menu
 
     Lbl pe // prepare eidt
 
-    // needs to be updated alongside `CONST_LINES_PER_SCREEN`
-    If b=1
-        STR1
-    If b=2
-        STR2
-    If b=3
-        STR3
-    If b=4
-        STR4
-    If b=5
-        STR5
-    If b=6
-        STR6
+    ${for <line_num> 0 DEF_LINES_PER_SCREEN 
+        If b=${add 1 <line_num>}
+            STR${add 1 <line_num>}
+    }
 
     // get input from stdin
 
@@ -194,49 +165,21 @@ Lbl mm // main menu
             c+1->c
         End
 
-        // needs to be updated alongside `CONST_LINES_PER_SCREEN`
-
         If b=1
         Then
             STR7
         Else
             STR1
         End
-        
-        If b=2
-        Then
-            Ans+STR7
-        Else
-            Ans+STR2
-        End
 
-        If b=3
-        Then
-            Ans+STR7
-        Else
-            Ans+STR3
-        End
-
-        If b=4
-        Then
-            Ans+STR7
-        Else
-            Ans+STR4
-        End
-
-        If b=5
-        Then
-            Ans+STR7
-        Else
-            Ans+STR5
-        End
-
-        If b=6
-        Then
-            Ans+STR7
-        Else
-            Ans+STR6
-        End
+        ${for <line_num> 1 DEF_LINES_PER_SCREEN 
+            If b=${add 1 <line_num>}
+            Then
+                Ans+STR7
+            Else
+                Ans+STR${add 1 <line_num>}
+            End
+        }
 
         Ans->STR7
     

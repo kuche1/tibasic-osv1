@@ -9,6 +9,9 @@ import shutil
 
 COMMENT = '#'
 
+DIRECTIVE_BEGIN = '${'
+DIRECTIVE_END = '}'
+
 BAD_WORDS = [
     'Str0', 'Str1', 'Str2', 'Str3', 'Str4', 'Str5', 'Str6', 'Str7', 'Str8', 'Str9',
     '→',
@@ -71,17 +74,93 @@ def deal_with_program(input_file):
 
     if use_new_preprocessor:
 
-        # TODO remove `#`` only if at beginning of line
-
         with open(preprocessed_file_c, 'r') as f:
             data = f.read()
 
+        # remove gcc autogen comments
         data_new = []
         for line in data.splitlines():
-
-            # if line starts with `#`, delete line
-            if len(line) and line[0] == COMMENT:
+            if line.startswith(COMMENT):
                 continue
+            data_new += [line]
+        data = '\n'.join(data_new)
+
+
+        # deal with directives
+        data_new = []
+
+        while DIRECTIVE_BEGIN in data:
+
+            start = data.index(DIRECTIVE_BEGIN)
+
+            data_head = data[:start]
+            data = data[start+len(DIRECTIVE_BEGIN) : ]
+
+            directives = 1
+            next_start = None
+            next_end = None
+            offset = 0
+            while directives:
+                next_start = data[offset:].find(DIRECTIVE_BEGIN)
+                next_end = data[offset:].find(DIRECTIVE_END)
+
+                assert next_end != -1 # syntax error
+
+                if next_start == -1:
+                    next_start = float('inf')
+
+                if (next_end < next_start):
+                    directives -= 1
+                    if directives == 0:
+                        break
+                    offset += next_end + len(DIRECTIVE_END)
+                elif (next_start < next_end):
+                    directives += 1
+                    offset += next_start + len(DIRECTIVE_BEGIN)
+                else:
+                    assert False
+
+            end = offset + next_end
+
+            cmd = data[ : end]
+
+            data_tail = data[end+len(DIRECTIVE_END) : ]
+
+            cmd = cmd.split(' ')
+            arg = cmd[1:]
+            cmd = cmd[0]
+        
+            data_mid = None # set this var in the `match`
+
+            match cmd:
+
+                case 'add':
+                    a, b = arg
+                    a = int(a)
+                    b = int(b)
+                    res = a + b
+                    data_mid = res
+
+                case 'for':
+                    var = arg[0]
+                    start = int(arg[1])
+                    end = int(arg[2])
+                    code = ' '.join(arg[3:])
+
+                    data_mid = ''
+                    for x in range(start, end):
+                        data_mid += code.replace(var, str(x))
+
+                case other:
+                    assert False, f'invalid directive `{cmd}`'
+                
+            data = data_head + str(data_mid) + data_tail
+
+
+        # get rid of whitespace
+        # filter words
+        data_new = []
+        for line in data.splitlines():
 
             while line.startswith(' ') or line.startswith('\t'):
                 line = line[1:]
@@ -97,25 +176,27 @@ def deal_with_program(input_file):
 
             data_new += [line]
 
-        data = data_new
+        data = '\n'.join(data_new)
 
         preprocessed_file = f'/tmp/{program_name}.tib'
 
         with open(preprocessed_file, 'w')as f:
-            f.write('\n'.join(data))
+            f.write(data)
 
     else:
 
         # old preprocessor
         # considers everything after `#` a comment
 
+        comment = '#'
+
         with open(preprocessed_file_c, 'r') as f:
             data = f.read()
 
         data_new = []
         for line in data.splitlines():
-            if COMMENT in line:
-                line = line.split(COMMENT)
+            if comment in line:
+                line = line.split(comment)
                 line = line[0]
 
             while line.startswith(' ') or line.startswith('\t'):

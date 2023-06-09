@@ -3,11 +3,19 @@
 
 #include "common.h"
 
+/////////////////////////////////////// defines
+
+#define DEF_SCREEN_WIDTH 94
+#define DEF_SCREEN_HEIGHT 63
+
 /////////////////////////////////////// labels
 
-#define LBL_PLAY pl
-#define LBL_OPTIONS op
-#define LBL_EXIT ex
+#define LBL_PLAY 1
+#define LBL_OPTIONS 2
+#define LBL_EXIT 3
+
+#define LBL_GAME_LOOP 4
+#define LBL_GAME_END 5
 
 /////////////////////////////////////// variables
 
@@ -23,7 +31,23 @@ Menu("diablo 5","play",LBL_PLAY,"options",LBL_OPTIONS,"exit",LBL_EXIT)
 
 lbl(LBL_PLAY)
 
-    put("this is fucking gamepaly")
+    DelVar Y1
+    ClrDraw
+
+    lbl(LBL_GAME_LOOP)
+    
+        Pxl-On(0,0)
+        Pxl-On(0,2)
+        Pxl-On(0,4)
+        Pxl-On(0,40)
+        Pxl-On(0,50)
+        Pxl-On(0,60)
+        Pxl-On(0,80)
+        Pxl-On(0,94)
+
+    jmp(LBL_GAME_LOOP)
+
+    lbl(LBL_GAME_END)
 
     jmp(LBL_EXIT)
 
