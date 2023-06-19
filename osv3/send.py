@@ -6,6 +6,7 @@ import subprocess
 import os
 import sys
 import shutil
+import datetime
 
 COMMENT = '#'
 
@@ -141,6 +142,11 @@ def deal_with_program(input_file):
                     res = a + b
                     data_mid = res
 
+                case 'fix-ws':
+                    assert len(arg) == 1
+                    var = arg[0]
+                    data_mid = var.strip()
+
                 case 'for':
                     var = arg[0]
                     start = int(arg[1])
@@ -150,6 +156,11 @@ def deal_with_program(input_file):
                     data_mid = ''
                     for x in range(start, end):
                         data_mid += code.replace(var, str(x))
+
+                case 'today':
+                    assert len(arg) == 0
+                    date = datetime.date.today()
+                    data_mid = f'{date.year}/{date.month}/{date.day}'
 
                 case other:
                     assert False, f'invalid directive `{cmd}`'

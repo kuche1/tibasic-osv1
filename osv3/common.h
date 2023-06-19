@@ -2,6 +2,7 @@
 /////////////////////////////////////// preprocessor hacks
 
 #define EXPAND(...) __VA_ARGS__
+
 #define CONCAT(a, b) a ## b
 
 /////////////////////////////////////// control flow
@@ -9,6 +10,13 @@
 #define lbl(name) Lbl name
 
 #define jmp(label) Goto label
+
+#define menu2(title, opt1, lbl1, opt2, lbl2) Menu(lbl,opt1,lbl1,opt2,lbl2)
+#define menu7(title, opt1, lbl1, opt2, lbl2, opt3, lbl3, opt4, lbl4, opt5, lbl5, opt6, lbl6, opt7, lbl7) Menu(lbl,opt1,lbl1,opt2,lbl2,opt3,lbl3,opt4,lbl4,opt5,lbl5,opt6,lbl6,opt7,lbl7)
+
+/////////////////////////////////////// variables
+
+#define set(var, value) value->var
 
 /////////////////////////////////////// IO
 
