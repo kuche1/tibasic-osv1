@@ -1,0 +1,28 @@
+
+#include "common.h"
+
+//////////// defines
+
+#define lbl_main_menu 1
+#define lbl_avt_88 2
+#define lbl_zoopark_kum_drujba2 3
+#define lbl_drujba2_kum_zoopark 4
+
+////////////
+
+lbl(lbl_main_menu)
+
+    Menu("izberi avtobus LU ${today}","88",lbl_avt_88,"",lbl_main_menu,"",lbl_main_menu,"",lbl_main_menu,"",lbl_main_menu,"",lbl_main_menu,"",lbl_main_menu)
+
+llb(lbl_avt_88)
+
+    munu2("izberi posoka", "zooparka -> drujba 2",lbl_zoopark_kum_drujba2, "drujba 2 -> zoopark",lbl_drujba2_kum_zoopark)
+
+    lbl(lbl_zoopark_kum_drujba2)
+
+        //menu7("izberi spirka", )
+        ${long-menu izberi-spirka }
+
+    lbl(lbl_drujba2_kum_zoopark)
+
+        Disp "kur bate"
