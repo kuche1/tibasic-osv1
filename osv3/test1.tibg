@@ -1,0 +1,44 @@
+
+[dbgprnt 'start of compile']
+
+[dispstr 'testing 123']
+
+
+
+
+[
+    menu
+    "izberi-avtobus"
+    "88" [gen-lbl 88]
+]
+
+
+
+[lbl 88]
+
+    [
+        menu
+        "izberi-posoka"
+        "zoopark->drujba2" [gen-lbl 88_zoo_dr2]
+        "drujba2->zoopark" [gen-lbl 88_dr2_zoo]
+    ]
+
+    [lbl 88_zoo_dr2]
+
+        [
+            menu
+            "izberi-spirka"
+            [run {
+                [var-new spirki]
+                [var-upd spirki [lista-s-spirki 88]]
+
+                [var-new spirki-labels]
+                [var-upd spirki-labels [
+                    foreach spirka [var spirki] {
+                        [var-upd ret-val [gen-lbl [var spirka]]]
+                    }
+                ]]
+
+                [var-upd ret-val [zip [var spirki] [var spirki-labels]]]
+            }]
+        ]
