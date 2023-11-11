@@ -40,7 +40,7 @@ def deal_with_program(input_file):
         use_new_preprocessor = True
         extension = EXTENSION_PARSE_NEW_PP
     else:
-        assert False
+        assert False, f'unknown extension of file: {input_file}'
 
     # some basic checks
 
