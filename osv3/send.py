@@ -2,6 +2,10 @@
 
 # ./compile osv1
 
+# NOTE TODO IMPORTANT
+# this will only work with `ti84cc` commit id `d103761b0c6bef7d19cb93efb9f6dce527888ee3`
+# anything after that adds lower case support which will surely fuck something up
+
 import subprocess
 import os
 import sys
