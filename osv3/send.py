@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-# ./compile osv1
+# ./send.py aaosv2.tib
 
 # NOTE TODO IMPORTANT
 # this will only work with `ti84cc` commit id `d103761b0c6bef7d19cb93efb9f6dce527888ee3`
